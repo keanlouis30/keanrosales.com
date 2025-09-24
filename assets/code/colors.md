@@ -1,0 +1,16 @@
+# Portfolio Color Palette
+
+All colors are listed as CSS custom properties:
+
+```css
+--nyanza: #d8f3dcff;
+--celadon: #b7e4c7ff;
+--celadon-2: #95d5b2ff;
+--mint: #74c69dff;
+--mint-2: #52b788ff;
+--sea-green: #40916cff;
+--dartmouth-green: #2d6a4fff;
+--brunswick-green: #1b4332ff;
+--dark-green: #081c15ff;
+```
+
