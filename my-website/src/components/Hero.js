@@ -153,14 +153,9 @@ const Hero = () => {
                         className="resume-button"
                         aria-label="Download Kean Rosales Resume PDF"
                       >
-                        <div className="button-content">
-                          <span className="download-icon">📄</span>
-                          <div className="button-text">
-                            <span className="button-label">DOWNLOAD RESUME</span>
-                            <span className="button-desc">Latest CV - PDF Format</span>
-                          </div>
-                          <span className="download-arrow">⬇</span>
-                        </div>
+                        <span className="resume-prompt">$ cat </span>
+                        <span className="resume-filename">resume.pdf</span>
+                        <span className="resume-cursor">_</span>
                       </a>
                     </div>
                   </div>
