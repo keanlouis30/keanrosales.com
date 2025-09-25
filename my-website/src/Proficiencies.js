@@ -34,7 +34,7 @@ const Proficiencies = () => {
         { name: "Threat Detection", level: 4 },
         { name: "Software Defined Networking", level: 4 }
       ],
-      description: "Network and Information Security major with (ISC)² Certified in Cybersecurity credentials. Specialized in real-time automated threat detection and response, with hands-on experience in security tools and methodologies."
+      description: "Network and Information Security major specialized in real-time automated threat detection and response, with hands-on experience in security tools and methodologies."
     },
     {
       category: "Communication",
@@ -160,7 +160,7 @@ const Proficiencies = () => {
                 <span className="prompt">$</span> cat {prof.category.toLowerCase()}_skills.json
               </div>
               <div className="terminal-output-block">
-<p className="proficiency-category"># <GlitchText speed={2.5} enableOnHover={false}>{prof.title}</GlitchText></p>
+<p className="proficiency-category"># <GlitchText speed={2.5} enableOnHover={true}>{prof.title}</GlitchText></p>
                 
                 <div className="proficiency-items">
                   {prof.items.map((item, i) => (

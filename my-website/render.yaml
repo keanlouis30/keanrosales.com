@@ -2,13 +2,14 @@ services:
   - type: web
     name: kean-portfolio
     runtime: static
+    rootDir: my-website
     buildCommand: npm install && npm run build
     staticPublishPath: ./build
     envVars:
       - key: NODE_VERSION
-        value: "18"
+        value: "20"
       - key: NPM_VERSION  
-        value: "9"
+        value: "10"
     headers:
       - path: /*
         name: X-Frame-Options

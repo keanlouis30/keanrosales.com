@@ -47,7 +47,10 @@ const Extra = () => {
           'projects.txt': { type: 'file', content: 'HackerCup Winner\nFiMO Communication Glove\nMessenger POS System\nTicketing Platform' },
           'skills.txt': { type: 'file', content: 'Programming:\n  Python, C++, React, Node.js\n\nCybersecurity:\n  Kali Linux, Wireshark, Nmap\n  Digital Forensics, Threat Detection\n\nOther:\n  Technical Writing, Instruction\n  Hardware & Robotics' }
         }},
-        'about.txt': { type: 'file', content: 'Kean Louis R. Rosales\n\nCybersecurity Specialist & Full-Stack Developer\nDLSU HackerCup 2025 Champion\n(ISC)² Certified in Cybersecurity\n\nPassionate about building secure, innovative solutions.\n\nContact: Open to collaboration and opportunities!' },
+        'documents': { type: 'dir', contents: {
+          'resume.pdf': { type: 'file', content: 'Kean Louis R. Rosales - Resume\nCybersecurity Specialist & Full-Stack Developer\n\n📄 To download the full resume PDF, use: download resume', downloadUrl: '/resume.pdf' }
+        }},
+        'about.txt': { type: 'file', content: 'Kean Louis R. Rosales\n\nCybersecurity Specialist & Full-Stack Developer\nDLSU HackerCup 2025 Champion\n\nPassionate about building secure, innovative solutions.\n\nContact: Open to collaboration and opportunities!' },
         'achievements.txt': { type: 'file', content: '🏆 Won 5 hackathons in a row\n🛠️  Built assistive communication glove (FiMO)\n💻 Developed multiple full-stack applications\n📚 Published researcher in AR/VR and cybersecurity\n✍️  Former sports writer for The LaSallian\n🗣️  Freelance programming instructor' }
       }
     }
@@ -82,7 +85,7 @@ const Extra = () => {
 
     switch (cmd) {
       case 'help':
-        response = `Available commands:\n\nNavigation:\n  ls, cd, pwd\n\nFile operations:\n  cat, history\n\nSystem info:\n  whoami, date, uname\n\nPortfolio info:\n  about, skills, projects\n\nOther:\n  clear, easteregg`;
+        response = `Available commands:\n\nNavigation:\n  ls, cd, pwd\n\nFile operations:\n  cat, history\n\nSystem info:\n  whoami, date, uname\n\nPortfolio info:\n  about, skills, projects\n\nDownloads:\n  resume, download resume, wget resume.pdf, curl /resume.pdf\n\nOther:\n  clear, easteregg`;
         break;
         
       case 'ls':
@@ -161,7 +164,7 @@ const Extra = () => {
         break;
         
       case 'about':
-        response = 'Kean Louis R. Rosales\n\nCybersecurity Specialist & Full-Stack Developer\nDLSU HackerCup 2025 Champion\n(ISC)² Certified in Cybersecurity\n\nFor detailed info: cat about.txt';
+        response = 'Kean Louis R. Rosales\n\nCybersecurity Specialist & Full-Stack Developer\nDLSU HackerCup 2025 Champion\n\nFor detailed info: cat about.txt\nFor resume download: resume';
         break;
         
       case 'skills':
@@ -170,6 +173,52 @@ const Extra = () => {
         
       case 'projects':
         response = 'Recent Projects:\n• FiMO Communication Glove (Award Winner)\n• Real-time Threat Detection System\n• Messenger-based POS System\n\nFor full list: cat portfolio/projects.txt';
+        break;
+        
+      case 'resume':
+      case 'download':
+        if (args[0] === 'resume' || cmd === 'resume') {
+          // Trigger resume download
+          const link = document.createElement('a');
+          link.href = '/resume.pdf';
+          link.download = 'Kean_Rosales_Resume.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          response = '📄 Resume download started!\n\nFile: Kean_Rosales_Resume.pdf\nSize: ~250KB\nFormat: PDF\n\nThank you for your interest in my profile!';
+        } else if (cmd === 'download') {
+          response = 'Usage: download resume\n\nAvailable downloads:\n  • resume - My current resume (PDF format)';
+        }
+        break;
+        
+      case 'wget':
+        if (args[0] === 'resume.pdf' || args[0] === 'resume') {
+          // Trigger resume download
+          const link = document.createElement('a');
+          link.href = '/resume.pdf';
+          link.download = 'Kean_Rosales_Resume.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          response = '--2025-09-25 22:36:00--  /resume.pdf\nResolving portfolio.kean... done\nConnecting to portfolio.kean... connected\nHTTP request sent, awaiting response... 200 OK\nLength: ~250KB [application/pdf]\nSaving to: \'Kean_Rosales_Resume.pdf\'\n\n📄 Resume downloaded successfully!';
+        } else {
+          response = `wget: missing URL\nUsage: wget resume.pdf`;
+        }
+        break;
+        
+      case 'curl':
+        if (args.includes('/resume.pdf') || args.includes('resume')) {
+          // Trigger resume download
+          const link = document.createElement('a');
+          link.href = '/resume.pdf';
+          link.download = 'Kean_Rosales_Resume.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          response = '  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n100 85311  100 85311    0     0   256k      0 --:--:-- --:--:-- --:--:--  256k\n\n📄 Resume downloaded via curl!';
+        } else {
+          response = 'curl: missing URL\nUsage: curl /resume.pdf';
+        }
         break;
         
       case 'easteregg':
@@ -270,16 +319,16 @@ const Extra = () => {
           { name: 'SOFT POP', percentage: '4.08%' }
         ],
         topTracks: [
-          { title: 'SPARKS', artist: 'COLDPLAY', duration: '3:47' },
-          { title: 'KUNG WALA KA', artist: 'HALE', duration: '4:03' },
-          { title: 'ALWAYS', artist: 'DANIEL CAESAR', duration: '3:45' },
-          { title: 'THE DAY YOU SAID GOODNIGHT', artist: 'HALE', duration: '4:51' },
-          { title: 'ABOT KAMAY', artist: 'ORANGE & LEMONS', duration: '2:38' },
-          { title: 'TELEPHONES', artist: 'VACATIONS', duration: '3:32' },
-          { title: 'SA HINDI PAG-ALALA', artist: 'MUNIMUNI', duration: '4:09' },
-          { title: 'BAWAT PIYESA', artist: 'MUNIMUNI', duration: '6:26' },
-          { title: 'HEAVEN KNOWS - THIS ANGEL HAS FLOWN', artist: 'ORANGE & LEMONS', duration: '4:01' },
-          { title: 'WARNING SIGN', artist: 'COLDPLAY', duration: '5:31' }
+          { title: 'SPARKS', artist: 'COLDPLAY', duration: '3:47', spotifyUrl: 'https://open.spotify.com/track/7D0RhFcb3CrfPuTJ0obrod?si=fcf1d1b0569a4133' },
+          { title: 'KUNG WALA KA', artist: 'HALE', duration: '4:03', spotifyUrl: 'https://open.spotify.com/track/4JSDhJVmo2UqdF7nxbyenn?si=df5c129e2e1a49e8' },
+          { title: 'ALWAYS', artist: 'DANIEL CAESAR', duration: '3:45', spotifyUrl: 'https://open.spotify.com/track/2LlOeW5rVcvl3QcPNPcDus?si=d6fd26f5fd5a4a46' },
+          { title: 'THE DAY YOU SAID GOODNIGHT', artist: 'HALE', duration: '4:51', spotifyUrl: 'https://open.spotify.com/track/0HZ3OUVrGHxttD2EuHqRm3?si=856b9f747e2e43a6' },
+          { title: 'ABOT KAMAY', artist: 'ORANGE & LEMONS', duration: '2:38', spotifyUrl: 'https://open.spotify.com/track/2AfQUfTj9tldldmIv39Dzm?si=6b56d749838947b9' },
+          { title: 'TELEPHONES', artist: 'VACATIONS', duration: '3:32', spotifyUrl: 'https://open.spotify.com/track/0JIMT9gzLIIz0esKLyjbKf?si=8430046ecc9b491c' },
+          { title: 'SA HINDI PAG-ALALA', artist: 'MUNIMUNI', duration: '4:09', spotifyUrl: 'https://open.spotify.com/track/7CXBhqBSbHNgecVX6aguUp?si=2eb70418e1fe4c1c' },
+          { title: 'BAWAT PIYESA', artist: 'MUNIMUNI', duration: '6:26', spotifyUrl: 'https://open.spotify.com/track/1tC2PLqLeJXt0VlgOYpc6m?si=27645f050ec54648' },
+          { title: 'HEAVEN KNOWS - THIS ANGEL HAS FLOWN', artist: 'ORANGE & LEMONS', duration: '4:01', spotifyUrl: 'https://open.spotify.com/track/1HWAmrrXx7JdNyUEvaJDGX?si=84d293b4d7444ac5' },
+          { title: 'WARNING SIGN', artist: 'COLDPLAY', duration: '5:31', spotifyUrl: 'https://open.spotify.com/track/4bPkBHKLKd9WHizsvM2zV3?si=2c3e48e9147543b3' }
         ],
         topArtists: [
           { name: 'COLDPLAY', plays: '92' },
@@ -560,56 +609,75 @@ const Extra = () => {
         
         {/* Music Modal */}
         {showMusicModal && (
-          <div className="music-modal-overlay" onClick={() => setShowMusicModal(false)}>
-            <div className="music-modal" onClick={(e) => e.stopPropagation()}>
-              <div className="modal-header">
-                <h2>🎵 My Music Stats</h2>
-                <button className="close-btn" onClick={() => setShowMusicModal(false)}>×</button>
+          <div className="terminal-modal-overlay" onClick={() => setShowMusicModal(false)}>
+            <div className="terminal-modal proficiency-card music-modal-size" onClick={(e) => e.stopPropagation()}>
+              <div className="terminal-header">
+                <span className="terminal-dots">
+                  <span className="dot dot-red">●</span>
+                  <span className="dot dot-yellow">●</span>
+                  <span className="dot dot-green">●</span>
+                </span>
+                <span className="terminal-title">~/music --statistics</span>
+                <button 
+                  className="close-button"
+                  onClick={() => setShowMusicModal(false)}
+                >
+                  ×
+                </button>
               </div>
               
-              <div className="modal-content">
-                <div className="stats-section">
-                  <h3>Top Genres (Past Year)</h3>
-                  <div className="genres-list">
-                    {interests[0].detailed.topGenres.map((genre, index) => (
-                      <div key={index} className="genre-item">
-                        <span className="genre-rank">{String(index + 1).padStart(2, '0')}</span>
-                        <span className="genre-name">{genre.name}</span>
-                        <span className="genre-percentage">{genre.percentage}</span>
-                      </div>
-                    ))}
-                  </div>
+              <div className="terminal-body">
+                <div className="terminal-command">
+                  <span className="prompt">kean@portfolio:~$</span>
+                  <span className="command">cat music_stats.json | jq .</span>
                 </div>
                 
-                <div className="stats-section">
-                  <h3>Top Tracks <span style={{fontSize: '12px', opacity: 0.7}}>(Click to open in Spotify)</span></h3>
-                  <div className="tracks-list">
-                    {interests[0].detailed.topTracks.map((track, index) => {
-                      const url = track.spotifyUrl || `https://open.spotify.com/search/${encodeURIComponent(`${track.title} ${track.artist}`)}`;
-                      return (
-                        <a key={index} href={url} target="_blank" rel="noopener noreferrer" className="track-item">
-                          <span className="track-rank">{String(index + 1).padStart(2, '0')}</span>
-                          <div className="track-info">
-                            <div className="track-title">{track.title}</div>
-                            <div className="track-artist">{track.artist}</div>
+                <div className="terminal-output-block">
+                  <div className="music-stats-grid">
+                    <div className="terminal-stats-section">
+                      <h3 className="terminal-section-title">🎵 Top Genres (Past Year)</h3>
+                      <div className="terminal-genres-list">
+                        {interests[0].detailed.topGenres.map((genre, index) => (
+                          <div key={index} className="terminal-genre-item">
+                            <span className="genre-rank">[{String(index + 1).padStart(2, '0')}]</span>
+                            <span className="genre-name">{genre.name}</span>
+                            <span className="genre-percentage">{genre.percentage}</span>
                           </div>
-                          <span className="track-duration">{track.duration}</span>
-                        </a>
-                      );
-                    })}
-                  </div>
-                </div>
-                
-                <div className="stats-section">
-                  <h3>Top Artists</h3>
-                  <div className="artists-list">
-                    {interests[0].detailed.topArtists.map((artist, index) => (
-                      <div key={index} className="artist-item">
-                        <span className="artist-rank">{String(index + 1).padStart(2, '0')}</span>
-                        <span className="artist-name">{artist.name}</span>
-                        <span className="artist-plays">{artist.plays} plays</span>
+                        ))}
                       </div>
-                    ))}
+                    </div>
+                    
+                    <div className="terminal-stats-section">
+                      <h3 className="terminal-section-title">🎧 Top Tracks <span className="terminal-hint">(Click to search in Spotify)</span></h3>
+                      <div className="terminal-tracks-list">
+                        {interests[0].detailed.topTracks.map((track, index) => {
+                          const url = track.spotifyUrl || `https://open.spotify.com/search/${encodeURIComponent(`${track.title} ${track.artist}`)}`;
+                          return (
+                            <a key={index} href={url} target="_blank" rel="noopener noreferrer" className="terminal-track-item">
+                              <span className="track-rank">[{String(index + 1).padStart(2, '0')}]</span>
+                              <div className="terminal-track-info">
+                                <div className="track-title">{track.title}</div>
+                                <div className="track-artist">    by {track.artist}</div>
+                              </div>
+                              <span className="track-duration">{track.duration}</span>
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    
+                    <div className="terminal-stats-section">
+                      <h3 className="terminal-section-title">🎤 Top Artists</h3>
+                      <div className="terminal-artists-list">
+                        {interests[0].detailed.topArtists.map((artist, index) => (
+                          <div key={index} className="terminal-artist-item">
+                            <span className="artist-rank">[{String(index + 1).padStart(2, '0')}]</span>
+                            <span className="artist-name">{artist.name}</span>
+                            <span className="artist-plays">{artist.plays} plays</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -619,33 +687,54 @@ const Extra = () => {
         
         {/* Gaming Modal */}
         {showGamingModal && (
-          <div className="gaming-modal-overlay" onClick={() => setShowGamingModal(false)}>
-            <div className="gaming-modal" onClick={(e) => e.stopPropagation()}>
-              <div className="modal-header">
-                <h2>🎮 My Gaming Stats</h2>
-                <button className="close-btn" onClick={() => setShowGamingModal(false)}>×</button>
+          <div className="terminal-modal-overlay" onClick={() => setShowGamingModal(false)}>
+            <div className="terminal-modal proficiency-card" onClick={(e) => e.stopPropagation()}>
+              <div className="terminal-header">
+                <span className="terminal-dots">
+                  <span className="dot dot-red">●</span>
+                  <span className="dot dot-yellow">●</span>
+                  <span className="dot dot-green">●</span>
+                </span>
+                <span className="terminal-title">~/gaming --stats</span>
+                <button 
+                  className="close-button"
+                  onClick={() => setShowGamingModal(false)}
+                >
+                  ×
+                </button>
               </div>
               
-              <div className="modal-content">
-                <div className="games-section">
-                  <h3>Most Played Games</h3>
+              <div className="terminal-body">
+                <div className="terminal-command">
+                  <span className="prompt">kean@portfolio:~$</span>
+                  <span className="command">cat gaming_stats.md</span>
+                </div>
+                
+                <div className="terminal-output-block">
+                  <h3 className="terminal-section-title">🎮 Most Played Games</h3>
                   <div className="games-list">
                     {interests.find(i => i.title === 'Gaming').detailed.games.map((game, index) => (
-                      <div key={index} className={`game-item ${game.url ? 'game-clickable' : ''}`}>
+                      <div key={index} className={`terminal-game-item ${game.url ? 'game-clickable' : ''}`}>
                         {game.url ? (
-                          <a href={game.url} target="_blank" rel="noopener noreferrer" className="game-link">
-                            <div className="game-info">
-                              <div className="game-name">{game.name}</div>
-                              <div className="game-description">{game.description}</div>
-                              <div className="game-stats">{game.stats}</div>
+                          <a href={game.url} target="_blank" rel="noopener noreferrer" className="terminal-game-link">
+                            <div className="terminal-game-info">
+                              <div className="terminal-game-header">
+                                <span className="game-index">[{String(index + 1).padStart(2, '0')}]</span>
+                                <span className="game-name">{game.name}</span>
+                                <span className="external-link">🔗</span>
+                              </div>
+                              <div className="game-description">    » {game.description}</div>
+                              <div className="game-stats">    » {game.stats}</div>
                             </div>
-                            <span className="external-link">🔗</span>
                           </a>
                         ) : (
-                          <div className="game-info">
-                            <div className="game-name">{game.name}</div>
-                            <div className="game-description">{game.description}</div>
-                            <div className="game-stats">{game.stats}</div>
+                          <div className="terminal-game-info">
+                            <div className="terminal-game-header">
+                              <span className="game-index">[{String(index + 1).padStart(2, '0')}]</span>
+                              <span className="game-name">{game.name}</span>
+                            </div>
+                            <div className="game-description">    » {game.description}</div>
+                            <div className="game-stats">    » {game.stats}</div>
                           </div>
                         )}
                       </div>
@@ -659,26 +748,44 @@ const Extra = () => {
         
         {/* Reading Modal */}
         {showReadingModal && (
-          <div className="reading-modal-overlay" onClick={() => setShowReadingModal(false)}>
-            <div className="reading-modal" onClick={(e) => e.stopPropagation()}>
-              <div className="modal-header">
-                <h2>📚 My Reading List</h2>
-                <button className="close-btn" onClick={() => setShowReadingModal(false)}>×</button>
+          <div className="terminal-modal-overlay" onClick={() => setShowReadingModal(false)}>
+            <div className="terminal-modal proficiency-card" onClick={(e) => e.stopPropagation()}>
+              <div className="terminal-header">
+                <span className="terminal-dots">
+                  <span className="dot dot-red">●</span>
+                  <span className="dot dot-yellow">●</span>
+                  <span className="dot dot-green">●</span>
+                </span>
+                <span className="terminal-title">~/reading --library</span>
+                <button 
+                  className="close-button"
+                  onClick={() => setShowReadingModal(false)}
+                >
+                  ×
+                </button>
               </div>
               
-              <div className="modal-content">
-                <div className="books-section">
-                  <h3>Favorite Books</h3>
-                  <div className="books-list">
+              <div className="terminal-body">
+                <div className="terminal-command">
+                  <span className="prompt">kean@portfolio:~$</span>
+                  <span className="command">ls -la ~/library/favorites/</span>
+                </div>
+                
+                <div className="terminal-output-block">
+                  <h3 className="terminal-section-title">📚 Favorite Books</h3>
+                  <div className="terminal-books-list">
                     {interests.find(i => i.title === 'Reading').detailed.books.map((book, index) => (
-                      <div key={index} className="book-item">
-                        <a href={book.url} target="_blank" rel="noopener noreferrer" className="book-link">
-                          <div className="book-info">
-                            <div className="book-title">{book.title}</div>
-                            <div className="book-author">by {book.author}</div>
-                            <div className="book-description">{book.description}</div>
+                      <div key={index} className="terminal-book-item">
+                        <a href={book.url} target="_blank" rel="noopener noreferrer" className="terminal-book-link">
+                          <div className="terminal-book-info">
+                            <div className="terminal-book-header">
+                              <span className="book-index">[{String(index + 1).padStart(2, '0')}]</span>
+                              <span className="book-title">{book.title}</span>
+                              <span className="external-link">🔗</span>
+                            </div>
+                            <div className="book-author">    by {book.author}</div>
+                            <div className="book-description">    » {book.description}</div>
                           </div>
-                          <span className="external-link">🔗</span>
                         </a>
                       </div>
                     ))}
@@ -691,42 +798,64 @@ const Extra = () => {
         
         {/* Sports Modal */}
         {showSportsModal && (
-          <div className="sports-modal-overlay" onClick={() => setShowSportsModal(false)}>
-            <div className="sports-modal" onClick={(e) => e.stopPropagation()}>
-              <div className="modal-header">
-                <h2>🏀 My Sports Passion</h2>
-                <button className="close-btn" onClick={() => setShowSportsModal(false)}>×</button>
+          <div className="terminal-modal-overlay" onClick={() => setShowSportsModal(false)}>
+            <div className="terminal-modal proficiency-card" onClick={(e) => e.stopPropagation()}>
+              <div className="terminal-header">
+                <span className="terminal-dots">
+                  <span className="dot dot-red">●</span>
+                  <span className="dot dot-yellow">●</span>
+                  <span className="dot dot-green">●</span>
+                </span>
+                <span className="terminal-title">~/sports --profile</span>
+                <button 
+                  className="close-button"
+                  onClick={() => setShowSportsModal(false)}
+                >
+                  ×
+                </button>
               </div>
               
-              <div className="modal-content">
-                <div className="sports-section">
-                  <h3>Basketball</h3>
-                  <div className="sport-info">
+              <div className="terminal-body">
+                <div className="terminal-command">
+                  <span className="prompt">kean@portfolio:~$</span>
+                  <span className="command">cat sports_profile.yml</span>
+                </div>
+                
+                <div className="terminal-output-block">
+                  <h3 className="terminal-section-title">🏀 Basketball</h3>
+                  <div className="terminal-sports-info">
                     {interests.find(i => i.title === 'Sports').detailed.sports.map((sport, index) => (
-                      <div key={index} className="sport-item">
-                        <div className="sport-name">{sport.name}</div>
-                        <div className="sport-description">{sport.description}</div>
-                        <div className="sport-role">{sport.role}</div>
+                      <div key={index} className="terminal-sport-item">
+                        <div className="terminal-sport-header">
+                          <span className="sport-name">{sport.name}</span>
+                        </div>
+                        <div className="sport-description">    » {sport.description}</div>
+                        <div className="sport-role">    » {sport.role}</div>
                       </div>
                     ))}
                   </div>
                   
-                  <div className="articles-section">
-                    <h4>My Sports Writing</h4>
-                    <a 
-                      href={interests.find(i => i.title === 'Sports').detailed.articles.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="articles-link"
-                    >
-                      <div className="articles-info">
-                        <div className="articles-description">
-                          {interests.find(i => i.title === 'Sports').detailed.articles.description}
+                  <div className="terminal-articles-section">
+                    <h4 className="terminal-subsection-title">📝 My Sports Writing</h4>
+                    <div className="terminal-article-item">
+                      <a 
+                        href={interests.find(i => i.title === 'Sports').detailed.articles.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="terminal-articles-link"
+                      >
+                        <div className="terminal-articles-info">
+                          <div className="terminal-articles-header">
+                            <span className="article-index">[01]</span>
+                            <span className="articles-description">
+                              {interests.find(i => i.title === 'Sports').detailed.articles.description}
+                            </span>
+                            <span className="external-link">🔗</span>
+                          </div>
+                          <div className="publication">    published at The LaSallian</div>
                         </div>
-                        <div className="publication">Published at The LaSallian</div>
-                      </div>
-                      <span className="external-link">🔗</span>
-                    </a>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

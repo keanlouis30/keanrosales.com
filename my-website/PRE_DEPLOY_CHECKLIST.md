@@ -53,6 +53,7 @@ git push origin main
 
 - ✅ Professional portfolio with all sections
 - ✅ Interactive terminal with file system
+- ✅ Resume download functionality (multiple commands)
 - ✅ Music/Gaming/Reading/Sports modals
 - ✅ Clickable Spotify track links
 - ✅ Biblical scripture terminal
@@ -73,6 +74,7 @@ After deployment, verify:
 - [ ] All sections load correctly
 - [ ] Navigation works smoothly
 - [ ] Interactive terminal responds to commands
+- [ ] Resume download works (try: resume, download resume, wget resume.pdf, curl /resume.pdf)
 - [ ] Modals open and close properly
 - [ ] Spotify links redirect correctly
 - [ ] Mobile responsiveness works
