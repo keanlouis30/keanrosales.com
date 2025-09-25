@@ -217,29 +217,61 @@ backdrop-filter: none;
   opacity: 0;
   animation: fade-in-cert 0.6s ease forwards;
   animation-delay: calc(var(--index, 0) * 0.2s);
+  text-decoration: none;
+  color: inherit;
 }
 
 .cert-item:hover {
   background: rgba(45, 106, 79, 0.2);
   border-color: var(--dartmouth-green);
+  transform: translateX(5px);
+}
+
+.cert-link {
+  cursor: pointer;
 }
 
 .cert-date {
   color: var(--celadon);
   font-size: 12px;
-  min-width: 60px;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.cert-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
 }
 
 .cert-name {
   color: var(--nyanza);
   font-size: 13px;
-  flex: 1;
+  font-weight: bold;
 }
 
-.cert-org {
+.cert-course {
   color: var(--mint);
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 11px;
+}
+
+.cert-id {
+  color: var(--celadon);
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.cert-external {
+  color: var(--mint);
+  font-size: 14px;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.cert-item:hover .cert-external {
+  opacity: 1;
+  transform: translate(2px, -2px);
 }
 
 /* Animations */
@@ -308,5 +340,22 @@ backdrop-filter: none;
 
   .cert-date {
     min-width: auto;
+    font-size: 11px;
+  }
+
+  .cert-details {
+    width: 100%;
+  }
+
+  .cert-name {
+    font-size: 12px;
+  }
+
+  .cert-course {
+    font-size: 10px;
+  }
+
+  .cert-id {
+    font-size: 9px;
   }
 }

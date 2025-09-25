@@ -30,6 +30,18 @@ const Hackathons = () => {
 
   const hackathons = [
     {
+      id: 'dlsu-hackercup-2025',
+      name: 'DLSU HackerCup 2025',
+      position: 'Champion',
+      project: 'KitaKita',
+      date: '2025',
+      description: 'Messenger-based POS system for small neighborhood stores',
+      achievement: 'Champion 🏆',
+      rank: 1,
+      participants: '100+',
+      prize: 'Grand Prize'
+    },
+    {
       id: 'dlsu-ctf-2025',
       name: 'DLSU CTF 2025',
       position: 'Champion',
@@ -52,18 +64,6 @@ const Hackathons = () => {
       rank: 4,
       participants: '45+',
       prize: 'Merit Award'
-    },
-    {
-      id: 'dlsu-hackercup-2025',
-      name: 'DLSU HackerCup 2025',
-      position: 'Champion',
-      project: 'KitaKita',
-      date: '2025',
-      description: 'Messenger-based POS system for small neighborhood stores',
-      achievement: 'Champion 🏆',
-      rank: 1,
-      participants: '100+',
-      prize: 'Grand Prize'
     },
     {
       id: 'tenext-codebreak-20',

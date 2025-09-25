@@ -29,8 +29,8 @@ const About = () => {
   }, []);
 
   const achievements = [
-    "🏆 DLSU CTF 2025 Champion",
     "🏆 DLSU HackerCup 2025 Champion",
+    "🏆 DLSU CTF 2025 Champion",
     "🥇 Top 5 Finalist - Tenext.ai Codebreak 2.0",
     "🥉 3rd Place - FlutterFlow Development Group Manila Hackathon",
     "🏅 4th Place - DLSU CTF 2024",
@@ -40,7 +40,15 @@ const About = () => {
   ];
 
   const certifications = [
-    { name: "Introduction to Digital Forensics", org: "C5W-100", year: "2024" }
+    { 
+      name: "Introduction to Digital Forensics", 
+      org: "CYBER 5W", 
+      year: "2025",
+      id: "4uutnaybl0",
+      course: "C5W-100",
+      issued: "2025-02-04",
+      link: "https://academy.cyber5w.com/certificates/4uutnaybl0"
+    }
   ];
 
   return (
@@ -173,11 +181,22 @@ const About = () => {
                   
                   <div className="cert-list">
                     {certifications.map((cert, index) => (
-                      <div key={index} className="cert-item">
-                        <span className="cert-date">[{cert.year}]</span>
-                        <span className="cert-name">{cert.name}</span>
-                        <span className="cert-org">- {cert.org}</span>
-                      </div>
+                      <a 
+                        key={index} 
+                        href={cert.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cert-item cert-link"
+                        aria-label={`View ${cert.name} certificate`}
+                      >
+                        <span className="cert-date">[{cert.issued}]</span>
+                        <div className="cert-details">
+                          <span className="cert-name">{cert.name}</span>
+                          <span className="cert-course">{cert.course} - {cert.org}</span>
+                          <span className="cert-id">ID: {cert.id}</span>
+                        </div>
+                        <span className="cert-external">↗</span>
+                      </a>
                     ))}
                   </div>
                 </div>
