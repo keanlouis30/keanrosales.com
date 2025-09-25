@@ -1,0 +1,1010 @@
+.extra-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  background: #000000;
+  font-family: 'Courier New', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+}
+
+.extra-container {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.extra-terminal.proficiency-card {
+  background: #000000;
+  border: 1px solid var(--sea-green);
+  border-radius: 8px;
+  box-shadow: 
+    0 0 20px rgba(116, 198, 157, 0.1),
+    0 0 40px rgba(116, 198, 157, 0.05),
+    inset 0 0 20px rgba(8, 28, 21, 0.8);
+  position: relative;
+overflow: hidden;
+}
+
+.extra-terminal.proficiency-card:hover {
+  box-shadow:
+    0 0 30px rgba(116, 198, 157, 0.2),
+    0 0 60px rgba(116, 198, 157, 0.1),
+    inset 0 0 20px rgba(8, 28, 21, 0.8);
+  border-color: var(--mint);
+}
+
+
+.terminal-header {
+  background: var(--dartmouth-green);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--brunswick-green);
+  border-radius: 12px 12px 0 0;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red { background: #ff5f57; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #28ca42; }
+
+.terminal-title {
+  color: var(--nyanza);
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+}
+
+.terminal-minimize {
+  color: var(--celadon);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.terminal-body {
+  padding: 30px;
+  font-family: 'Courier New', monospace;
+}
+
+.command-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.prompt {
+  color: var(--mint);
+  font-weight: bold;
+}
+
+.command {
+  color: var(--celadon);
+}
+
+.extra-content {
+  opacity: 0;
+  animation: fade-in-extra 1s ease 0.5s forwards;
+}
+
+.welcome-message {
+  margin-bottom: 40px;
+  padding: 20px;
+  background: rgba(116, 198, 157, 0.1);
+  border-left: 4px solid var(--mint);
+  border-radius: 4px;
+}
+
+.welcome-text {
+  color: var(--nyanza);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.section-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: var(--nyanza);
+  text-align: center;
+}
+
+/* Interests Section */
+.interests-section {
+  margin-bottom: 50px;
+}
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.interest-card {
+  background: rgba(8, 28, 21, 0.4);
+  border: 2px solid var(--dartmouth-green);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: slide-up-interest 0.6s ease forwards;
+  animation-delay: var(--delay);
+}
+
+.interest-card:hover {
+  border-color: var(--mint);
+  background: rgba(8, 28, 21, 0.6);
+  transform: translateY(-5px);
+}
+
+.interest-icon {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.interest-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--mint);
+  margin-bottom: 10px;
+}
+
+.interest-description {
+  font-size: 12px;
+  color: var(--celadon);
+  line-height: 1.4;
+}
+
+/* Fun Facts Section */
+.fun-facts-section {
+  margin-bottom: 50px;
+}
+
+.fun-facts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.fun-fact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(45, 106, 79, 0.15);
+  border: 1px solid var(--dartmouth-green);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: slide-in-fact 0.6s ease forwards;
+  animation-delay: var(--delay);
+}
+
+.fun-fact-item:hover {
+  background: rgba(45, 106, 79, 0.25);
+  border-color: var(--mint);
+  transform: translateX(10px);
+}
+
+.fact-bullet {
+  color: var(--mint);
+  font-weight: bold;
+  margin-top: 2px;
+}
+
+.fact-text {
+  color: var(--celadon);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Interactive Terminal */
+.interactive-terminal {
+  margin-bottom: 50px;
+}
+
+.mini-terminal {
+  background: rgba(8, 28, 21, 0.6);
+  border: 2px solid var(--dartmouth-green);
+  border-radius: 8px;
+  padding: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.terminal-history {
+  margin-bottom: 15px;
+}
+
+.history-entry {
+  margin-bottom: 15px;
+}
+
+.history-command {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.history-response {
+  color: var(--celadon);
+  font-size: 12px;
+  margin-left: 0px;
+  padding: 5px 0;
+  white-space: pre-wrap;
+  font-family: 'Courier New', monospace;
+  line-height: 1.4;
+}
+
+.history-response br {
+  line-height: 1.4;
+}
+
+.terminal-input-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--nyanza);
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  outline: none;
+  padding: 5px;
+  border-bottom: 1px solid var(--celadon);
+}
+
+.terminal-input::placeholder {
+  color: var(--celadon-2);
+  opacity: 0.6;
+}
+
+/* Footer Message */
+.footer-message {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.ascii-art {
+  background: rgba(8, 28, 21, 0.5);
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid var(--dartmouth-green);
+}
+
+.ascii-art pre {
+  color: var(--mint);
+  font-size: 12px;
+  line-height: 1.2;
+  margin: 0;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Animations */
+@keyframes fade-in-extra {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up-interest {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-fact {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Scrollbar styling for mini-terminal */
+.mini-terminal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mini-terminal::-webkit-scrollbar-track {
+  background: var(--brunswick-green);
+}
+
+.mini-terminal::-webkit-scrollbar-thumb {
+  background: var(--mint);
+  border-radius: 3px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .extra-section {
+    padding: 60px 15px;
+  }
+
+  .terminal-body {
+    padding: 20px;
+  }
+
+  .interests-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .interest-card {
+    padding: 15px;
+  }
+
+  .interest-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .interest-title {
+    font-size: 14px;
+  }
+
+  .fun-fact-item {
+    padding: 12px;
+  }
+
+  .mini-terminal {
+    padding: 15px;
+    max-height: 250px;
+  }
+
+  .ascii-art {
+    padding: 15px;
+  }
+
+  .ascii-art pre {
+    font-size: 10px;
+  }
+
+  .section-header {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ascii-art pre {
+    font-size: 8px;
+  }
+  
+  .interests-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .interest-card {
+    min-height: auto;
+  }
+}
+
+/* Clickable Interest Cards */
+.interest-card-clickable {
+  cursor: pointer;
+  position: relative;
+}
+
+.interest-card-clickable:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(116, 198, 157, 0.3);
+}
+
+.click-hint {
+  margin-top: 8px;
+  font-size: 10px;
+  color: var(--mint);
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* Music Modal Styles */
+.music-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: modal-fade-in 0.3s ease;
+}
+
+.music-modal {
+  background: var(--brunswick-green);
+  border: 2px solid var(--mint);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modal-slide-up 0.3s ease;
+  box-shadow: 0 20px 60px rgba(116, 198, 157, 0.2);
+}
+
+.modal-header {
+  background: var(--dartmouth-green);
+  padding: 20px;
+  border-bottom: 2px solid var(--mint);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px 10px 0 0;
+}
+
+.modal-header h2 {
+  color: var(--nyanza);
+  font-size: 24px;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--mint);
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: rgba(116, 198, 157, 0.2);
+  transform: scale(1.1);
+}
+
+.modal-content {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+
+.stats-section {
+  background: rgba(8, 28, 21, 0.6);
+  border: 1px solid var(--dartmouth-green);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.stats-section h3 {
+  color: var(--mint);
+  font-size: 16px;
+  margin: 0 0 20px 0;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  border-bottom: 1px solid var(--dartmouth-green);
+  padding-bottom: 10px;
+}
+
+/* Genre Items */
+.genres-list, .tracks-list, .artists-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.genre-item, .track-item, .artist-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(45, 106, 79, 0.15);
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+}
+
+.genre-item:hover, .track-item:hover, .artist-item:hover {
+  background: rgba(45, 106, 79, 0.25);
+  border-color: var(--mint);
+  transform: translateX(3px);
+}
+
+/* Track item as clickable link */
+.track-item {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  position: relative;
+}
+
+.track-item::after {
+  content: '🎵';
+  position: absolute;
+  right: 50px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  font-size: 10px;
+}
+
+.track-item:hover::after {
+  opacity: 0.6;
+}
+
+.track-item:hover {
+  background: rgba(45, 106, 79, 0.3);
+  border-color: var(--mint);
+  transform: translateX(5px) scale(1.02);
+  box-shadow: 0 2px 8px rgba(116, 198, 157, 0.2);
+}
+
+.genre-rank, .track-rank, .artist-rank {
+  color: var(--mint);
+  font-weight: bold;
+  margin-right: 12px;
+  min-width: 20px;
+}
+
+.genre-name, .artist-name {
+  color: var(--nyanza);
+  flex: 1;
+}
+
+.genre-percentage, .artist-plays {
+  color: var(--celadon);
+  font-size: 11px;
+}
+
+/* Track Items */
+.track-info {
+  flex: 1;
+  margin-right: 12px;
+}
+
+.track-title {
+  color: var(--nyanza);
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.track-artist {
+  color: var(--celadon);
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.track-duration {
+  color: var(--mint);
+  font-size: 11px;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Modal Animations */
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-slide-up {
+  from { 
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal Scrollbar */
+.music-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.music-modal::-webkit-scrollbar-track {
+  background: var(--brunswick-green);
+}
+
+.music-modal::-webkit-scrollbar-thumb {
+  background: var(--mint);
+  border-radius: 4px;
+}
+
+/* Mobile Modal Responsiveness */
+@media (max-width: 768px) {
+  .modal-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .music-modal {
+    margin: 10px;
+    max-height: 95vh;
+  }
+  
+  .modal-header {
+    padding: 15px;
+  }
+  
+  .modal-header h2 {
+    font-size: 20px;
+  }
+  
+  .stats-section {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .music-modal-overlay {
+    padding: 10px;
+  }
+  
+  .modal-content {
+    padding: 15px;
+  }
+  
+  .genre-item, .track-item, .artist-item {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  
+  .track-title {
+    font-size: 11px;
+  }
+  
+  .track-artist {
+    font-size: 9px;
+  }
+}
+
+/* Gaming Modal Styles */
+.gaming-modal-overlay, .reading-modal-overlay, .sports-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: modal-fade-in 0.3s ease;
+}
+
+.gaming-modal, .reading-modal, .sports-modal {
+  background: var(--brunswick-green);
+  border: 2px solid var(--mint);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modal-slide-up 0.3s ease;
+  box-shadow: 0 20px 60px rgba(116, 198, 157, 0.2);
+}
+
+.games-section, .books-section, .sports-section {
+  background: rgba(8, 28, 21, 0.6);
+  border: 1px solid var(--dartmouth-green);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.games-section h3, .books-section h3, .sports-section h3 {
+  color: var(--mint);
+  font-size: 18px;
+  margin: 0 0 20px 0;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  border-bottom: 1px solid var(--dartmouth-green);
+  padding-bottom: 10px;
+}
+
+/* Game Items */
+.games-list, .books-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.game-item, .book-item {
+  background: rgba(45, 106, 79, 0.15);
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.game-item:hover, .book-item:hover {
+  border-color: var(--mint);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(116, 198, 157, 0.2);
+}
+
+.game-link, .book-link {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+.game-info, .book-info {
+  flex: 1;
+}
+
+.game-name, .book-title {
+  color: var(--mint);
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-family: 'Courier New', monospace;
+}
+
+.game-description, .book-author {
+  color: var(--celadon);
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.game-stats, .book-description {
+  color: var(--nyanza);
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.external-link {
+  color: var(--mint);
+  font-size: 16px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.game-link:hover .external-link, .book-link:hover .external-link {
+  opacity: 1;
+}
+
+/* Non-clickable games */
+.game-item:not(.game-clickable) .game-info {
+  padding: 15px;
+}
+
+/* Sports Modal Specific Styles */
+.sport-info {
+  margin-bottom: 30px;
+}
+
+.sport-item {
+  background: rgba(45, 106, 79, 0.15);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.sport-name {
+  color: var(--mint);
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-family: 'Courier New', monospace;
+}
+
+.sport-description {
+  color: var(--celadon);
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.sport-role {
+  color: var(--nyanza);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.articles-section h4 {
+  color: var(--mint);
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-family: 'Courier New', monospace;
+}
+
+.articles-link {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: rgba(45, 106, 79, 0.15);
+  border-radius: 8px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.articles-link:hover {
+  border-color: var(--mint);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(116, 198, 157, 0.2);
+}
+
+.articles-info {
+  flex: 1;
+}
+
+.articles-description {
+  color: var(--nyanza);
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.publication {
+  color: var(--celadon);
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Mobile Responsiveness for New Modals */
+@media (max-width: 768px) {
+  .gaming-modal, .reading-modal, .sports-modal {
+    margin: 10px;
+    max-height: 95vh;
+  }
+  
+  .games-section, .books-section, .sports-section {
+    padding: 15px;
+  }
+  
+  .game-link, .book-link, .articles-link {
+    padding: 12px;
+  }
+  
+  .game-name, .book-title {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-link, .book-link, .articles-link {
+    padding: 10px;
+  }
+  
+  .game-name, .book-title, .sport-name {
+    font-size: 13px;
+  }
+  
+  .game-description, .book-author, .sport-description {
+    font-size: 12px;
+  }
+}
+
+/* Interactive Terminal Standalone */
+.interactive-terminal-standalone {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/* Scripture Terminal */
+.scripture-terminal {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.scripture-content {
+  text-align: center;
+  padding: 30px;
+  background: rgba(8, 28, 21, 0.3);
+  border-radius: 8px;
+  border: 1px solid var(--dartmouth-green);
+  margin-top: 20px;
+}
+
+.scripture-reference {
+  color: var(--mint);
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.scripture-text {
+  color: var(--nyanza);
+  font-size: 14px;
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 25px;
+  padding: 0 30px;
+  font-family: 'Courier New', monospace;
+}
+
+.scripture-content .glory-statement {
+  color: var(--celadon);
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-top: 1px solid var(--dartmouth-green);
+  padding-top: 20px;
+  margin-top: 20px;
+  font-family: 'Courier New', monospace;
+}
+
+/* Mobile responsiveness for scripture terminal */
+@media (max-width: 768px) {
+  .scripture-terminal {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  
+  .scripture-content {
+    padding: 25px;
+  }
+  
+  .scripture-text {
+    font-size: 13px;
+    padding: 0 20px;
+  }
+  
+  .scripture-reference {
+    font-size: 15px;
+  }
+  
+  .scripture-content .glory-statement {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scripture-terminal {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .scripture-content {
+    padding: 20px;
+  }
+  
+  .scripture-text {
+    font-size: 12px;
+    padding: 0 10px;
+  }
+  
+  .scripture-reference {
+    font-size: 14px;
+  }
+  
+  .scripture-content .glory-statement {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+}

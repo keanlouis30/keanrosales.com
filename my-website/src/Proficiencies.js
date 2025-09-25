@@ -105,7 +105,7 @@ const Proficiencies = () => {
   };
 
   return (
-    <section className="proficiencies-section">
+    <section id="proficiencies" className="proficiencies-section">
       <ScrollStack
         className="proficiencies-stack"
         itemDistance={80}

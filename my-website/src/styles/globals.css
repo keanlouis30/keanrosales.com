@@ -1,2 +1,73 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'tw-animate-css';
+
+/* Portfolio Color Palette */
+:root {
+  --nyanza: #d8f3dcff;
+  --celadon: #b7e4c7ff;
+  --celadon-2: #95d5b2ff;
+  --mint: #74c69dff;
+  --mint-2: #52b788ff;
+  --sea-green: #40916cff;
+  --dartmouth-green: #2d6a4fff;
+  --brunswick-green: #1b4332ff;
+  --dark-green: #081c15ff;
+}
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  background-color: var(--dark-green);
+  color: var(--nyanza);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--brunswick-green);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mint);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sea-green);
+}
+
+/* Terminal-style selection */
+::selection {
+  background-color: var(--mint);
+  color: var(--dark-green);
+}
+
+/* Utility classes */
+.text-mint { color: var(--mint); }
+.text-sea-green { color: var(--sea-green); }
+.text-dartmouth-green { color: var(--dartmouth-green); }
+.text-nyanza { color: var(--nyanza); }
+.text-celadon { color: var(--celadon); }
+
+.bg-dark-green { background-color: var(--dark-green); }
+.bg-brunswick-green { background-color: var(--brunswick-green); }
+.bg-dartmouth-green { background-color: var(--dartmouth-green); }
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}

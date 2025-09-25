@@ -1,0 +1,348 @@
+.hackathons-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  background: #000000;
+  font-family: 'Courier New', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+}
+
+.hackathons-container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.hackathons-terminal.proficiency-card {
+  background: #000000;
+  border: 1px solid var(--sea-green);
+  border-radius: 8px;
+  box-shadow: 
+    0 0 20px rgba(116, 198, 157, 0.1),
+    0 0 40px rgba(116, 198, 157, 0.05),
+    inset 0 0 20px rgba(8, 28, 21, 0.8);
+}
+
+.hackathons-terminal.proficiency-card:hover {
+  box-shadow:
+    0 0 30px rgba(116, 198, 157, 0.2),
+    0 0 60px rgba(116, 198, 157, 0.1),
+    inset 0 0 20px rgba(8, 28, 21, 0.8);
+  border-color: var(--mint);
+}
+
+.terminal-header {
+  background: var(--dartmouth-green);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--brunswick-green);
+  border-radius: 12px 12px 0 0;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red { background: #ff5f57; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #28ca42; }
+
+.terminal-title {
+  color: var(--nyanza);
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+}
+
+.terminal-minimize {
+  color: var(--celadon);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.terminal-body {
+  padding: 30px;
+  font-family: 'Courier New', monospace;
+}
+
+.command-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.prompt {
+  color: var(--mint);
+  font-weight: bold;
+}
+
+.command {
+  color: var(--celadon);
+}
+
+.hackathons-content {
+  opacity: 0;
+  animation: fade-in-hackathons 1s ease 0.5s forwards;
+}
+
+/* Stats Overview */
+.stats-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: rgba(8, 28, 21, 0.3);
+  border-radius: 8px;
+  border: 1px solid var(--dartmouth-green);
+}
+
+.stat-item {
+  text-align: center;
+  padding: 15px;
+  background: rgba(45, 106, 79, 0.2);
+  border-radius: 6px;
+  border: 1px solid var(--dartmouth-green);
+}
+
+.stat-value {
+  display: block;
+  font-size: 2em;
+  font-weight: bold;
+  color: var(--mint);
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  color: var(--celadon);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+/* Leaderboard */
+.leaderboard {
+  margin-bottom: 40px;
+}
+
+.leaderboard-header {
+  display: grid;
+  grid-template-columns: 80px 1fr 200px 180px;
+  gap: 20px;
+  padding: 15px 20px;
+  background: var(--dartmouth-green);
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--nyanza);
+}
+
+.leaderboard-entries {
+  background: rgba(8, 28, 21, 0.3);
+  border: 1px solid var(--dartmouth-green);
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+}
+
+.leaderboard-entry {
+  display: grid;
+  grid-template-columns: 80px 1fr 200px 180px;
+  gap: 20px;
+  padding: 20px;
+  border-bottom: 1px solid var(--brunswick-green);
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: slide-in-entry 0.6s ease forwards;
+  animation-delay: var(--delay);
+}
+
+.leaderboard-entry:last-child {
+  border-bottom: none;
+}
+
+.leaderboard-entry:hover {
+  background: rgba(45, 106, 79, 0.15);
+}
+
+.entry-rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rank-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--rank-color);
+  text-shadow: 0 0 10px var(--rank-color);
+}
+
+.entry-competition {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.competition-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--nyanza);
+}
+
+.competition-date {
+  font-size: 12px;
+  color: var(--celadon);
+}
+
+.competition-participants {
+  font-size: 11px;
+  color: var(--celadon-2);
+  opacity: 0.8;
+}
+
+.entry-project {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.project-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--mint);
+}
+
+.project-desc {
+  font-size: 11px;
+  color: var(--celadon);
+  line-height: 1.3;
+}
+
+.entry-achievement {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.achievement-badge {
+  background: rgba(116, 198, 157, 0.2);
+  color: var(--mint);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  border: 1px solid var(--mint);
+  font-weight: bold;
+}
+
+.prize-info {
+  font-size: 10px;
+  color: var(--celadon-2);
+  opacity: 0.8;
+}
+
+/* Summary Stats */
+.summary-stats {
+  padding: 20px;
+  background: rgba(45, 106, 79, 0.1);
+  border-radius: 8px;
+  border: 1px solid var(--dartmouth-green);
+}
+
+.summary-text {
+  margin-top: 15px;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.summary-label {
+  color: var(--mint);
+  font-weight: bold;
+}
+
+.summary-value {
+  color: var(--celadon);
+}
+
+/* Animations */
+@keyframes fade-in-hackathons {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-entry {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .hackathons-section {
+    padding: 60px 15px;
+  }
+
+  .terminal-body {
+    padding: 20px;
+  }
+
+  .stats-overview {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .stat-value {
+    font-size: 1.5em;
+  }
+
+  .leaderboard-header,
+  .leaderboard-entry {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .leaderboard-header {
+    display: none; /* Hide header on mobile */
+  }
+
+  .leaderboard-entry {
+    padding: 15px;
+    display: block;
+  }
+
+  .entry-rank {
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .entry-competition,
+  .entry-project,
+  .entry-achievement {
+    margin-bottom: 10px;
+  }
+
+  .summary-line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}
