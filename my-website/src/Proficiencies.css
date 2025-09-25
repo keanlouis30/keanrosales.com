@@ -1,0 +1,377 @@
+/* Terminal Color Palette */
+:root {
+  --nyanza: #d8f3dc;
+  --celadon: #b7e4c7;
+  --celadon-2: #95d5b2;
+  --mint: #74c69d;
+  --mint-2: #52b788;
+  --sea-green: #40916c;
+  --dartmouth-green: #2d6a4f;
+  --brunswick-green: #1b4332;
+  --dark-green: #081c15;
+  
+  /* Terminal specific colors */
+  --terminal-bg: #000000;
+  --terminal-border: var(--sea-green);
+  --terminal-text: var(--mint);
+  --terminal-dim: var(--dartmouth-green);
+  --terminal-bright: var(--nyanza);
+  --terminal-glow: rgba(116, 198, 157, 0.4);
+}
+
+.proficiencies-section {
+  width: 100%;
+  height: 100vh;
+  background: #000000;
+  font-family: 'Courier New', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+  overflow: hidden;
+}
+
+.proficiencies-stack {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+/* Terminal Card Base */
+.proficiency-card {
+  background: var(--terminal-bg);
+  border: 1px solid var(--terminal-border);
+  border-radius: 8px;
+  box-shadow: 
+    0 0 20px rgba(116, 198, 157, 0.1),
+    0 0 40px rgba(116, 198, 157, 0.05),
+    inset 0 0 20px rgba(8, 28, 21, 0.8);
+  overflow: hidden;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.proficiency-card:hover {
+  box-shadow: 
+    0 0 30px rgba(116, 198, 157, 0.2),
+    0 0 60px rgba(116, 198, 157, 0.1),
+    inset 0 0 20px rgba(8, 28, 21, 0.8);
+  border-color: var(--mint);
+}
+
+/* Terminal Header (Window Bar) */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--brunswick-green);
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--terminal-border);
+  user-select: none;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red {
+  background: #ff5f56;
+  border: 1px solid #e0443e;
+}
+
+.dot-yellow {
+  background: #ffbd2e;
+  border: 1px solid #dea123;
+}
+
+.dot-green {
+  background: #27c93f;
+  border: 1px solid #1aab29;
+}
+
+.terminal-title {
+  flex: 1;
+  text-align: center;
+  color: var(--mint);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.terminal-minimize {
+  color: var(--terminal-dim);
+  padding: 0 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.terminal-minimize:hover {
+  color: var(--mint);
+}
+
+/* Terminal Body */
+.terminal-body {
+  padding: 1.5rem;
+  min-height: auto;
+  height: auto;
+  color: var(--terminal-text);
+  line-height: 1.6;
+  overflow: visible;
+}
+
+/* Boot Screen Card */
+.title-card .terminal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.boot-sequence {
+  flex: 1;
+}
+
+.terminal-line {
+  color: var(--terminal-bright);
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+
+.terminal-output {
+  color: var(--terminal-dim);
+  margin: 0.25rem 0;
+  padding-left: 2rem;
+}
+
+.text-mint {
+  color: var(--mint);
+  font-weight: 600;
+}
+
+.typing-indicator {
+  margin-top: 2rem;
+}
+
+.cursor {
+  animation: blink-cursor 1s infinite;
+  color: var(--mint);
+  font-weight: bold;
+}
+
+@keyframes blink-cursor {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.scroll-hint {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1rem;
+}
+
+.blink {
+  animation: blink-text 2s infinite;
+  color: var(--mint-2);
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+@keyframes blink-text {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* Proficiency Content */
+.terminal-command {
+  color: var(--terminal-bright);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.prompt {
+  color: var(--mint);
+  font-weight: bold;
+}
+
+.terminal-output-block {
+  padding-left: 1rem;
+  border-left: 2px solid var(--terminal-dim);
+  margin-left: 0.5rem;
+}
+
+.proficiency-category {
+  color: var(--mint);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px var(--terminal-glow);
+}
+
+.proficiency-title {
+  color: var(--mint);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Skills Table */
+.proficiency-items {
+  margin: 1.5rem 0;
+}
+
+.proficiency-item {
+  display: grid;
+  grid-template-columns: 250px 20px 1fr;
+  align-items: center;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background 0.2s;
+  background: transparent;
+  border: none;
+}
+
+.proficiency-item:hover {
+  background: rgba(116, 198, 157, 0.05);
+  transform: none;
+  box-shadow: none;
+}
+
+.proficiency-name {
+  color: var(--celadon);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.skill-separator {
+  color: var(--terminal-dim);
+  text-align: center;
+}
+
+/* Progress Bar */
+.proficiency-level {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: monospace;
+}
+
+.proficiency-bar-filled {
+  color: var(--mint);
+  text-shadow: 0 0 8px var(--terminal-glow);
+  letter-spacing: 2px;
+}
+
+.proficiency-bar-empty {
+  color: var(--brunswick-green);
+  letter-spacing: 2px;
+}
+
+.proficiency-percentage {
+  color: var(--terminal-dim);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Terminal Divider */
+.terminal-divider {
+  color: var(--terminal-dim);
+  margin: 1.5rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Description */
+.proficiency-description {
+  color: var(--celadon-2);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  margin-top: 1rem;
+}
+
+.comment-marker {
+  color: var(--terminal-dim);
+  margin-right: 0.5rem;
+}
+
+/* Terminal scan line effect */
+.proficiency-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--terminal-glow),
+    transparent
+  );
+  animation: scan-line 8s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(500px);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .proficiencies-section {
+    padding: 1rem;
+  }
+  
+  .proficiency-card {
+    font-size: 12px;
+  }
+  
+  .proficiency-item {
+    grid-template-columns: 180px 15px 1fr;
+  }
+  
+  .terminal-body {
+    padding: 1rem;
+  }
+  
+  .proficiency-level {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .proficiencies-section {
+    padding: 0.5rem;
+  }
+  
+  .terminal-body {
+    padding: 0.75rem;
+    min-height: 300px;
+  }
+  
+  .proficiency-item {
+    grid-template-columns: 150px 10px 1fr;
+    margin: 0.5rem 0;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+}
