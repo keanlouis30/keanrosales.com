@@ -140,6 +140,31 @@ const Hero = () => {
                     </div>
                   </div>
 
+                  <div className="resume-section">
+                    <div className="terminal-command">
+                      <span className="prompt">kean@portfolio:~$</span>
+                      <span className="command">wget resume.pdf</span>
+                    </div>
+                    
+                    <div className="resume-download">
+                      <a 
+                        href="/Rosales, Kean Louis.pdf" 
+                        download="Rosales_Kean_Louis_Resume.pdf"
+                        className="resume-button"
+                        aria-label="Download Kean Rosales Resume PDF"
+                      >
+                        <div className="button-content">
+                          <span className="download-icon">📄</span>
+                          <div className="button-text">
+                            <span className="button-label">DOWNLOAD RESUME</span>
+                            <span className="button-desc">Latest CV - PDF Format</span>
+                          </div>
+                          <span className="download-arrow">⬇</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
                   <div className="boot-complete">
                     <div className="scroll-indicator">
                       <span className="scroll-text">[SCROLL TO EXPLORE]</span>

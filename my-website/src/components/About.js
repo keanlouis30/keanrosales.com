@@ -29,9 +29,11 @@ const About = () => {
   }, []);
 
   const achievements = [
+    "🏆 DLSU CTF 2025 Champion",
     "🏆 DLSU HackerCup 2025 Champion",
     "🥇 Top 5 Finalist - Tenext.ai Codebreak 2.0",
     "🥉 3rd Place - FlutterFlow Development Group Manila Hackathon",
+    "🏅 4th Place - DLSU CTF 2024",
     "🏅 4th Place - SpringBoards hack-it",
     "⭐ Special Awardee - KMC Solutions Hackathon",
     "🔬 1st Place Winner - Regional Science and Technology Fair"

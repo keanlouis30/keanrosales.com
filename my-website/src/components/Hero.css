@@ -263,6 +263,120 @@
   animation: pulse 2s infinite;
 }
 
+/* Resume Section */
+.resume-section {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.terminal-command {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-size: 12px;
+  justify-content: center;
+}
+
+.resume-download {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.resume-button {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--dartmouth-green), var(--brunswick-green));
+  border: 2px solid var(--mint);
+  border-radius: 8px;
+  padding: 16px 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 15px rgba(116, 198, 157, 0.2),
+    inset 0 0 20px rgba(8, 28, 21, 0.5);
+}
+
+.resume-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(116, 198, 157, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.resume-button:hover::before {
+  left: 100%;
+}
+
+.resume-button:hover {
+  border-color: var(--celadon);
+  box-shadow: 
+    0 6px 25px rgba(116, 198, 157, 0.3),
+    inset 0 0 30px rgba(8, 28, 21, 0.7);
+  transform: translateY(-2px);
+}
+
+.resume-button:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 10px rgba(116, 198, 157, 0.2),
+    inset 0 0 20px rgba(8, 28, 21, 0.5);
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.download-icon {
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+.button-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.button-label {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--mint);
+  letter-spacing: 1px;
+}
+
+.button-desc {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--celadon);
+  opacity: 0.8;
+}
+
+.download-arrow {
+  font-size: 16px;
+  color: var(--mint);
+  animation: bounce-arrow 2s ease-in-out infinite;
+}
+
+@keyframes bounce-arrow {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(3px); }
+  60% { transform: translateY(1px); }
+}
+
 .boot-complete {
   text-align: center;
   margin-top: 40px;
@@ -426,6 +540,41 @@
     padding-left: 10px;
   }
 
+  .resume-section {
+    margin: 20px 0;
+  }
+
+  .terminal-command {
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+
+  .resume-button {
+    padding: 14px 20px;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .button-content {
+    gap: 10px;
+  }
+
+  .download-icon {
+    font-size: 18px;
+  }
+
+  .button-label {
+    font-size: 13px;
+  }
+
+  .button-desc {
+    font-size: 9px;
+  }
+
+  .download-arrow {
+    font-size: 14px;
+  }
+
   .boot-complete {
     margin-top: 20px;
   }
@@ -477,6 +626,19 @@
 
   .role-text {
     font-size: 12px;
+  }
+
+  .resume-button {
+    padding: 12px 16px;
+    max-width: 260px;
+  }
+
+  .button-label {
+    font-size: 12px;
+  }
+
+  .button-desc {
+    font-size: 8px;
   }
 
   .matrix-bg {

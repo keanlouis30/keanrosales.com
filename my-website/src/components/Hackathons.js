@@ -30,6 +30,30 @@ const Hackathons = () => {
 
   const hackathons = [
     {
+      id: 'dlsu-ctf-2025',
+      name: 'DLSU CTF 2025',
+      position: 'Champion',
+      project: 'Cybersecurity Competition',
+      date: '2025',
+      description: 'Capture The Flag cybersecurity competition - network security, cryptography, and penetration testing challenges',
+      achievement: 'Champion 🏆',
+      rank: 1,
+      participants: '50+',
+      prize: 'First Place'
+    },
+    {
+      id: 'dlsu-ctf-2024',
+      name: 'DLSU CTF 2024',
+      position: '4th Place',
+      project: 'Cybersecurity Competition',
+      date: '2024',
+      description: 'Previous year CTF competition - improved from 4th to 1st place in following year',
+      achievement: '4th Place 🏅',
+      rank: 4,
+      participants: '45+',
+      prize: 'Merit Award'
+    },
+    {
       id: 'dlsu-hackercup-2025',
       name: 'DLSU HackerCup 2025',
       position: 'Champion',
@@ -122,15 +146,15 @@ const Hackathons = () => {
               <div className="terminal-output-block hackathons-content">
                 <div className="stats-overview">
                   <div className="stat-item">
-                    <span className="stat-value">5+</span>
-                    <span className="stat-label">Hackathons</span>
+                    <span className="stat-value">7+</span>
+                    <span className="stat-label">Competitions</span>
                   </div>
                   <div className="stat-item">
-                    <span className="stat-value">1</span>
-                    <span className="stat-label">Champion</span>
+                    <span className="stat-value">3</span>
+                    <span className="stat-label">Champions</span>
                   </div>
                   <div className="stat-item">
-                    <span className="stat-value">4</span>
+                    <span className="stat-value">6</span>
                     <span className="stat-label">Top 5 Finishes</span>
                   </div>
                   <div className="stat-item">
@@ -191,11 +215,15 @@ const Hackathons = () => {
                   <div className="summary-text">
                     <p className="summary-line">
                       <span className="summary-label">TOTAL COMPETITIONS:</span>
-                      <span className="summary-value">5</span>
+                      <span className="summary-value">7</span>
                     </p>
                     <p className="summary-line">
                       <span className="summary-label">WIN RATE:</span>
                       <span className="summary-value">100% (All competitions resulted in awards)</span>
+                    </p>
+                    <p className="summary-line">
+                      <span className="summary-label">CTF IMPROVEMENT:</span>
+                      <span className="summary-value">4th → 1st Place (2024-2025)</span>
                     </p>
                     <p className="summary-line">
                       <span className="summary-label">SPECIALIZATION:</span>

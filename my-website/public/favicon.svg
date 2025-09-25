@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Laptop screen -->
+  <rect x="7" y="4" width="18" height="14" rx="1" fill="#1a1a1a" stroke="#333" stroke-width="0.5"/>
+  <!-- Screen content (terminal-like) -->
+  <rect x="8" y="5" width="16" height="12" fill="#000"/>
+  <!-- Green cursor/text indicator -->
+  <rect x="9" y="7" width="2" height="1" fill="#74c69d"/>
+  <rect x="9" y="9" width="4" height="1" fill="#74c69d" opacity="0.7"/>
+  <rect x="9" y="11" width="3" height="1" fill="#74c69d" opacity="0.5"/>
+  <!-- Laptop base -->
+  <ellipse cx="16" cy="21" rx="11" ry="3" fill="#1a1a1a"/>
+  <!-- Keyboard area -->
+  <rect x="6" y="19" width="20" height="4" rx="1" fill="#2a2a2a"/>
+  <!-- Trackpad -->
+  <rect x="14" y="21" width="4" height="2" rx="0.5" fill="#333"/>
+</svg>
