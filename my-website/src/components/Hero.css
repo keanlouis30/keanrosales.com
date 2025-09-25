@@ -317,34 +317,169 @@
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
+  .hero-section {
+    padding: 20px 0;
+    min-height: 100vh;
+  }
+
   .hero-terminal {
-    width: 95%;
+    width: calc(100% - 20px);
     margin: 10px;
+    max-width: none;
+  }
+
+  .terminal-header {
+    padding: 10px 16px;
+  }
+
+  .terminal-title {
+    font-size: 12px;
   }
 
   .terminal-body {
-    padding: 20px;
+    padding: 20px 16px;
+    min-height: 300px;
+  }
+
+  .boot-sequence {
+    margin-bottom: 20px;
+  }
+
+  .boot-line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
+
+  .boot-time {
+    min-width: auto;
+    font-size: 10px;
+  }
+
+  .boot-text {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+
+  .boot-status {
+    min-width: auto;
+    font-size: 11px;
+  }
+
+  .system-ready {
+    padding: 8px 12px;
+    margin-bottom: 20px;
+  }
+
+  .ready-text {
+    font-size: 12px;
+  }
+
+  .prompt-line {
+    margin-bottom: 15px;
+    font-size: 12px;
   }
 
   .name-display {
     font-size: clamp(1.5rem, 8vw, 2.5rem);
+    line-height: 1.1;
+    margin-bottom: 15px;
+  }
+
+  .role-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin-bottom: 20px;
+  }
+
+  .role-prefix {
+    font-size: 14px;
   }
 
   .role-text {
     font-size: 14px;
   }
 
+  .status-info {
+    margin-bottom: 30px;
+    padding: 16px;
+  }
+
   .status-line {
     flex-direction: column;
     align-items: flex-start;
-    gap: 5px;
+    gap: 3px;
+    margin-bottom: 8px;
+    font-size: 12px;
   }
 
   .status-label {
     min-width: auto;
+    font-size: 11px;
+  }
+
+  .status-value {
+    font-size: 12px;
+    padding-left: 10px;
+  }
+
+  .boot-complete {
+    margin-top: 20px;
+  }
+
+  .scroll-text {
+    font-size: 11px;
+  }
+
+  .scroll-arrow {
+    font-size: 20px;
   }
 
   .matrix-column {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-terminal {
+    width: calc(100% - 10px);
+    margin: 5px;
+  }
+
+  .terminal-body {
+    padding: 16px 12px;
+  }
+
+  .name-display {
+    font-size: clamp(1.2rem, 10vw, 2rem);
+    letter-spacing: 1px;
+  }
+
+  .boot-line {
+    font-size: 10px;
+    gap: 2px;
+  }
+
+  .boot-text {
+    font-size: 10px;
+  }
+
+  .status-info {
+    padding: 12px;
+  }
+
+  .status-line {
+    font-size: 10px;
+  }
+
+  .role-text {
     font-size: 12px;
+  }
+
+  .matrix-bg {
+    opacity: 0.05; /* Reduce matrix effect on small screens */
   }
 }

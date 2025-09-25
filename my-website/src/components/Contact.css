@@ -405,12 +405,12 @@ overflow: hidden;
   }
 
   .terminal-body {
-    padding: 20px;
+    padding: 20px 16px;
   }
 
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 25px;
   }
 
   .left-column {
@@ -419,19 +419,134 @@ overflow: hidden;
 
   .contact-form-container,
   .social-links-container {
-    padding: 20px;
+    padding: 20px 16px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    font-size: 12px;
+    margin-bottom: 8px;
   }
 
   .form-input,
   .form-textarea {
-    padding: 10px;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    min-height: 44px; /* iOS minimum touch target */
+  }
+
+  .form-textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .form-submit {
+    padding: 14px 24px;
+    font-size: 14px;
+    min-height: 48px;
+    border-radius: 6px;
+    width: 100%;
+    margin-top: 10px;
   }
 
   .social-link {
-    padding: 12px;
+    padding: 16px;
+    min-height: 60px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .social-link:active {
+    transform: scale(0.98);
+    background-color: rgba(45, 106, 79, 0.3);
+  }
+
+  .social-link:hover {
+    transform: none; /* Remove hover transform on mobile */
+  }
+
+  .social-link:hover .link-arrow {
+    transform: none; /* Remove hover arrow animation on mobile */
+  }
+
+  .link-name {
+    font-size: 13px;
+  }
+
+  .link-command {
+    font-size: 10px;
+  }
+
+  .link-icon {
+    font-size: 18px;
+  }
+
+  .social-icon-img {
+    width: 22px;
+    height: 22px;
   }
 
   .location-info {
-    padding: 15px;
+    padding: 16px;
+  }
+
+  .location-line {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 40px 10px;
+  }
+
+  .terminal-body {
+    padding: 16px 12px;
+  }
+
+  .contact-form-container,
+  .social-links-container {
+    padding: 16px 12px;
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 12px 10px;
+    font-size: 13px;
+  }
+
+  .form-textarea {
+    min-height: 100px;
+  }
+
+  .form-submit {
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+
+  .social-link {
+    padding: 14px;
+    min-height: 56px;
+  }
+
+  .link-name {
+    font-size: 12px;
+  }
+
+  .link-command {
+    font-size: 9px;
+  }
+
+  .location-info {
+    padding: 14px;
+  }
+
+  .location-line {
+    font-size: 11px;
   }
 }

@@ -30,6 +30,9 @@ body {
   color: var(--nyanza);
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Scrollbar styling */
@@ -70,4 +73,80 @@ body {
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  /* Better touch targets */
+  button, 
+  input, 
+  textarea, 
+  select,
+  a {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* Disable zoom on inputs */
+  input, 
+  textarea, 
+  select {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
+  
+  /* Better scrolling */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Terminal effects optimization */
+  .terminal-nav,
+  .proficiency-card,
+  .project-card {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+  
+  /* Smaller touch targets for very small screens */
+  button, 
+  input, 
+  textarea, 
+  select,
+  a {
+    min-height: 40px;
+  }
+}
+
+/* Touch-specific styles */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover effects on touch devices */
+  .hover\:transform-none:hover {
+    transform: none !important;
+  }
+  
+  /* Better active states for touch */
+  .active\:scale-95:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Safe area handling for mobile devices */
+@supports (padding-top: env(safe-area-inset-top)) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
 }
