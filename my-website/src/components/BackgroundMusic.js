@@ -147,9 +147,20 @@ const BackgroundMusic = () => {
     };
 
     const handleCanPlay = () => {
-      // Do not autoplay at all. Ensure we are paused at time 0 until user interacts
-      try { audio.pause(); } catch {}
-      if (audio.currentTime !== 0) audio.currentTime = 0;
+      // Only prevent autoplay if user hasn't interacted yet
+      if (!unlockedRef.current) {
+        try { audio.pause(); } catch {}
+        if (audio.currentTime !== 0) audio.currentTime = 0;
+      } else {
+        // User has already interacted, allow automatic playback
+        audio.muted = false;
+        audio.volume = targetVolume;
+        audio.play().then(() => {
+          showNotificationWithTimeout();
+        }).catch(() => {
+          console.log('Autoplay failed for subsequent song, will retry on next gesture');
+        });
+      }
     };
 
     // Load and setup the audio
