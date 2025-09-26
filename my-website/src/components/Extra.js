@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Extra.css';
 import GlitchText from './GlitchText';
 import TextType from './TextType';
+import MusicPlayer from './MusicPlayer';
 import '../Proficiencies.css';
 
 const Extra = () => {
@@ -582,6 +583,9 @@ const Extra = () => {
             </div>
           </div>
         </div>
+        
+        {/* Music Player Terminal */}
+        <MusicPlayer />
         
         {/* Scripture Terminal */}
         <div className="extra-terminal proficiency-card scripture-terminal">
