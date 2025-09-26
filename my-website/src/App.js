@@ -9,10 +9,12 @@ import Projects from './components/Projects';
 import Hackathons from './components/Hackathons';
 import Contact from './components/Contact';
 import Extra from './components/Extra';
+import BackgroundMusic from './components/BackgroundMusic';
 
 function App() {
   return (
     <div className="app">
+      <BackgroundMusic />
       <Navigation />
       <Hero />
       <About />
