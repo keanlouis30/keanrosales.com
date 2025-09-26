@@ -53,6 +53,7 @@ const MusicPlayer = () => {
     const updateTime = () => setCurrentTime(audio.currentTime);
     const updateDuration = () => setDuration(audio.duration);
     const handleEnded = () => {
+      window.dispatchEvent(new Event('musicplayer:ended'));
       if (repeatMode === 'one') {
         audio.currentTime = 0;
         audio.play();
@@ -63,14 +64,21 @@ const MusicPlayer = () => {
       }
     };
 
+    const handlePlayEvent = () => window.dispatchEvent(new Event('musicplayer:play'));
+    const handlePauseEvent = () => window.dispatchEvent(new Event('musicplayer:pause'));
+
     audio.addEventListener('timeupdate', updateTime);
     audio.addEventListener('loadedmetadata', updateDuration);
     audio.addEventListener('ended', handleEnded);
+    audio.addEventListener('play', handlePlayEvent);
+    audio.addEventListener('pause', handlePauseEvent);
 
     return () => {
       audio.removeEventListener('timeupdate', updateTime);
       audio.removeEventListener('loadedmetadata', updateDuration);
       audio.removeEventListener('ended', handleEnded);
+      audio.removeEventListener('play', handlePlayEvent);
+      audio.removeEventListener('pause', handlePauseEvent);
     };
   }, [repeatMode, isShuffling, handleNext]);
 
@@ -86,8 +94,10 @@ const MusicPlayer = () => {
     
     if (isPlaying) {
       audioRef.current.pause();
+      window.dispatchEvent(new Event('musicplayer:pause'));
     } else {
       audioRef.current.play();
+      window.dispatchEvent(new Event('musicplayer:play'));
     }
     setIsPlaying(!isPlaying);
   };

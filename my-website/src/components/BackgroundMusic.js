@@ -16,43 +16,83 @@ const BackgroundMusic = () => {
     if (!audio) return;
 
     // Set up audio properties
-    const targetVolume = 0.3; // 30% volume
+    const targetVolume = 0.15; // 15% volume
     audio.volume = targetVolume;
     audio.muted = false;
     audio.loop = true;
 
+    // Track whether we paused due to music player
+    let suspendedByPlayer = false;
+
     // Helper: enable sound immediately at target volume (for fallback)
-    const enableSound = () => {
-      if (!audio) return;
+    const tryEnableSound = () => {
+      if (!audio) return false;
       audio.muted = false;
       audio.volume = targetVolume;
-      if (audio.paused) {
-        audio.play().catch(() => {});
-      }
-      removeGestureListeners();
+      return audio.play().then(() => {
+        showNotificationWithTimeout();
+        return true;
+      }).catch(() => false);
     };
 
-    // Add one-time user-gesture listeners to enable sound
-    const gestureEvents = ['pointerdown', 'keydown', 'touchstart', 'wheel'];
+    const enableSound = () => {
+      // Attempt to enable; if it fails, keep listeners for next gesture
+      tryEnableSound().then((ok) => {
+        if (ok) removeGestureListeners();
+      });
+    };
+
+    // React to Music Player events
+    const handlePlayerPlay = () => {
+      if (!audio.paused) {
+        audio.pause();
+        suspendedByPlayer = true;
+      }
+    };
+    const handlePlayerPause = () => {
+      if (suspendedByPlayer) {
+        audio.muted = false;
+        audio.volume = targetVolume;
+        audio.play().catch(() => {});
+      }
+    };
+    const handlePlayerEnded = () => {
+      if (suspendedByPlayer) {
+        audio.muted = false;
+        audio.volume = targetVolume;
+        audio.play().catch(() => {});
+      }
+    };
+
+    // Add robust user-gesture listeners to enable sound
+    const gestureEventsWindow = ['pointerdown', 'click', 'keydown', 'touchstart', 'wheel', 'scroll'];
+    const gestureEventsDoc = ['pointerdown', 'click', 'keydown', 'touchstart'];
     const gestureHandler = () => enableSound();
-    const addGestureListeners = () => gestureEvents.forEach(ev => window.addEventListener(ev, gestureHandler, { once: true }));
-    const removeGestureListeners = () => gestureEvents.forEach(ev => window.removeEventListener(ev, gestureHandler));
+    const addGestureListeners = () => {
+      gestureEventsWindow.forEach(ev => window.addEventListener(ev, gestureHandler, { passive: true }));
+      gestureEventsDoc.forEach(ev => document.addEventListener(ev, gestureHandler, { passive: true }));
+    };
+    const removeGestureListeners = () => {
+      gestureEventsWindow.forEach(ev => window.removeEventListener(ev, gestureHandler));
+      gestureEventsDoc.forEach(ev => document.removeEventListener(ev, gestureHandler));
+    };
 
-    const handleCanPlay = async () => {
-      console.log('Audio canplay event triggered');
-      // Show notification
+    const showNotificationWithTimeout = () => {
       setShowNotification(true);
-
-      // Auto-hide notification after 7 seconds
       setTimeout(() => {
         setShowNotification(false);
       }, 7000);
+    };
+
+    const handleCanPlay = async () => {
+      console.log('Audio canplay event triggered');
 
       // First attempt: try to play with sound immediately
       try {
         console.log('Attempting immediate autoplay with sound...');
         await audio.play();
         console.log('Autoplay with sound successful!');
+        showNotificationWithTimeout();
       } catch (error) {
         console.log('Autoplay with sound blocked. Trying muted fallback...');
         // Fallback: muted autoplay
@@ -69,10 +109,18 @@ const BackgroundMusic = () => {
       }
     };
 
+    // Attach gesture listeners early so early scroll/clicks count
+    addGestureListeners();
     audio.addEventListener('canplay', handleCanPlay);
+    window.addEventListener('musicplayer:play', handlePlayerPlay);
+    window.addEventListener('musicplayer:pause', handlePlayerPause);
+    window.addEventListener('musicplayer:ended', handlePlayerEnded);
 
     return () => {
       audio.removeEventListener('canplay', handleCanPlay);
+      window.removeEventListener('musicplayer:play', handlePlayerPlay);
+      window.removeEventListener('musicplayer:pause', handlePlayerPause);
+      window.removeEventListener('musicplayer:ended', handlePlayerEnded);
       removeGestureListeners();
     };
   }, []);

@@ -4,6 +4,9 @@
 
 @import 'tw-animate-css';
 
+/* Import monospace fonts for consistency */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Fira+Code:wght@300..700&display=swap');
+
 /* Portfolio Color Palette */
 :root {
   --nyanza: #d8f3dcff;
@@ -15,6 +18,9 @@
   --dartmouth-green: #2d6a4fff;
   --brunswick-green: #1b4332ff;
   --dark-green: #081c15ff;
+  
+  /* Consistent monospace font stack */
+  --mono-font: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
 }
 
 /* Base styles */
@@ -25,7 +31,7 @@
 }
 
 body {
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font);
   background-color: var(--dark-green);
   color: var(--nyanza);
   line-height: 1.6;
@@ -33,6 +39,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 /* Scrollbar styling */
