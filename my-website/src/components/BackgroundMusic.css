@@ -88,9 +88,29 @@
   }
 }
 
-/* Auto-hide animation after 7 seconds */
+@keyframes flashNotification {
+  0%, 100% {
+    border-color: var(--sea-green, #2e8b57);
+    box-shadow: 0 10px 30px rgba(46, 139, 87, 0.3);
+  }
+  25% {
+    border-color: var(--mint, #40e0d0);
+    box-shadow: 0 15px 40px rgba(64, 224, 208, 0.6);
+  }
+  50% {
+    border-color: #ffff00;
+    box-shadow: 0 15px 40px rgba(255, 255, 0, 0.5);
+  }
+  75% {
+    border-color: var(--mint, #40e0d0);
+    box-shadow: 0 15px 40px rgba(64, 224, 208, 0.6);
+  }
+}
+
+/* Auto-hide animation after 7 seconds with flash effect */
 .bg-music-notification {
   animation: slideInFromLeft 0.5s ease-out,
+             flashNotification 1s ease-in-out 0.5s,
              slideOutToLeft 0.5s ease-in 6.5s forwards;
 }
 
