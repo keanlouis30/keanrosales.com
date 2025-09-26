@@ -45,7 +45,20 @@ const MusicPlayer = () => {
       nextIndex = (currentIndex + 1) % playlist.length;
     }
     
-    handleTrackSelect(playlist[nextIndex]);
+    const nextTrack = playlist[nextIndex];
+    handleTrackSelect(nextTrack);
+    
+    // Auto-play the next track
+    setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(err => {
+          console.log('Auto-play prevented:', err);
+          setIsPlaying(false);
+        });
+      }
+    }, 100);
   }, [currentTrack, isShuffling, playlist, handleTrackSelect]);
 
   useEffect(() => {
@@ -121,7 +134,20 @@ const MusicPlayer = () => {
     const currentIndex = playlist.findIndex(track => track.id === currentTrack.id);
     const prevIndex = currentIndex === 0 ? playlist.length - 1 : currentIndex - 1;
     
-    handleTrackSelect(playlist[prevIndex]);
+    const prevTrack = playlist[prevIndex];
+    handleTrackSelect(prevTrack);
+    
+    // Auto-play the previous track
+    setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(err => {
+          console.log('Auto-play prevented:', err);
+          setIsPlaying(false);
+        });
+      }
+    }, 100);
   };
 
   const handleSeek = (e) => {

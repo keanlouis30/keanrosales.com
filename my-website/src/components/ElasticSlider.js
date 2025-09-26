@@ -1,4 +1,4 @@
-import { animate, motion, useMotionValue, useMotionValueEvent, useTransform } from 'motion/react';
+import { animate, motion, useMotionValue, useMotionValueEvent, useTransform } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import { RiVolumeDownFill, RiVolumeUpFill } from 'react-icons/ri';
 
