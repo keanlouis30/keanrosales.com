@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './MusicPlayer.css';
+import ElasticSlider from './ElasticSlider';
 
 const MusicPlayer = () => {
   const [currentTrack, setCurrentTrack] = useState(null);
@@ -7,6 +8,7 @@ const MusicPlayer = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.7);
+  const [sliderVolume, setSliderVolume] = useState(70); // For ElasticSlider (0-100 range)
   const [isShuffling, setIsShuffling] = useState(false);
   const [repeatMode, setRepeatMode] = useState('off'); // 'off', 'one', 'all'
   const audioRef = useRef(null);
@@ -57,10 +59,20 @@ const MusicPlayer = () => {
       if (repeatMode === 'one') {
         audio.currentTime = 0;
         audio.play();
-      } else if (repeatMode === 'all' || isShuffling) {
-        handleNext();
       } else {
-        setIsPlaying(false);
+        // Auto-play next track (either in order or shuffled)
+        handleNext();
+        // Keep playing unless repeat mode is off and we've reached the end
+        setTimeout(() => {
+          if (audio && audio.src) {
+            audio.play().then(() => {
+              setIsPlaying(true);
+            }).catch(err => {
+              console.log('Auto-play prevented:', err);
+              setIsPlaying(false);
+            });
+          }
+        }, 100);
       }
     };
 
@@ -138,6 +150,13 @@ const MusicPlayer = () => {
     const currentIndex = modes.indexOf(repeatMode);
     const nextIndex = (currentIndex + 1) % modes.length;
     setRepeatMode(modes[nextIndex]);
+  };
+
+  const handleVolumeChange = (newVolume) => {
+    // Convert from 0-100 range to 0-1 range
+    const volumeValue = newVolume / 100;
+    setVolume(volumeValue);
+    setSliderVolume(newVolume);
   };
 
 
@@ -245,16 +264,15 @@ const MusicPlayer = () => {
                 
                 <div className="volume-section">
                   <span className="volume-label">vol:</span>
-                  <input
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.1"
-                    value={volume}
-                    onChange={(e) => setVolume(parseFloat(e.target.value))}
-                    className="volume-slider"
+                  <ElasticSlider
+                    defaultValue={sliderVolume}
+                    startingValue={0}
+                    maxValue={100}
+                    isStepped
+                    stepSize={5}
+                    onChange={handleVolumeChange}
+                    className="music-volume-slider"
                   />
-                  <span className="volume-value">{Math.round(volume * 100)}%</span>
                 </div>
               </div>
             </div>
