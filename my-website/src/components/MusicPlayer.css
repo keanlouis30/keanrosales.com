@@ -1,17 +1,23 @@
 /* Music Player Terminal Styles */
 .music-player-terminal {
   margin: 2rem 0;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-  border: 2px solid var(--sea-green, #2e8b57);
-  border-radius: 12px;
+  background: var(--terminal-bg);
+  border: 1px solid var(--terminal-border);
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(46, 139, 87, 0.3);
+  box-shadow: 
+    0 0 20px rgba(116, 198, 157, 0.1),
+    0 0 40px rgba(116, 198, 157, 0.05),
+    inset 0 0 20px rgba(8, 28, 21, 0.8);
   transition: all 0.3s ease;
 }
 
 .music-player-terminal:hover {
-  box-shadow: 0 15px 40px rgba(46, 139, 87, 0.4);
-  border-color: var(--mint, #40e0d0);
+  box-shadow: 
+    0 0 30px rgba(116, 198, 157, 0.2),
+    0 0 60px rgba(116, 198, 157, 0.1),
+    inset 0 0 20px rgba(8, 28, 21, 0.8);
+  border-color: var(--mint);
 }
 
 .music-description {
@@ -19,7 +25,7 @@
 }
 
 .music-prompt {
-  color: var(--mint, #40e0d0);
+  color: var(--mint);
   font-weight: bold;
   margin-right: 0.5rem;
 }
@@ -29,11 +35,11 @@
 }
 
 .music-output {
-  color: var(--sea-green, #2e8b57);
+  color: var(--terminal-dim);
   margin: 1rem 0;
   padding: 0.5rem;
-  background: rgba(46, 139, 87, 0.1);
-  border-left: 3px solid var(--sea-green, #2e8b57);
+  background: rgba(116, 198, 157, 0.05);
+  border-left: 2px solid var(--terminal-dim);
   border-radius: 4px;
 }
 
@@ -49,14 +55,14 @@
 .section-title {
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(46, 139, 87, 0.3);
+  border-bottom: 1px solid var(--terminal-border);
 }
 
 .track-list {
   max-height: 300px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--sea-green, #2e8b57) #1a1a1a;
+  scrollbar-color: var(--terminal-border) var(--terminal-bg);
 }
 
 .track-list::-webkit-scrollbar {
@@ -64,11 +70,11 @@
 }
 
 .track-list::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: var(--terminal-bg);
 }
 
 .track-list::-webkit-scrollbar-thumb {
-  background: var(--sea-green, #2e8b57);
+  background: var(--terminal-border);
   border-radius: 3px;
 }
 
@@ -78,7 +84,7 @@
   padding: 0.75rem;
   margin-bottom: 0.5rem;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(46, 139, 87, 0.2);
+  border: 1px solid rgba(116, 198, 157, 0.2);
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -86,19 +92,19 @@
 }
 
 .track-item:hover {
-  background: rgba(46, 139, 87, 0.1);
-  border-color: var(--sea-green, #2e8b57);
+  background: rgba(116, 198, 157, 0.05);
+  border-color: var(--terminal-border);
   transform: translateX(5px);
 }
 
 .track-item.track-active {
-  background: rgba(46, 139, 87, 0.2);
-  border-color: var(--mint, #40e0d0);
-  box-shadow: 0 0 10px rgba(64, 224, 208, 0.3);
+  background: rgba(116, 198, 157, 0.1);
+  border-color: var(--mint);
+  box-shadow: 0 0 10px var(--terminal-glow);
 }
 
 .track-index {
-  color: var(--mint, #40e0d0);
+  color: var(--mint);
   font-family: 'Courier New', monospace;
   font-weight: bold;
   margin-right: 1rem;
@@ -123,7 +129,7 @@
 }
 
 .playing-indicator {
-  color: var(--mint, #40e0d0);
+  color: var(--mint);
   animation: pulse 1.5s ease-in-out infinite alternate;
   margin-left: 1rem;
   font-size: 1.2rem;
@@ -136,13 +142,13 @@
 
 /* Player Controls Section */
 .player-controls-section {
-  border-top: 1px solid rgba(46, 139, 87, 0.3);
+  border-top: 1px solid var(--terminal-border);
   padding-top: 1.5rem;
 }
 
 .now-playing {
-  background: rgba(46, 139, 87, 0.05);
-  border: 1px solid rgba(46, 139, 87, 0.2);
+  background: rgba(116, 198, 157, 0.05);
+  border: 1px solid var(--terminal-border);
   border-radius: 8px;
   padding: 1.5rem;
   margin-top: 1rem;
@@ -161,7 +167,7 @@
 }
 
 .current-artist {
-  color: var(--sea-green, #2e8b57);
+  color: var(--terminal-dim);
   font-size: 1rem;
 }
 
@@ -178,11 +184,11 @@
 }
 
 .current-time {
-  color: var(--mint, #40e0d0);
+  color: var(--mint);
 }
 
 .duration {
-  color: #aaaaaa;
+  color: var(--terminal-dim);
 }
 
 .progress-bar {
@@ -197,7 +203,7 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--mint, #40e0d0), var(--sea-green, #2e8b57));
+  background: linear-gradient(90deg, var(--mint), var(--terminal-border));
   border-radius: 3px;
   transition: width 0.1s ease;
   position: relative;
@@ -241,41 +247,41 @@
 }
 
 .control-text {
-  color: var(--mint, #40e0d0);
+  color: var(--mint);
   cursor: pointer;
   font-family: 'Courier New', monospace;
   font-size: 0.95rem;
   font-weight: bold;
   padding: 0.5rem 0.75rem;
-  border: 1px solid rgba(46, 139, 87, 0.3);
+  border: 1px solid var(--terminal-border);
   border-radius: 4px;
-  background: rgba(46, 139, 87, 0.1);
+  background: rgba(116, 198, 157, 0.1);
   transition: all 0.3s ease;
   user-select: none;
 }
 
 .control-btn:hover {
-  background: var(--sea-green, #2e8b57);
+  background: var(--terminal-border);
   transform: scale(1.1);
-  box-shadow: 0 5px 15px rgba(46, 139, 87, 0.4);
+  box-shadow: 0 5px 15px var(--terminal-glow);
 }
 
 .control-btn.active {
-  background: var(--mint, #40e0d0);
-  border-color: var(--mint, #40e0d0);
+  background: var(--mint);
+  border-color: var(--mint);
   color: #000000;
 }
 
 .control-text:hover {
-  background: rgba(46, 139, 87, 0.2);
-  border-color: var(--sea-green, #2e8b57);
-  color: #ffffff;
+  background: rgba(116, 198, 157, 0.15);
+  border-color: var(--terminal-border);
+  color: var(--terminal-bright);
   transform: translateY(-1px);
 }
 
 .control-text.active {
-  background: var(--mint, #40e0d0);
-  border-color: var(--mint, #40e0d0);
+  background: var(--mint);
+  border-color: var(--mint);
   color: #000000;
 }
 
@@ -287,17 +293,17 @@
 .control-text:focus-visible {
   outline: none;
   box-shadow: none;
-  border-color: var(--mint, #40e0d0);
-  background: rgba(46, 139, 87, 0.18);
-  color: #ffffff;
+  border-color: var(--mint);
+  background: rgba(116, 198, 157, 0.18);
+  color: var(--terminal-bright);
 }
 
 .control-btn.play-pause {
   width: 60px;
   height: 60px;
   font-size: 1.5rem;
-  background: linear-gradient(135deg, var(--mint, #40e0d0), var(--sea-green, #2e8b57));
-  border-color: var(--mint, #40e0d0);
+  background: linear-gradient(135deg, var(--mint), var(--terminal-border));
+  border-color: var(--mint);
 }
 
 .control-btn.play-pause:hover {
@@ -305,17 +311,17 @@
 }
 
 .control-text.play-pause {
-  background: rgba(46, 139, 87, 0.12);
-  border-color: var(--sea-green, #2e8b57);
-  color: var(--mint, #40e0d0);
+  background: rgba(116, 198, 157, 0.12);
+  border-color: var(--terminal-border);
+  color: var(--mint);
   font-weight: bold;
   padding: 0.6rem 1rem;
 }
 
 .control-text.play-pause:hover {
-  background: rgba(46, 139, 87, 0.2);
-  border-color: var(--mint, #40e0d0);
-  color: #ffffff;
+  background: rgba(116, 198, 157, 0.2);
+  border-color: var(--mint);
+  color: var(--terminal-bright);
   transform: none;
   box-shadow: none;
 }
@@ -329,7 +335,7 @@
 }
 
 .volume-label {
-  color: var(--mint, #40e0d0);
+  color: var(--mint);
   font-family: 'Courier New', monospace;
   font-weight: bold;
 }
@@ -348,23 +354,23 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--mint, #40e0d0);
+  background: var(--mint);
   cursor: pointer;
-  box-shadow: 0 0 5px rgba(64, 224, 208, 0.5);
+  box-shadow: 0 0 5px var(--terminal-glow);
 }
 
 .volume-slider::-moz-range-thumb {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--mint, #40e0d0);
+  background: var(--mint);
   cursor: pointer;
   border: none;
-  box-shadow: 0 0 5px rgba(64, 224, 208, 0.5);
+  box-shadow: 0 0 5px var(--terminal-glow);
 }
 
 .volume-value {
-  color: #ffffff;
+  color: var(--terminal-bright);
   font-family: 'Courier New', monospace;
   min-width: 3rem;
   text-align: right;

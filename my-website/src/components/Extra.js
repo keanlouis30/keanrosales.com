@@ -303,7 +303,7 @@ const Extra = () => {
 
   const interests = [
     { 
-      icon: '🎵', 
+      icon: '', 
       title: 'Music', 
       description: 'OPM (46.9%), Harana (44.9%), P-Pop enthusiast',
       detailed: {
@@ -346,7 +346,7 @@ const Extra = () => {
       }
     },
     { 
-      icon: '🎮', 
+      icon: '', 
       title: 'Gaming', 
       description: 'League of Legends, Teamfight Tactics, Torchlight 2',
       detailed: {
@@ -373,7 +373,7 @@ const Extra = () => {
       }
     },
     { 
-      icon: '📚', 
+      icon: '', 
       title: 'Reading', 
       description: 'Psychological thrillers and epic adventures',
       detailed: {
@@ -394,7 +394,7 @@ const Extra = () => {
       }
     },
     { 
-      icon: '🏀', 
+      icon: '', 
       title: 'Sports', 
       description: 'Basketball enthusiast and sports writer',
       detailed: {
@@ -411,7 +411,7 @@ const Extra = () => {
         }
       }
     },
-    { icon: '🏆', title: 'Competitions', description: 'Love the thrill of hackathons' }
+    { icon: '', title: 'Competitions', description: 'Love the thrill of hackathons' }
   ];
 
   const funFacts = [
