@@ -52,7 +52,11 @@ const Navigation = () => {
         <div className="nav-terminal">
           <div className="terminal-header">
             <span className="terminal-dots">
-              <span className="dot dot-red">●</span>
+              <span 
+                className="dot dot-red clickable" 
+                onClick={() => setIsCollapsed(true)}
+                title="Hide navigation"
+              >●</span>
               <span className="dot dot-yellow">●</span>
               <span className="dot dot-green">●</span>
             </span>
@@ -81,14 +85,16 @@ const Navigation = () => {
         </div>
       </nav>
 
-      <button
-        className={`nav-toggle ${isCollapsed ? 'toggle-show' : 'toggle-hide'}`}
-        onClick={() => setIsCollapsed((c) => !c)}
-        aria-label={isCollapsed ? 'Show navigation' : 'Hide navigation'}
-      >
-        <span className="toggle-icon">{isCollapsed ? '▤' : '✕'}</span>
-        <span className="toggle-label">{isCollapsed ? 'menu' : 'hide'}</span>
-      </button>
+      {isCollapsed && (
+        <button
+          className="nav-show-button"
+          onClick={() => setIsCollapsed(false)}
+          aria-label="Show navigation"
+          title="Show navigation"
+        >
+          &lt;
+        </button>
+      )}
     </>
   );
 };
