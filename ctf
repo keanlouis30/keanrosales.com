@@ -1,0 +1,258 @@
+#!/bin/bash
+
+# CTF Challenge System
+# Interactive terminal-based Capture The Flag challenges
+# Author: Kean Rosales
+
+# Colors for better UX
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+WHITE='\033[1;37m'
+NC='\033[0m' # No Color
+
+# Challenge directory
+CTF_DIR="$(dirname "$0")/ctf_challenges"
+
+# Ensure challenge directory exists
+mkdir -p "$CTF_DIR"
+
+# Banner function
+show_banner() {
+    echo -e "${CYAN}"
+    echo "  ╔═══════════════════════════════════════╗"
+    echo "  ║           CTF CHALLENGES              ║"
+    echo "  ║      Kean Rosales Portfolio           ║"
+    echo "  ╚═══════════════════════════════════════╝"
+    echo -e "${NC}"
+}
+
+# Main menu function
+show_menu() {
+    echo -e "${WHITE}Select your challenge difficulty:${NC}"
+    echo
+    echo -e "${GREEN}1) Easy   ${NC}- Perfect for beginners"
+    echo -e "${YELLOW}2) Medium ${NC}- Intermediate skills required"
+    echo -e "${RED}3) Hard   ${NC}- Coming soon!"
+    echo -e "${PURPLE}4) About  ${NC}- Learn about CTF challenges"
+    echo -e "${BLUE}5) Exit   ${NC}- Return to terminal"
+    echo
+}
+
+# About section
+show_about() {
+    clear
+    show_banner
+    echo -e "${WHITE}About CTF Challenges${NC}"
+    echo "━━━━━━━━━━━━━━━━━━━━━"
+    echo
+    echo "Capture The Flag (CTF) challenges are cybersecurity competitions"
+    echo "where participants solve puzzles to find hidden 'flags'."
+    echo
+    echo -e "${CYAN}Categories include:${NC}"
+    echo "• Cryptography - Breaking codes and ciphers"
+    echo "• Forensics - Analyzing files and data"
+    echo "• Web Security - Finding vulnerabilities"
+    echo "• Reverse Engineering - Understanding compiled code"
+    echo "• And much more!"
+    echo
+    echo -e "${YELLOW}These challenges help develop:${NC}"
+    echo "• Problem-solving skills"
+    echo "• Security awareness"
+    echo "• Technical expertise"
+    echo "• Analytical thinking"
+    echo
+    read -p "Press Enter to return to main menu..."
+}
+
+# Easy challenges menu
+easy_menu() {
+    clear
+    show_banner
+    echo -e "${GREEN}═══ EASY CHALLENGES ═══${NC}"
+    echo
+    echo "1) Pirate's First Code (Cryptography)"
+    echo "2) Back to main menu"
+    echo
+    read -p "Choose a challenge: " easy_choice
+    
+    case $easy_choice in
+        1) pirate_cipher_challenge ;;
+        2) return ;;
+        *) echo -e "${RED}Invalid choice!${NC}"; sleep 1; easy_menu ;;
+    esac
+}
+
+# Medium challenges menu
+medium_menu() {
+    clear
+    show_banner
+    echo -e "${YELLOW}═══ MEDIUM CHALLENGES ═══${NC}"
+    echo
+    echo "1) Marine Intelligence (Forensics)"
+    echo "2) Back to main menu"
+    echo
+    read -p "Choose a challenge: " medium_choice
+    
+    case $medium_choice in
+        1) marine_intel_challenge ;;
+        2) return ;;
+        *) echo -e "${RED}Invalid choice!${NC}"; sleep 1; medium_menu ;;
+    esac
+}
+
+# Easy Challenge 1: Pirate's First Code (Caesar Cipher)
+pirate_cipher_challenge() {
+    clear
+    show_banner
+    echo -e "${GREEN}═══ PIRATE'S FIRST CODE ═══${NC}"
+    echo -e "${BLUE}Category:${NC} Cryptography"
+    echo -e "${BLUE}Difficulty:${NC} Easy"
+    echo -e "${BLUE}Points:${NC} 100"
+    echo
+    echo "A young pirate crew just started their journey and intercepted"
+    echo "this message from a rival crew. They're not very sophisticated"
+    echo "yet - they probably used the simplest encryption method they"
+    echo "could find."
+    echo
+    echo -e "${YELLOW}Encrypted message:${NC}"
+    echo "\"Wkh wuhdvxuh lv klgghq xqghu wkh rog rdn wuhh\""
+    echo
+    echo "Can you help them decode it and find the treasure location?"
+    echo
+    echo -e "${PURPLE}Flag format:${NC} CTF{decoded_message_with_underscores}"
+    echo
+    
+    while true; do
+        read -p "Enter your flag: " user_flag
+        
+        if [[ "$user_flag" == "CTF{the_treasure_is_hidden_under_the_old_oak_tree}" ]]; then
+            echo -e "${GREEN}🏴‍☠️ Congratulations! You've found the treasure! 🏴‍☠️${NC}"
+            echo
+            echo "The Caesar cipher shifts each letter by 3 positions in the alphabet."
+            echo "This is one of the oldest known encryption techniques!"
+            echo
+            read -p "Press Enter to continue..."
+            break
+        elif [[ "$user_flag" == "quit" ]] || [[ "$user_flag" == "exit" ]]; then
+            break
+        else
+            echo -e "${RED}❌ Incorrect flag. Try again! (type 'quit' to exit)${NC}"
+            echo -e "${CYAN}Hint: Try shifting the letters by different amounts...${NC}"
+        fi
+    done
+}
+
+# Medium Challenge 1: Marine Intelligence (File Hash Checking)
+marine_intel_challenge() {
+    clear
+    show_banner
+    echo -e "${YELLOW}═══ MARINE INTELLIGENCE ═══${NC}"
+    echo -e "${BLUE}Category:${NC} Forensics"
+    echo -e "${BLUE}Difficulty:${NC} Medium"
+    echo -e "${BLUE}Points:${NC} 250"
+    echo
+    echo "The Marines intercepted a critical intelligence file about pirate"
+    echo "movements, but they suspect it may have been tampered with by a"
+    echo "double agent."
+    echo
+    echo -e "${YELLOW}The original file should have these hash signatures:${NC}"
+    echo -e "${CYAN}MD5:${NC}    5d41402abc4b2a76b9719d911017c592"
+    echo -e "${CYAN}SHA1:${NC}   aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d"
+    echo -e "${CYAN}SHA256:${NC} 2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae"
+    echo
+    echo "Verify the file integrity and find out what was changed if it's"
+    echo "been compromised."
+    echo
+    
+    # Create the compromised file if it doesn't exist
+    if [[ ! -f "$CTF_DIR/marine_intel.txt" ]]; then
+        echo "Setting up challenge files..."
+        cat > "$CTF_DIR/marine_intel.txt" << 'EOF'
+Marine Intelligence Report - CLASSIFIED
+
+Recent pirate activity shows increased movement near Water 7.
+Straw Hat crew last spotted heading toward Enies Lobby.
+
+CONFIDENTIAL FLAG: CTF{file_integrity_compromised_mission_exposed}
+EOF
+        echo -e "${GREEN}Challenge file created at: $CTF_DIR/marine_intel.txt${NC}"
+    fi
+    
+    echo -e "${PURPLE}File location:${NC} $CTF_DIR/marine_intel.txt"
+    echo
+    echo -e "${CYAN}Useful commands:${NC}"
+    echo "• md5sum <file>     - Calculate MD5 hash"
+    echo "• sha1sum <file>    - Calculate SHA1 hash"
+    echo "• sha256sum <file>  - Calculate SHA256 hash"
+    echo "• cat <file>        - View file contents"
+    echo
+    
+    while true; do
+        read -p "Enter your flag: " user_flag
+        
+        if [[ "$user_flag" == "CTF{file_integrity_compromised_mission_exposed}" ]]; then
+            echo -e "${GREEN}🎯 Excellent detective work! 🎯${NC}"
+            echo
+            echo "The expected hashes were for the string 'hello', but the actual"
+            echo "file contains a classified intelligence report with the flag!"
+            echo "This demonstrates how hash verification can detect file tampering."
+            echo
+            read -p "Press Enter to continue..."
+            break
+        elif [[ "$user_flag" == "quit" ]] || [[ "$user_flag" == "exit" ]]; then
+            break
+        else
+            echo -e "${RED}❌ Incorrect flag. Keep investigating! (type 'quit' to exit)${NC}"
+            echo -e "${CYAN}Hint: Compare the expected hashes with the actual file hashes...${NC}"
+        fi
+    done
+}
+
+# Hard challenges (coming soon)
+hard_menu() {
+    clear
+    show_banner
+    echo -e "${RED}═══ HARD CHALLENGES ═══${NC}"
+    echo
+    echo -e "${YELLOW}🚧 Coming Soon! 🚧${NC}"
+    echo
+    echo "Hard challenges are currently in development."
+    echo "Stay tuned for more advanced cybersecurity puzzles!"
+    echo
+    read -p "Press Enter to return to main menu..."
+}
+
+# Main execution loop
+main() {
+    while true; do
+        clear
+        show_banner
+        show_menu
+        
+        read -p "Enter your choice: " choice
+        
+        case $choice in
+            1) easy_menu ;;
+            2) medium_menu ;;
+            3) hard_menu ;;
+            4) show_about ;;
+            5) 
+                echo -e "${CYAN}Thanks for playing! Happy hacking! 🏴‍☠️${NC}"
+                exit 0
+                ;;
+            *)
+                echo -e "${RED}Invalid choice! Please select 1-5.${NC}"
+                sleep 1
+                ;;
+        esac
+    done
+}
+
+# Check if script is being executed directly
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    main "$@"
+fi

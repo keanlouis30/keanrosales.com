@@ -16,6 +16,10 @@ const Extra = () => {
   const [showGamingModal, setShowGamingModal] = useState(false);
   const [showReadingModal, setShowReadingModal] = useState(false);
   const [showSportsModal, setShowSportsModal] = useState(false);
+  const [showCtfModal, setShowCtfModal] = useState(false);
+  const [currentCtfChallenge, setCurrentCtfChallenge] = useState(null);
+  const [ctfInput, setCtfInput] = useState('');
+  const [ctfStatus, setCtfStatus] = useState('');
   const sectionRef = useRef(null);
   const terminalInputRef = useRef(null);
 
@@ -86,7 +90,7 @@ const Extra = () => {
 
     switch (cmd) {
       case 'help':
-        response = `Available commands:\n\nNavigation:\n  ls, cd, pwd\n\nFile operations:\n  cat, history\n\nSystem info:\n  whoami, date, uname\n\nPortfolio info:\n  about, skills, projects\n\nDownloads:\n  resume, download resume, wget resume.pdf, curl /resume.pdf\n\nOther:\n  clear, easteregg`;
+        response = `Available commands:\n\nNavigation:\n  ls, cd, pwd\n\nFile operations:\n  cat, history\n\nSystem info:\n  whoami, date, uname\n\nPortfolio info:\n  about, skills, projects\n\nDownloads:\n  resume, download resume, wget resume.pdf, curl /resume.pdf\n\nChallenges:\n  ctf - Launch CTF challenges\n\nOther:\n  clear, easteregg`;
         break;
         
       case 'ls':
@@ -222,6 +226,88 @@ const Extra = () => {
         }
         break;
         
+      case 'ctf':
+        if (args[0]) {
+          // Handle CTF difficulty selection
+          const difficulty = args[0];
+          if (difficulty === '1') {
+            setCurrentCtfChallenge({
+              type: 'easy',
+              title: "Pirate's First Code",
+              category: "Cryptography",
+              description: "A young pirate crew just started their journey and intercepted this message from a rival crew. They're not very sophisticated yet - they probably used the simplest encryption method they could find.",
+              encryptedMessage: "Wkh wuhdvxuh lv klgghq xqghu wkh rog rdn wuhh",
+              flag: "CTF{the_treasure_is_hidden_under_the_old_oak_tree}",
+              hint: "Try shifting the letters by different amounts..."
+            });
+            setShowCtfModal(true);
+            response = 'Opening Easy CTF Challenge...';
+          } else if (difficulty === '2') {
+            setCurrentCtfChallenge({
+              type: 'medium',
+              title: "Marine Intelligence",
+              category: "Forensics",
+              description: "The Marines intercepted a critical intelligence file about pirate movements, but they suspect it may have been tampered with by a double agent.",
+              hashes: {
+                md5: "5d41402abc4b2a76b9719d911017c592",
+                sha1: "aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d",
+                sha256: "2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae"
+              },
+              fileContent: "Marine Intelligence Report - CLASSIFIED\n\nRecent pirate activity shows increased movement near Water 7.\nStraw Hat crew last spotted heading toward Enies Lobby.\n\nCONFIDENTIAL FLAG: CTF{file_integrity_compromised_mission_exposed}",
+              flag: "CTF{file_integrity_compromised_mission_exposed}",
+              hint: "Compare the expected hashes with the actual file hashes..."
+            });
+            setShowCtfModal(true);
+            response = 'Opening Medium CTF Challenge...';
+          } else if (difficulty === '3') {
+            setCurrentCtfChallenge({
+              type: 'hard',
+              title: "The Road to Laugh Tale",
+              category: "Multi-Stage Cryptography",
+              description: "Gol D. Roger left behind more than just the One Piece treasure. Before his execution, he encoded the location of three Road Poneglyphs using a cipher known only to the Pirate King himself. You've discovered Roger's encrypted notes and mysterious files. The Straw Hat crew needs your help!",
+              rogerNotes: `Gur guerr Ebnq Cbarti yhcuf ner uvqqra jurer:
+
+Svefg: Jurer gur Fxl Vfynaq'f yvtug fuvatrf oevtug,
+Frpbaq: Va gur qrcguf bs Svfu-Zna Vfynaq'f avtug,
+Guveq: Jurer Mbrh'f pehry unaqf erng gur fgebat.
+
+Ohg orsber lbh pna ernq gur fgbarf, qrpelcg jvgu pner,
+Hfr gur Qrivy Sehvg'f cbjre - vg'f uvqqra va gur nve!
+
+Final encrypted message (use Vigenère with special key):
+Dpiv opu jzok gfnmd EVEFQNUGSJDZ qgf EFNQDZ kp gfnmd!`,
+              poneglyphClues: `"The ancient language speaks in numbers and letters combined.
+When the Gomu Gomu fruit reveals its secret, add the Pirate King's number.
+Remember:
+- Monkey D. Luffy's bounty started at 30,000,000
+- But the first bounty that made him famous was different...
+- Sky Island arc episode count + Fish-Man Island arc episode count = ?
+- Zou arc gave us the truth about the Road Poneglyphs
+
+The Devil Fruit image holds the first part: GOMU
+The calculations give you the rest.
+Combine them for the key that unlocks the final treasure!"
+
+Historical note: "Gol D. Roger was executed 22 years before the current timeline..."`,
+              steganographyPayload: `FRUIT_POWER: GOMU
+FIRST_BOUNTY: 30000000
+EPISODE_HINT: SKY_62_FISHMAN_51
+ROGER_EXECUTION: 22
+COMBINE_METHOD: CONCATENATE`,
+              flag: "CTF{GOMU_GOMU_LAUGHTALE_ONEPIECE_CIPHER}",
+              hint: "Start with the simple cipher (ROT13), then extract the Devil Fruit's secrets, build the Vigenère key: GOMU + episodes + Roger's number"
+            });
+            setShowCtfModal(true);
+            response = 'Opening Hard CTF Challenge... Prepare for the Grand Line!';
+          } else {
+            response = 'Invalid difficulty. Use: ctf 1, ctf 2, or ctf 3';
+          }
+        } else {
+          // Show CTF menu when no arguments provided
+          response = '🏴‍☠️ CTF Challenges Available!\n\nSelect your difficulty:\n\n[1] Easy   - Perfect for beginners (Caesar Cipher)\n[2] Medium - Intermediate skills required (File Forensics)\n[3] Hard   - Multi-stage cryptography (One Piece themed!)\n\nType: ctf <number> to select\nExample: ctf 1';
+        }
+        break;
+        
       case 'easteregg':
         response = '🎉 You found it!\n\n    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n    Hidden message: "I debug faster with good music playing! 🎵"\n\nThanks for exploring my terminal! 🚀';
         break;
@@ -278,6 +364,40 @@ const Extra = () => {
     }
     
     return currentNode;
+  };
+
+  // CTF Challenge handlers
+  const handleCtfSubmit = (e) => {
+    e.preventDefault();
+    if (!ctfInput.trim()) return;
+    
+    const flag = ctfInput.trim();
+    
+    if (flag === currentCtfChallenge.flag) {
+      if (currentCtfChallenge.type === 'easy') {
+        setCtfStatus('🏴‍☠️ Congratulations! You\'ve found the treasure! 🏴‍☠️\n\nThe Caesar cipher shifts each letter by 3 positions in the alphabet.\nThis is one of the oldest known encryption techniques!');
+      } else if (currentCtfChallenge.type === 'medium') {
+        setCtfStatus('🎯 Excellent detective work! 🎯\n\nThe expected hashes were for the string "hello", but the actual\nfile contains a classified intelligence report with the flag!\nThis demonstrates how hash verification can detect file tampering.');
+      } else if (currentCtfChallenge.type === 'hard') {
+        setCtfStatus('🏆 INCREDIBLE! You\'ve reached Laugh Tale! 🏆\n\nYou successfully:\n1. Decoded ROT13 cipher in Roger\'s notes\n2. Extracted steganographic data from the Devil Fruit\n3. Built the Vigenère key: GOMU + 62 + 51 + 22 = GOMU135\n4. Decrypted the final message to find LAUGHTALE and ONEPIECE!\n\nThe Pirate King would be proud! 👑');
+      }
+    } else if (flag.toLowerCase() === 'quit' || flag.toLowerCase() === 'exit') {
+      setShowCtfModal(false);
+      setCurrentCtfChallenge(null);
+      setCtfInput('');
+      setCtfStatus('');
+    } else {
+      setCtfStatus(`❌ Incorrect flag. Try again! (type 'quit' to exit)\n\n💡 Hint: ${currentCtfChallenge.hint}`);
+    }
+    
+    setCtfInput('');
+  };
+
+  const closeCtfModal = () => {
+    setShowCtfModal(false);
+    setCurrentCtfChallenge(null);
+    setCtfInput('');
+    setCtfStatus('');
   };
 
   const handleKeyDown = (e) => {
@@ -793,6 +913,158 @@ const Extra = () => {
                         </a>
                       </div>
                     ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        {/* CTF Modal */}
+        {showCtfModal && currentCtfChallenge && (
+          <div className="terminal-modal-overlay" onClick={closeCtfModal}>
+            <div className="terminal-modal proficiency-card" onClick={(e) => e.stopPropagation()}>
+              <div className="terminal-header">
+                <span className="terminal-dots">
+                  <span className="dot dot-red">●</span>
+                  <span className="dot dot-yellow">●</span>
+                  <span className="dot dot-green">●</span>
+                </span>
+                <span className="terminal-title">~/ctf --challenge-{currentCtfChallenge.type}</span>
+                <button 
+                  className="close-button"
+                  onClick={closeCtfModal}
+                >
+                  ×
+                </button>
+              </div>
+              
+              <div className="terminal-body">
+                <div className="terminal-command">
+                  <span className="prompt">kean@portfolio:~$</span>
+                  <span className="command">cat {currentCtfChallenge.title.toLowerCase().replace(/'/g, '').replace(/\s+/g, '_')}.txt</span>
+                </div>
+                
+                <div className="terminal-output-block">
+                  <h3 className="terminal-section-title">🏴‍☠️ {currentCtfChallenge.title}</h3>
+                  
+                  <div className="ctf-challenge-info">
+                    <div className="ctf-metadata">
+                      <span className="ctf-category">Category: {currentCtfChallenge.category}</span>
+                      <span className="ctf-difficulty">Difficulty: {currentCtfChallenge.type.charAt(0).toUpperCase() + currentCtfChallenge.type.slice(1)}</span>
+                      <span className="ctf-points">Points: {currentCtfChallenge.type === 'easy' ? '100' : currentCtfChallenge.type === 'medium' ? '250' : '500'}</span>
+                    </div>
+                    
+                    <div className="ctf-description">
+                      <p>{currentCtfChallenge.description}</p>
+                    </div>
+                    
+                    {currentCtfChallenge.type === 'easy' && (
+                      <div className="ctf-encrypted-message">
+                        <h4 className="terminal-subsection-title">📜 Encrypted Message:</h4>
+                        <div className="encrypted-text">
+                          "{currentCtfChallenge.encryptedMessage}"
+                        </div>
+                        <p>Can you help them decode it and find the treasure location?</p>
+                      </div>
+                    )}
+                    
+                    {currentCtfChallenge.type === 'medium' && (
+                      <div className="ctf-forensics-info">
+                        <h4 className="terminal-subsection-title">🔍 Expected Hash Signatures:</h4>
+                        <div className="hash-list">
+                          <div className="hash-item">MD5:    {currentCtfChallenge.hashes.md5}</div>
+                          <div className="hash-item">SHA1:   {currentCtfChallenge.hashes.sha1}</div>
+                          <div className="hash-item">SHA256: {currentCtfChallenge.hashes.sha256}</div>
+                        </div>
+                        <p>Verify the file integrity and find out what was changed if it's been compromised.</p>
+                        
+                        <h4 className="terminal-subsection-title">📄 File Contents:</h4>
+                        <div className="file-contents">
+                          <pre>{currentCtfChallenge.fileContent}</pre>
+                        </div>
+                        
+                        <div className="ctf-hint-text">
+                          💡 Hint: The expected hashes are for a simple string, but check what's actually in the file...
+                        </div>
+                      </div>
+                    )}
+                    
+                    {currentCtfChallenge.type === 'hard' && (
+                      <div className="ctf-hard-info">
+                        <div className="ctf-files-section">
+                          <h4 className="terminal-subsection-title">📄 Files Provided:</h4>
+                          
+                          <div className="ctf-file">
+                            <h5 className="file-header">📃 roger_notes.txt</h5>
+                            <div className="file-contents">
+                              <pre>{currentCtfChallenge.rogerNotes}</pre>
+                            </div>
+                          </div>
+                          
+                          <div className="ctf-file">
+                            <h5 className="file-header">🍎 devil_fruit.png (Steganography Analysis)</h5>
+                            <div className="stego-analysis">
+                              <div className="stego-note">🔍 File size seems suspiciously large... Something is hidden inside!</div>
+                              <div className="stego-note">🧺 Use steganography tools to extract hidden payload:</div>
+                              <div className="file-contents">
+                                <pre>{currentCtfChallenge.steganographyPayload}</pre>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="ctf-file">
+                            <h5 className="file-header">🗿 poneglyph_clues.txt</h5>
+                            <div className="file-contents">
+                              <pre>{currentCtfChallenge.poneglyphClues}</pre>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="ctf-solution-steps">
+                          <h4 className="terminal-subsection-title">🗺️ Solution Steps:</h4>
+                          <div className="solution-steps">
+                            <div className="step">1. Apply ROT13 to Roger's notes to decode the riddle</div>
+                            <div className="step">2. Extract steganographic data from devil_fruit.png</div>
+                            <div className="step">3. Calculate: Sky Island (62) + Fish-Man Island (51) + Roger years (22)</div>
+                            <div className="step">4. Build Vigenère key: GOMU + 62 + 51 + 22 = GOMU135</div>
+                            <div className="step">5. Decrypt final message to find the treasure location!</div>
+                          </div>
+                        </div>
+                        
+                        <div className="ctf-hint-text">
+                          💡 Hint: {currentCtfChallenge.hint}
+                        </div>
+                      </div>
+                    )}
+                    
+                    <div className="ctf-flag-format">
+                      <strong>Flag format:</strong> CTF{`{flag_text_with_underscores}`}
+                    </div>
+                    
+                    <div className="ctf-input-section">
+                      <form onSubmit={handleCtfSubmit} className="ctf-input-form">
+                        <div className="ctf-input-wrapper">
+                          <span className="prompt">flag@challenge:~$</span>
+                          <input
+                            type="text"
+                            value={ctfInput}
+                            onChange={(e) => setCtfInput(e.target.value)}
+                            className="ctf-flag-input"
+                            placeholder="Enter your flag here..."
+                            autoComplete="off"
+                            spellCheck="false"
+                          />
+                        </div>
+                        <button type="submit" className="ctf-submit-btn">Submit Flag</button>
+                      </form>
+                    </div>
+                    
+                    {ctfStatus && (
+                      <div className={`ctf-status ${ctfStatus.includes('Congratulations') || ctfStatus.includes('Excellent') ? 'ctf-success' : 'ctf-error'}`}>
+                        <pre>{ctfStatus}</pre>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
