@@ -1,0 +1,11 @@
+Gur guerr Ebnq Cbarti yhcuf ner uvqqra jurer:
+
+Svefg: Jurer gur Fxl Vfynaq'f yvtug fuvatrf oevtug,
+Frpbaq: Va gur qrcguf bs Svfu-Zna Vfynaq'f avtug,
+Guveq: Jurer Mbrh'f pehry unaqf erng gur fgebat.
+
+Ohg orsber lbh pna ernq gur fgbarf, qrpelcg jvgu pner,
+Hfr gur Qrivy Sehvg'f cbjre - vg'f uvqqra va gur nve!
+
+Final encrypted message (use Vigenère with special key):
+Dpiv opu jzok gfnmd EVEFQNUGSJDZ qgf EFNQDZ kp gfnmd!

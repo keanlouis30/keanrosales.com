@@ -20,6 +20,7 @@ const Extra = () => {
   const [currentCtfChallenge, setCurrentCtfChallenge] = useState(null);
   const [ctfInput, setCtfInput] = useState('');
   const [ctfStatus, setCtfStatus] = useState('');
+  const [showCtfNotification, setShowCtfNotification] = useState(false);
   const sectionRef = useRef(null);
   const terminalInputRef = useRef(null);
 
@@ -28,6 +29,14 @@ const Extra = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          // Show CTF notification after a slight delay
+          setTimeout(() => {
+            setShowCtfNotification(true);
+            // Auto-hide after 8 seconds
+            setTimeout(() => {
+              setShowCtfNotification(false);
+            }, 8000);
+          }, 2000);
         }
       },
       { threshold: 0.3 }
@@ -295,7 +304,7 @@ EPISODE_HINT: SKY_62_FISHMAN_51
 ROGER_EXECUTION: 22
 COMBINE_METHOD: CONCATENATE`,
               flag: "CTF{GOMU_GOMU_LAUGHTALE_ONEPIECE_CIPHER}",
-              hint: "Start with the simple cipher (ROT13), then extract the Devil Fruit's secrets, build the Vigenère key: GOMU + episodes + Roger's number"
+              hint: "The Pirate King loved layering his ciphers. Start simple, then dig deeper into the Devil Fruit's mysteries. Numbers from the Grand Line journey are key."
             });
             setShowCtfModal(true);
             response = 'Opening Hard CTF Challenge... Prepare for the Grand Line!';
@@ -704,6 +713,16 @@ COMBINE_METHOD: CONCATENATE`,
           </div>
         </div>
         
+        {/* CTF Challenge Notification */}
+        {showCtfNotification && (
+          <div className="ctf-challenge-notification">
+            <div className="ctf-notification-content">
+              <span className="ctf-notification-prompt">kean@portfolio:~$</span>
+              <span className="ctf-notification-text"> type ctf in the interactive terminal for a fun surprise</span>
+            </div>
+          </div>
+        )}
+        
         {/* Music Player Terminal */}
         <MusicPlayer />
         
@@ -985,7 +1004,7 @@ COMBINE_METHOD: CONCATENATE`,
                         </div>
                         
                         <div className="ctf-hint-text">
-                          💡 Hint: The expected hashes are for a simple string, but check what's actually in the file...
+                          💡 Hint: File integrity verification involves comparing expected vs actual hash values.
                         </div>
                       </div>
                     )}
@@ -993,42 +1012,79 @@ COMBINE_METHOD: CONCATENATE`,
                     {currentCtfChallenge.type === 'hard' && (
                       <div className="ctf-hard-info">
                         <div className="ctf-files-section">
-                          <h4 className="terminal-subsection-title">📄 Files Provided:</h4>
+                          <h4 className="terminal-subsection-title">📄 Challenge Files:</h4>
+                          <div className="download-note">
+                            💾 For the best CTF experience, download these files and use your favorite tools!
+                          </div>
                           
                           <div className="ctf-file">
-                            <h5 className="file-header">📃 roger_notes.txt</h5>
+                            <div className="file-header-with-download">
+                              <h5 className="file-header">📃 roger_notes.txt</h5>
+                              <a href="/ctf3/roger_notes.txt" download className="download-btn">📥 Download</a>
+                            </div>
+                            <div className="file-info">
+                              <span className="file-size">Size: ~420 bytes</span>
+                              <span className="file-desc">The Pirate King's encrypted messages</span>
+                            </div>
                             <div className="file-contents">
                               <pre>{currentCtfChallenge.rogerNotes}</pre>
                             </div>
                           </div>
                           
                           <div className="ctf-file">
-                            <h5 className="file-header">🍎 devil_fruit.png (Steganography Analysis)</h5>
+                            <div className="file-header-with-download">
+                              <h5 className="file-header">🍎 devil_fruit.png</h5>
+                              <a href="/ctf3/devil_fruit.png" download className="download-btn">📥 Download</a>
+                            </div>
+                            <div className="file-info">
+                              <span className="file-size">Size: ~185KB (suspicious!)</span>
+                              <span className="file-desc">Gomu Gomu no Mi image with hidden secrets</span>
+                            </div>
                             <div className="stego-analysis">
-                              <div className="stego-note">🔍 File size seems suspiciously large... Something is hidden inside!</div>
-                              <div className="stego-note">🧺 Use steganography tools to extract hidden payload:</div>
-                              <div className="file-contents">
-                                <pre>{currentCtfChallenge.steganographyPayload}</pre>
-                              </div>
+                              <div className="stego-note">🔍 File size seems too large for a simple PNG... Something is hidden inside!</div>
+                              <div className="stego-note">🧺 Use steganography tools (steghide, zsteg, binwalk, etc.) to extract hidden data</div>
+                              <div className="stego-note">🔎 Try different steganography techniques - the data might be embedded in various ways</div>
                             </div>
                           </div>
                           
                           <div className="ctf-file">
-                            <h5 className="file-header">🗿 poneglyph_clues.txt</h5>
+                            <div className="file-header-with-download">
+                              <h5 className="file-header">🗿 poneglyph_clues.txt</h5>
+                              <a href="/ctf3/poneglyph_clues.txt" download className="download-btn">📥 Download</a>
+                            </div>
+                            <div className="file-info">
+                              <span className="file-size">Size: ~613 bytes</span>
+                              <span className="file-desc">Ancient clues for building the cipher key</span>
+                            </div>
                             <div className="file-contents">
                               <pre>{currentCtfChallenge.poneglyphClues}</pre>
                             </div>
                           </div>
                         </div>
                         
-                        <div className="ctf-solution-steps">
-                          <h4 className="terminal-subsection-title">🗺️ Solution Steps:</h4>
-                          <div className="solution-steps">
-                            <div className="step">1. Apply ROT13 to Roger's notes to decode the riddle</div>
-                            <div className="step">2. Extract steganographic data from devil_fruit.png</div>
-                            <div className="step">3. Calculate: Sky Island (62) + Fish-Man Island (51) + Roger years (22)</div>
-                            <div className="step">4. Build Vigenère key: GOMU + 62 + 51 + 22 = GOMU135</div>
-                            <div className="step">5. Decrypt final message to find the treasure location!</div>
+                        <div className="ctf-tools-section">
+                          <h4 className="terminal-subsection-title">🛠️ Recommended Tools:</h4>
+                          <div className="tools-grid">
+                            <div className="tool-item">
+                              <span className="tool-name">ROT13 Decoder</span>
+                              <span className="tool-desc">Online ROT13 tools or tr command</span>
+                            </div>
+                            <div className="tool-item">
+                              <span className="tool-name">Steganography</span>
+                              <span className="tool-desc">steghide, zsteg, stegsolve, binwalk</span>
+                            </div>
+                            <div className="tool-item">
+                              <span className="tool-name">Vigenère Cipher</span>
+                              <span className="tool-desc">CyberChef, online Vigenère tools</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="ctf-challenge-note">
+                          <h4 className="terminal-subsection-title">🎯 Your Mission:</h4>
+                          <div className="mission-text">
+                            Decode the Pirate King's messages and find the path to Laugh Tale!
+                            Use the files above and your cryptographic skills to uncover the final treasure location.
                           </div>
                         </div>
                         
