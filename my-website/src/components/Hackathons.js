@@ -42,6 +42,18 @@ const Hackathons = () => {
       prize: 'Grand Prize'
     },
     {
+      id: 'inventi-hackathon-2025',
+      name: 'Inventi Hackathon Challenge',
+      position: '2nd Place',
+      project: 'Inventisolve',
+      date: '2025',
+      description: 'All-in-one property management solution developed for Inventi',
+      achievement: '2nd Place 🥈',
+      rank: 2,
+      participants: '60+',
+      prize: 'Silver Medal'
+    },
+    {
       id: 'dlsu-ctf-2025',
       name: 'DLSU CTF 2025',
       position: 'Champion',
@@ -146,7 +158,7 @@ const Hackathons = () => {
               <div className="terminal-output-block hackathons-content">
                 <div className="stats-overview">
                   <div className="stat-item">
-                    <span className="stat-value">7+</span>
+                    <span className="stat-value">8+</span>
                     <span className="stat-label">Competitions</span>
                   </div>
                   <div className="stat-item">
@@ -154,7 +166,7 @@ const Hackathons = () => {
                     <span className="stat-label">Champions</span>
                   </div>
                   <div className="stat-item">
-                    <span className="stat-value">6</span>
+                    <span className="stat-value">7</span>
                     <span className="stat-label">Top 5 Finishes</span>
                   </div>
                   <div className="stat-item">
@@ -215,7 +227,7 @@ const Hackathons = () => {
                   <div className="summary-text">
                     <p className="summary-line">
                       <span className="summary-label">TOTAL COMPETITIONS:</span>
-                      <span className="summary-value">7</span>
+                      <span className="summary-value">8</span>
                     </p>
                     <p className="summary-line">
                       <span className="summary-label">WIN RATE:</span>
