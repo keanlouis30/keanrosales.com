@@ -29,14 +29,14 @@
 
 .notification-prompt {
   color: var(--mint, #40e0d0);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-weight: bold;
   font-size: 0.9rem;
 }
 
 .notification-text {
   color: #ffffff;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 0.9rem;
   white-space: nowrap;
   overflow: hidden;
@@ -47,7 +47,7 @@
   background: rgba(46, 139, 87, 0.2);
   border: 1px solid var(--sea-green, #2e8b57);
   color: var(--mint, #40e0d0);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 0.85rem;
   font-weight: bold;
   padding: 0.4rem 0.8rem;

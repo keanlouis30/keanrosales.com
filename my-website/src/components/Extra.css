@@ -64,7 +64,7 @@ overflow: hidden;
   color: var(--nyanza);
   font-size: 14px;
   font-weight: bold;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .terminal-minimize {
@@ -75,7 +75,7 @@ overflow: hidden;
 
 .terminal-body {
   padding: 30px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .command-line {
@@ -267,7 +267,7 @@ overflow: hidden;
   margin-left: 0px;
   padding: 5px 0;
   white-space: pre-wrap;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   line-height: 1.4;
 }
 
@@ -286,7 +286,7 @@ overflow: hidden;
   background: transparent;
   border: none;
   color: var(--nyanza);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 13px;
   outline: none;
   padding: 5px;
@@ -496,7 +496,7 @@ overflow: hidden;
   color: var(--nyanza);
   font-size: 24px;
   margin: 0;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .close-btn {
@@ -539,7 +539,7 @@ overflow: hidden;
   font-size: 16px;
   margin: 0 0 20px 0;
   text-align: center;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   border-bottom: 1px solid var(--dartmouth-green);
   padding-bottom: 10px;
 }
@@ -559,7 +559,7 @@ overflow: hidden;
   border-radius: 4px;
   border: 1px solid transparent;
   transition: all 0.2s ease;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 12px;
 }
 
@@ -758,7 +758,7 @@ overflow: hidden;
   font-size: 18px;
   font-weight: bold;
   margin: 0 0 20px 0;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   border-bottom: 1px solid var(--dartmouth-green);
   padding-bottom: 10px;
 }
@@ -768,7 +768,7 @@ overflow: hidden;
   font-size: 16px;
   font-weight: bold;
   margin: 30px 0 15px 0;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .terminal-hint {
@@ -840,7 +840,7 @@ overflow: hidden;
 .game-index {
   color: var(--mint);
   font-weight: bold;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   min-width: 35px;
 }
 
@@ -849,7 +849,7 @@ overflow: hidden;
   font-size: 16px;
   font-weight: bold;
   flex: 1;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .game-description,
@@ -857,7 +857,7 @@ overflow: hidden;
   color: var(--celadon);
   font-size: 13px;
   margin: 4px 0;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   opacity: 0.9;
 }
 
@@ -872,7 +872,7 @@ overflow: hidden;
   border-radius: 4px;
   border: 1px solid transparent;
   transition: all 0.2s ease;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 12px;
 }
 
@@ -980,7 +980,7 @@ overflow: hidden;
 .book-index {
   color: var(--mint);
   font-weight: bold;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   min-width: 35px;
 }
 
@@ -989,7 +989,7 @@ overflow: hidden;
   font-size: 16px;
   font-weight: bold;
   flex: 1;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .book-author,
@@ -997,7 +997,7 @@ overflow: hidden;
   color: var(--celadon);
   font-size: 13px;
   margin: 4px 0;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   opacity: 0.9;
 }
 
@@ -1017,7 +1017,7 @@ overflow: hidden;
   color: var(--mint);
   font-size: 18px;
   font-weight: bold;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .sport-description,
@@ -1025,7 +1025,7 @@ overflow: hidden;
   color: var(--celadon);
   font-size: 13px;
   margin: 4px 0;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .terminal-articles-section {
@@ -1063,7 +1063,7 @@ overflow: hidden;
 .article-index {
   color: var(--mint);
   font-weight: bold;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   min-width: 35px;
 }
 
@@ -1071,14 +1071,14 @@ overflow: hidden;
   color: var(--nyanza);
   font-size: 14px;
   flex: 1;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .publication {
   color: var(--celadon);
   font-size: 12px;
   font-style: italic;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 /* External Link Styling */
@@ -1160,7 +1160,7 @@ overflow: hidden;
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 8px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .game-description, .book-author {
@@ -1208,7 +1208,7 @@ overflow: hidden;
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 8px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .sport-description {
@@ -1227,7 +1227,7 @@ overflow: hidden;
   color: var(--mint);
   font-size: 16px;
   margin-bottom: 15px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .articles-link {
@@ -1323,7 +1323,7 @@ overflow: hidden;
   color: var(--mint);
   font-size: 16px;
   font-weight: bold;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 20px;
@@ -1336,7 +1336,7 @@ overflow: hidden;
   font-style: italic;
   margin-bottom: 25px;
   padding: 0 30px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .scripture-content .glory-statement {
@@ -1348,7 +1348,7 @@ overflow: hidden;
   border-top: 1px solid var(--dartmouth-green);
   padding-top: 20px;
   margin-top: 20px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 /* Mobile responsiveness for scripture terminal */
@@ -1366,7 +1366,7 @@ overflow: hidden;
 /* CTF Modal Styles */
 .ctf-challenge-info {
   color: var(--nyanza);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   line-height: 1.6;
 }
 
@@ -1418,7 +1418,7 @@ overflow: hidden;
   font-weight: bold;
   text-align: center;
   letter-spacing: 1px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .hash-list {
@@ -1431,7 +1431,7 @@ overflow: hidden;
 
 .hash-item {
   color: var(--mint);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 12px;
   margin: 8px 0;
   padding: 5px 0;
@@ -1454,7 +1454,7 @@ overflow: hidden;
 
 .file-contents pre {
   color: var(--celadon);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 12px;
   margin: 0;
   white-space: pre-wrap;
@@ -1513,7 +1513,7 @@ overflow: hidden;
 .ctf-input-wrapper .prompt {
   color: var(--mint);
   font-weight: bold;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 13px;
   white-space: nowrap;
 }
@@ -1523,7 +1523,7 @@ overflow: hidden;
   background: transparent;
   border: none;
   color: var(--nyanza);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 14px;
   outline: none;
   padding: 8px;
@@ -1540,7 +1540,7 @@ overflow: hidden;
   border: none;
   padding: 12px 25px;
   border-radius: 8px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-weight: bold;
   font-size: 14px;
   cursor: pointer;
@@ -1558,7 +1558,7 @@ overflow: hidden;
   margin: 20px 0;
   padding: 20px;
   border-radius: 8px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 13px;
   border: 2px solid;
 }
@@ -1646,7 +1646,7 @@ overflow: hidden;
   padding: 15px;
   margin-bottom: 20px;
   color: var(--mint);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 13px;
   text-align: center;
 }
@@ -1666,7 +1666,7 @@ overflow: hidden;
   text-decoration: none;
   padding: 8px 15px;
   border-radius: 6px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 12px;
   font-weight: bold;
   transition: all 0.3s ease;
@@ -1687,7 +1687,7 @@ overflow: hidden;
   padding: 12px 15px;
   background: rgba(45, 106, 79, 0.15);
   border-bottom: 1px solid var(--brunswick-green);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 12px;
 }
 
@@ -1712,7 +1712,7 @@ overflow: hidden;
 .file-header {
   background: var(--dartmouth-green);
   color: var(--mint);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 14px;
   font-weight: bold;
   margin: 0;
@@ -1760,14 +1760,14 @@ overflow: hidden;
 
 .tool-name {
   color: var(--mint);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-weight: bold;
   font-size: 13px;
 }
 
 .tool-desc {
   color: var(--celadon);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 12px;
   text-align: right;
 }
@@ -1783,7 +1783,7 @@ overflow: hidden;
 
 .mission-text {
   color: var(--celadon);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 14px;
   line-height: 1.6;
   font-style: italic;
@@ -1805,7 +1805,7 @@ overflow: hidden;
 
 .step {
   color: var(--celadon);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 13px;
   padding: 10px 15px;
   background: rgba(8, 28, 21, 0.6);
@@ -1940,14 +1940,14 @@ overflow: hidden;
 
 .ctf-notification-prompt {
   color: var(--mint);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-weight: bold;
   font-size: 0.9rem;
 }
 
 .ctf-notification-text {
   color: #ffffff;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 0.9rem;
   white-space: nowrap;
   overflow: hidden;
@@ -1958,7 +1958,7 @@ overflow: hidden;
   background: rgba(255, 95, 87, 0.2);
   border: 1px solid #ff5f57;
   color: #ff5f57;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 1rem;
   font-weight: bold;
   width: 28px;

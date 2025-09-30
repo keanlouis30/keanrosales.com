@@ -105,7 +105,7 @@
 
 .track-index {
   color: var(--mint);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-weight: bold;
   margin-right: 1rem;
   min-width: 2.5rem;
@@ -180,7 +180,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .current-time {
@@ -249,7 +249,7 @@
 .control-text {
   color: var(--mint);
   cursor: pointer;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 0.95rem;
   font-weight: bold;
   padding: 0.5rem 0.75rem;
@@ -337,7 +337,7 @@
 
 .volume-label {
   color: var(--mint);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-weight: bold;
 }
 

@@ -62,7 +62,7 @@
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.05em;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .icon {

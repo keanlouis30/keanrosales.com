@@ -27,7 +27,7 @@
     0 0 20px rgba(116, 198, 157, 0.1),
     0 0 40px rgba(116, 198, 157, 0.05),
     inset 0 0 20px rgba(8, 28, 21, 0.8);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   min-width: 200px;
   position: relative;
   overflow: hidden;
@@ -81,7 +81,7 @@
   color: var(--nyanza);
   font-size: 14px;
   font-weight: bold;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .terminal-minimize {
@@ -125,7 +125,7 @@
   border: 1px solid transparent;
   border-radius: 4px;
   color: var(--celadon);
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   font-size: 12px;
   cursor: pointer;
   transition: all 0.3s ease;

@@ -61,7 +61,7 @@
   color: var(--nyanza);
   font-size: 14px;
   font-weight: bold;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .terminal-minimize {
@@ -72,7 +72,7 @@
 
 .terminal-body {
   padding: 30px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
 .command-line {
