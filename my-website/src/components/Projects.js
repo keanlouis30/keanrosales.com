@@ -48,6 +48,24 @@ const Projects = () => {
       type: 'Full-Stack Application'
     },
     {
+      id: 'inventisolve',
+      name: 'InventiSolve',
+      status: '2nd Place',
+      competition: 'Inventi Hackathon Challenge 2025',
+      description: 'All-in-one property management solution designed to help tenants and homeowners for an easier life. Built for Inventi to streamline property operations.',
+      technologies: ['React', 'Node.js', 'Express', 'PostgreSQL', 'JWT Authentication', 'RESTful API'],
+      features: [
+        'Tenant and property management',
+        'Maintenance request tracking',
+        'Payment processing and invoicing',
+        'Real-time communication system',
+        'Document management and storage',
+        'Analytics and reporting dashboard'
+      ],
+      impact: '🥈 2nd Place - Inventi Hackathon Challenge 2025',
+      type: 'Property Management Platform'
+    },
+    {
       id: 'neosolutions',
       name: 'Neosolutions',
       status: 'Top 5 Finalist',

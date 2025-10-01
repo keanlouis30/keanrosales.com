@@ -117,7 +117,7 @@ const Hero = () => {
                   <div className="role-container">
                     <span className="role-prefix">></span>
                     <TextType 
-                      text="DLSU HackerCup 2025 Champion | Cybersecurity Specialist | Full-Stack Developer"
+                      text="DLSU HackerCup 2025 Champion | Inventi Hackathon 2nd Place | Cybersecurity Specialist | Full-Stack Developer"
                       typingSpeed={50}
                       className="role-text"
                       showCursor={true}
