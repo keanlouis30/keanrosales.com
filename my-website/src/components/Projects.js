@@ -52,7 +52,7 @@ const Projects = () => {
       name: 'InventiSolve',
       status: '2nd Place',
       competition: 'Inventi Hackathon Challenge 2025',
-      description: 'All-in-one property management solution designed to help tenants and homeowners for an easier life. Built for Inventi to streamline property operations.',
+      description: 'InventiSolve - an award winning all-in-one solution for property managers and tenants. Built for Inventi to streamline property operations.',
       technologies: ['React', 'Node.js', 'Express', 'PostgreSQL', 'JWT Authentication', 'RESTful API'],
       features: [
         'Tenant and property management',

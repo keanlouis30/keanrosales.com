@@ -26,8 +26,8 @@ This document showcases my projects, competitions, and achievements across vario
 ### Inventi Hackathon Challenge 2025
 **🥈 2nd Place**
 
-**Project:** Inventisolve  
-**Description:** All-in-one property management solution developed for Inventi  
+**Project:** InventiSolve  
+**Description:** An award winning all-in-one solution for property managers and tenants, developed for Inventi
 **Participants:** 60+  
 **Prize:** Silver Medal  
 
