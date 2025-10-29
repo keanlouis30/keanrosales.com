@@ -58,14 +58,14 @@ const Extra = () => {
       type: 'dir',
       contents: {
         'portfolio': { type: 'dir', contents: {
-          'projects.txt': { type: 'file', content: 'DLSU HackerCup 2025 Winner - KitaKita (Messenger POS System)\nInventi Hackathon 2nd Place - Inventisolve (Property Management Platform)\nFiMO Communication Glove (Assistive Technology)\nReal-time Threat Detection System\nTicketing Platform Solutions' },
-          'skills.txt': { type: 'file', content: 'Programming:\n  Python, C++, React, Node.js\n\nCybersecurity:\n  Kali Linux, Wireshark, Nmap\n  Digital Forensics, Threat Detection\n\nOther:\n  Technical Writing, Instruction\n  Hardware & Robotics' }
+          'projects.txt': { type: 'file', content: 'GenQ Global Hackathon 2025 - Top 3 Overall & Winner Challenge 3 - Qantara (Quantum Portfolio Optimizer)\nDLSU HackerCup 2025 Winner - KitaKita (Messenger POS System)\nInventi Hackathon 2nd Place - Inventisolve (Property Management Platform)\nFiMO Communication Glove (Assistive Technology)\nReal-time Threat Detection System\nTicketing Platform Solutions' },
+          'skills.txt': { type: 'file', content: 'Programming:\n  Python, C++, React, Node.js\n\nCybersecurity:\n  Kali Linux, Wireshark, Nmap\n  Digital Forensics, Threat Detection\n\nQuantum Computing:\n  Quantum Optimization\n  Hybrid Quantum-Classical Systems\n\nOther:\n  Technical Writing, Instruction\n  Hardware & Robotics' }
         }},
         'documents': { type: 'dir', contents: {
           'resume.pdf': { type: 'file', content: 'Kean Louis R. Rosales - Resume\nCybersecurity Specialist & Full-Stack Developer\n\n📄 To download the full resume PDF, use: download resume', downloadUrl: '/resume.pdf' }
         }},
-        'about.txt': { type: 'file', content: 'Kean Louis R. Rosales\n\nCybersecurity Specialist & Full-Stack Developer\nDLSU HackerCup 2025 Champion\nInventi Hackathon 2025 - 2nd Place\n\nPassionate about building secure, innovative solutions.\n\nContact: Open to collaboration and opportunities!' },
-        'achievements.txt': { type: 'file', content: '🏆 Won 8+ hackathons including DLSU HackerCup 2025 Champion\n🥈 Inventi Hackathon 2025 - 2nd Place (Property Management Platform)\n🛠️  Built assistive communication glove (FiMO)\n💻 Developed multiple full-stack applications\n📚 Published researcher in AR/VR and cybersecurity\n✍️  Former sports writer for The LaSallian\n🗣️  Freelance programming instructor' }
+        'about.txt': { type: 'file', content: 'Kean Louis R. Rosales\n\nCybersecurity Specialist & Full-Stack Developer\nGenQ Global Hackathon 2025 - Top 3 Overall & Winner Challenge 3\nDLSU HackerCup 2025 Champion\nInventi Hackathon 2025 - 2nd Place\n\nPassionate about building secure, innovative solutions.\n\nContact: Open to collaboration and opportunities!' },
+        'achievements.txt': { type: 'file', content: '🏆 Won 9+ hackathons including GenQ Global Hackathon 2025 (Top 3 Overall & Winner Challenge 3)\n🏆 DLSU HackerCup 2025 Champion\n🥈 Inventi Hackathon 2025 - 2nd Place (Property Management Platform)\n🛠️  Built quantum-enhanced portfolio optimizer (Qantara) - 182% more efficient\n🛠️  Built assistive communication glove (FiMO)\n💻 Developed multiple full-stack applications\n📚 Published researcher in AR/VR and cybersecurity\n✍️  Former sports writer for The LaSallian\n🗣️  Freelance programming instructor' }
       }
     }
   };
@@ -178,7 +178,7 @@ const Extra = () => {
         break;
         
       case 'about':
-        response = 'Kean Louis R. Rosales\n\nCybersecurity Specialist & Full-Stack Developer\nDLSU HackerCup 2025 Champion\nInventi Hackathon 2025 - 2nd Place\n\nFor detailed info: cat about.txt\nFor resume download: resume';
+        response = 'Kean Louis R. Rosales\n\nCybersecurity Specialist & Full-Stack Developer\nGenQ Global Hackathon 2025 - Top 3 Overall & Winner Challenge 3\nDLSU HackerCup 2025 Champion\nInventi Hackathon 2025 - 2nd Place\n\nFor detailed info: cat about.txt\nFor resume download: resume';
         break;
         
       case 'skills':
@@ -186,7 +186,7 @@ const Extra = () => {
         break;
         
       case 'projects':
-        response = 'Recent Projects:\n• FiMO Communication Glove (Award Winner)\n• Inventisolve - Property Management Platform (2nd Place)\n• Real-time Threat Detection System\n• Messenger-based POS System (HackerCup Winner)\n\nFor full list: cat portfolio/projects.txt';
+        response = 'Recent Projects:\n• Qantara - Quantum Portfolio Optimizer (GenQ Winner)\n• FiMO Communication Glove (Award Winner)\n• Inventisolve - Property Management Platform (2nd Place)\n• Real-time Threat Detection System\n• Messenger-based POS System (HackerCup Winner)\n\nFor full list: cat portfolio/projects.txt';
         break;
         
       case 'resume':
@@ -545,7 +545,8 @@ COMBINE_METHOD: CONCATENATE`,
 
   const funFacts = [
     'Built my first website at age 16',
-    'Won 5 hackathons in a row',
+    'Represented Philippines at international quantum computing hackathon',
+    'Won 9+ hackathons with 100% award rate',
     'Speaks fluent English and Tagalog',
     'Loves LeBron James',
     'Studied Mandarin and French for two years',

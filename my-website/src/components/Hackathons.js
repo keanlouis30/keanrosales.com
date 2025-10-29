@@ -30,6 +30,18 @@ const Hackathons = () => {
 
   const hackathons = [
     {
+      id: 'genq-global-hackathon-2025',
+      name: 'GenQ Global Hackathon Series 2025',
+      position: 'Top 3 Overall & Winner Challenge 3',
+      project: 'Qantara',
+      date: '2025',
+      description: 'Quantum-enhanced portfolio optimization web application - 182% more efficient than traditional algorithms in maximizing returns while integrating ESG sustainability',
+      achievement: 'Top 3 Overall 🏆 Winner Challenge 3 🥇',
+      rank: 1,
+      participants: 'International',
+      prize: 'Grand Prize - Portfolio Optimization'
+    },
+    {
       id: 'dlsu-hackercup-2025',
       name: 'DLSU HackerCup 2025',
       position: 'Champion',
@@ -158,15 +170,15 @@ const Hackathons = () => {
               <div className="terminal-output-block hackathons-content">
                 <div className="stats-overview">
                   <div className="stat-item">
-                    <span className="stat-value">8+</span>
+                    <span className="stat-value">9+</span>
                     <span className="stat-label">Competitions</span>
                   </div>
                   <div className="stat-item">
-                    <span className="stat-value">3</span>
+                    <span className="stat-value">4</span>
                     <span className="stat-label">Champions</span>
                   </div>
                   <div className="stat-item">
-                    <span className="stat-value">7</span>
+                    <span className="stat-value">8</span>
                     <span className="stat-label">Top 5 Finishes</span>
                   </div>
                   <div className="stat-item">
@@ -227,7 +239,7 @@ const Hackathons = () => {
                   <div className="summary-text">
                     <p className="summary-line">
                       <span className="summary-label">TOTAL COMPETITIONS:</span>
-                      <span className="summary-value">8</span>
+                      <span className="summary-value">9</span>
                     </p>
                     <p className="summary-line">
                       <span className="summary-label">WIN RATE:</span>
@@ -239,11 +251,11 @@ const Hackathons = () => {
                     </p>
                     <p className="summary-line">
                       <span className="summary-label">SPECIALIZATION:</span>
-                      <span className="summary-value">Full-Stack Development, Mobile Apps, Fintech, HR Tech</span>
+                      <span className="summary-value">Full-Stack Development, Mobile Apps, Fintech, Quantum Computing</span>
                     </p>
                     <p className="summary-line">
                       <span className="summary-label">IMPACT:</span>
-                      <span className="summary-value">Solutions for SMEs, Enterprise, Healthcare, and Employment</span>
+                      <span className="summary-value">Solutions for SMEs, Enterprise, Healthcare, Sustainable Finance</span>
                     </p>
                   </div>
                 </div>

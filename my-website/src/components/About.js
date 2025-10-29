@@ -29,8 +29,10 @@ const About = () => {
   }, []);
 
   const achievements = [
+    "🏆 GenQ Global Hackathon 2025 - Top 3 Overall & Winner Challenge 3",
     "🏆 DLSU HackerCup 2025 Champion",
     "🏆 DLSU CTF 2025 Champion",
+    "🥈 Inventi Hackathon 2025 - 2nd Place",
     "🥇 Top 5 Finalist - Tenext.ai Codebreak 2.0",
     "🥉 3rd Place - FlutterFlow Development Group Manila Hackathon",
     "🏅 4th Place - DLSU CTF 2024",

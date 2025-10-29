@@ -1,0 +1,43 @@
+<svg width="1200" height="260" viewBox="0 0 1200 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Terminal banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b2a20"/>
+      <stop offset="100%" stop-color="#081c15"/>
+    </linearGradient>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.05"/>
+      </feComponentTransfer>
+      <feBlend mode="overlay" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="260" fill="url(#bg)" />
+  <rect width="1160" height="180" x="20" y="40" rx="10" ry="10" fill="#0a0f0d" stroke="#40916c" stroke-width="2"/>
+
+  <!-- Header bar -->
+  <rect x="20" y="40" width="1160" height="36" rx="10" ry="10" fill="#2d6a4f"/>
+  <g transform="translate(36,58)">
+    <circle r="7" cx="0" cy="0" fill="#ff5f57"/>
+    <circle r="7" cx="20" cy="0" fill="#ffbd2e"/>
+    <circle r="7" cx="40" cy="0" fill="#28ca42"/>
+  </g>
+  <text x="70" y="62" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="16" fill="#d8f3dc" font-weight="700">~/kean-rosales --init</text>
+
+  <!-- Terminal content -->
+  <g font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="18" fill="#d8f3dc">
+    <text x="46" y="98" fill="#74c69d">$</text>
+    <text x="66" y="98" fill="#b7e4c7">whoami</text>
+    <text x="46" y="128">KEAN LOUIS ROSALES</text>
+
+    <text x="46" y="168" fill="#74c69d">$</text>
+    <text x="66" y="168" fill="#b7e4c7">echo</text>
+    <text x="110" y="168">"DLSU HackerCup 2025 Champion | Inventi Hackathon 2nd Place"</text>
+  </g>
+
+  <!-- Subtle noise overlay -->
+  <rect width="1200" height="260" fill="#000" opacity="0.05" filter="url(#noise)"/>
+</svg>
+
