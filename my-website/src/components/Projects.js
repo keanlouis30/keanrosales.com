@@ -31,6 +31,23 @@ const Projects = () => {
 
   const projects = [
     {
+      id: 'qantara',
+      name: 'Qantara',
+      status: 'Winner (Challenge 3) · Top 3 Overall',
+      competition: 'GenQ Global Hackathon Series 2025 — DBS Asia X, Singapore',
+      description: 'Quantum-enhanced portfolio optimizer that balances risk, return, and sustainability (ESG) using a hybrid quantum–classical model; ~182% more efficient in maximizing returns than traditional baselines.',
+      technologies: ['Quantum Annealing/Variational', 'Hybrid QC-Classical', 'Python', 'Pandas', 'SciPy', 'Web UI'],
+      features: [
+        'Hybrid quantum–classical portfolio optimization',
+        'ESG-aware objective with risk constraints',
+        'Easy-to-use web interface for non-technical users',
+        'Backtesting and benchmarking against classical methods',
+        'Configurable risk/return/ESG weights'
+      ],
+      impact: '🥇 Winner (Portfolio Optimization) · 🥉 Top 3 Overall - GenQ Global Hackathon 2025',
+      type: 'Quantum + AI Fintech Application'
+    },
+    {
       id: 'kitakita',
       name: 'KitaKita',
       status: 'Champion',

@@ -13,6 +13,17 @@ This document showcases my projects, competitions, and achievements across vario
 
 ## Competitions
 
+### GenQ Global Hackathon Series 2025 — DBS Asia X, Singapore
+**🥇 Winner (Challenge 3: Portfolio Optimization) · 🥉 Top 3 Overall**
+
+**Project:** Qantara — Quantum-Enhanced Portfolio Optimizer  
+**Description:** A hybrid quantum–classical portfolio optimizer that balances return, risk, and sustainability (ESG). Transforms ESG and market data into smarter, more ethical allocations. In benchmarking, achieved ~182% higher return efficiency over traditional baselines while maintaining risk controls.  
+**Team:** Kean Louis Rosales, Roi Victor Roberto (GenQT) — 2-person team  
+**Challenges:** Counterparty Credit Risk · Fraud Detection · Portfolio Optimization (Qantara won Challenge 3)  
+**Impact:** Demonstrated practical quantum advantage for finance workflows with a simple, accessible web UI enabling non-technical users to make sustainable decisions.  
+
+---
+
 ### DLSU HackerCup 2025
 **🏆 Champion**
 
