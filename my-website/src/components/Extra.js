@@ -62,7 +62,7 @@ const Extra = () => {
           'skills.txt': { type: 'file', content: 'Programming:\n  Python, C++, React, Node.js\n\nCybersecurity:\n  Kali Linux, Wireshark, Nmap\n  Digital Forensics, Threat Detection\n\nQuantum Computing:\n  Quantum Optimization\n  Hybrid Quantum-Classical Systems\n\nOther:\n  Technical Writing, Instruction\n  Hardware & Robotics' }
         }},
         'documents': { type: 'dir', contents: {
-          'resume.pdf': { type: 'file', content: 'Kean Louis R. Rosales - Resume\nCybersecurity Specialist & Full-Stack Developer\n\n📄 To download the full resume PDF, use: download resume', downloadUrl: '/resume.pdf' }
+          'resume.pdf': { type: 'file', content: 'Kean Louis R. Rosales - Resume\nCybersecurity Specialist & Full-Stack Developer\n\n📄 To download the full resume PDF, use: resume, resume.pdf, or download resume', downloadUrl: '/Rosales, Kean Louis.pdf' }
         }},
         'about.txt': { type: 'file', content: 'Kean Louis R. Rosales\n\nCybersecurity Specialist & Full-Stack Developer\nGenQ Global Hackathon 2025 - Top 3 Overall & Winner Challenge 3\nDLSU HackerCup 2025 Champion\nInventi Hackathon 2025 - 2nd Place\n\nPassionate about building secure, innovative solutions.\n\nContact: Open to collaboration and opportunities!' },
         'achievements.txt': { type: 'file', content: '🏆 Won 9+ hackathons including GenQ Global Hackathon 2025 (Top 3 Overall & Winner Challenge 3)\n🏆 DLSU HackerCup 2025 Champion\n🥈 Inventi Hackathon 2025 - 2nd Place (Property Management Platform)\n🛠️  Built quantum-enhanced portfolio optimizer (Qantara) - 182% more efficient\n🛠️  Built assistive communication glove (FiMO)\n💻 Developed multiple full-stack applications\n📚 Published researcher in AR/VR and cybersecurity\n✍️  Former sports writer for The LaSallian\n🗣️  Freelance programming instructor' }
@@ -99,7 +99,7 @@ const Extra = () => {
 
     switch (cmd) {
       case 'help':
-        response = `Available commands:\n\nNavigation:\n  ls, cd, pwd\n\nFile operations:\n  cat, history\n\nSystem info:\n  whoami, date, uname\n\nPortfolio info:\n  about, skills, projects\n\nDownloads:\n  resume, download resume, wget resume.pdf, curl /resume.pdf\n\nChallenges:\n  ctf - Launch CTF challenges\n\nOther:\n  clear, easteregg`;
+        response = `Available commands:\n\nNavigation:\n  ls, cd, pwd\n\nFile operations:\n  cat, history\n\nSystem info:\n  whoami, date, uname\n\nPortfolio info:\n  about, skills, projects\n\nDownloads:\n  resume, resume.pdf, download resume, wget resume.pdf, curl \"Rosales, Kean Louis.pdf\"\n\nChallenges:\n  ctf - Launch CTF challenges\n\nOther:\n  clear, easteregg`;
         break;
         
       case 'ls':
@@ -190,17 +190,27 @@ const Extra = () => {
         break;
         
       case 'resume':
+      case 'resume.pdf': {
+        // Trigger resume download directly
+        const link = document.createElement('a');
+        link.href = '/Rosales, Kean Louis.pdf';
+        link.download = 'Rosales_Kean_Louis_Resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        response = '📄 Resume download started!\n\nFile: Rosales_Kean_Louis_Resume.pdf\nFormat: PDF\n\nThank you for your interest in my profile!';
+        break;
+      }
       case 'download':
-        if (args[0] === 'resume' || cmd === 'resume') {
-          // Trigger resume download
+        if (args[0] === 'resume') {
           const link = document.createElement('a');
-          link.href = '/resume.pdf';
-          link.download = 'Kean_Rosales_Resume.pdf';
+          link.href = '/Rosales, Kean Louis.pdf';
+          link.download = 'Rosales_Kean_Louis_Resume.pdf';
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-          response = '📄 Resume download started!\n\nFile: Kean_Rosales_Resume.pdf\nSize: ~250KB\nFormat: PDF\n\nThank you for your interest in my profile!';
-        } else if (cmd === 'download') {
+          response = '📄 Resume download started!\n\nRun: resume or resume.pdf to download directly.';
+        } else {
           response = 'Usage: download resume\n\nAvailable downloads:\n  • resume - My current resume (PDF format)';
         }
         break;
@@ -209,29 +219,29 @@ const Extra = () => {
         if (args[0] === 'resume.pdf' || args[0] === 'resume') {
           // Trigger resume download
           const link = document.createElement('a');
-          link.href = '/resume.pdf';
-          link.download = 'Kean_Rosales_Resume.pdf';
+          link.href = '/Rosales, Kean Louis.pdf';
+          link.download = 'Rosales_Kean_Louis_Resume.pdf';
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-          response = '--2025-09-25 22:36:00--  /resume.pdf\nResolving portfolio.kean... done\nConnecting to portfolio.kean... connected\nHTTP request sent, awaiting response... 200 OK\nLength: ~250KB [application/pdf]\nSaving to: \'Kean_Rosales_Resume.pdf\'\n\n📄 Resume downloaded successfully!';
+          response = '--2025-09-25 22:36:00--  /Rosales, Kean Louis.pdf\nResolving portfolio.kean... done\nConnecting to portfolio.kean... connected\nHTTP request sent, awaiting response... 200 OK\nLength: ~250KB [application/pdf]\nSaving to: \'Rosales_Kean_Louis_Resume.pdf\'\n\n📄 Resume downloaded successfully!';
         } else {
           response = `wget: missing URL\nUsage: wget resume.pdf`;
         }
         break;
         
       case 'curl':
-        if (args.includes('/resume.pdf') || args.includes('resume')) {
+        if (args.includes('/resume.pdf') || args.includes('resume') || args.includes('resume.pdf') || args.includes('/Rosales,') ) {
           // Trigger resume download
           const link = document.createElement('a');
-          link.href = '/resume.pdf';
-          link.download = 'Kean_Rosales_Resume.pdf';
+          link.href = '/Rosales, Kean Louis.pdf';
+          link.download = 'Rosales_Kean_Louis_Resume.pdf';
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
           response = '  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n100 85311  100 85311    0     0   256k      0 --:--:-- --:--:-- --:--:--  256k\n\n📄 Resume downloaded via curl!';
         } else {
-          response = 'curl: missing URL\nUsage: curl /resume.pdf';
+          response = 'curl: missing URL\nUsage: curl "Rosales, Kean Louis.pdf"';
         }
         break;
         

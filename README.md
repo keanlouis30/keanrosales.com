@@ -5,7 +5,7 @@
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=22&duration=3000&pause=1000&color=74C69D&center=true&vCenter=true&width=600&lines=Cybersecurity+Specialist;Full-Stack+Developer;DLSU+HackerCup+2025+Champion;Inventi+Hackathon+2nd+Place)](https://git.io/typing-svg)
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-keanrosales.com-74c69d?style=for-the-badge&logo=firefox&logoColor=white)](https://keanrosales.com)
-[![Resume](https://img.shields.io/badge/Resume-Download_PDF-52b788?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://keanrosales.com/resume.pdf)
+[![Resume](https://img.shields.io/badge/Resume-Download_PDF-52b788?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://keanrosales.com/Rosales,%20Kean%20Louis.pdf)
 [![Email](https://img.shields.io/badge/Email-Contact-40916c?style=for-the-badge&logo=gmail&logoColor=white)](mailto:kean@keanrosales.com)
 
 </div>
@@ -187,7 +187,7 @@ kean@portfolio:~$ cat contact.txt
 <div align="center">
 
 [![Portfolio](https://img.shields.io/badge/🌐_Portfolio-keanrosales.com-74c69d?style=for-the-badge)](https://keanrosales.com)
-[![Resume](https://img.shields.io/badge/📄_Resume-Download-52b788?style=for-the-badge)](https://keanrosales.com/resume.pdf)
+[![Resume](https://img.shields.io/badge/📄_Resume-Download-52b788?style=for-the-badge)](https://keanrosales.com/Rosales,%20Kean%20Louis.pdf)
 [![Email](https://img.shields.io/badge/📧_Email-kean@keanrosales.com-40916c?style=for-the-badge)](mailto:kean@keanrosales.com)
 [![LinkedIn](https://img.shields.io/badge/💼_LinkedIn-Connect-2d6a4f?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/keanrosales)
 
