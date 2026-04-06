@@ -115,7 +115,7 @@ const Hero = () => {
                   </h1>
                   
                   <div className="role-container">
-                    <span className="role-prefix">></span>
+                    <span className="role-prefix">{'>'}</span>
                     <TextType 
                       text="DLSU HackerCup 2025 Champion | Inventi Hackathon 2nd Place | Cybersecurity Specialist | Full-Stack Developer"
                       typingSpeed={50}
@@ -148,7 +148,7 @@ const Hero = () => {
                     
                     <div className="resume-download">
                       <a 
-                        href="/assets/Rosales, Kean Louis.pdf" 
+                        href={process.env.PUBLIC_URL + "/Rosales, Kean Louis.pdf"} 
                         download="Rosales_Kean_Louis_Resume.pdf"
                         className="resume-button"
                         aria-label="Download Kean Rosales Resume PDF"
