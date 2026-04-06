@@ -30,6 +30,18 @@ const Hackathons = () => {
 
   const hackathons = [
     {
+      id: 'agora-voice-ai-hackathon-2026',
+      name: 'Agora Voice AI Hackathon 2026',
+      position: 'Champions',
+      project: 'Neo',
+      date: '2026',
+      description: 'AI-powered voice call center replacing traditional IVR with a natural voice-to-voice agent.',
+      achievement: 'Champion',
+      rank: 1,
+      participants: 'Manila',
+      prize: 'Champions'
+    },
+    {
       id: 'genq-global-hackathon-2025',
       name: 'GenQ Global Hackathon Series 2025',
       position: 'Top 3 Overall & Winner Challenge 3',
@@ -197,8 +209,8 @@ const Hackathons = () => {
 
                   <div className="leaderboard-entries">
                     {hackathons.map((hackathon, index) => (
-                      <div 
-                        key={hackathon.id} 
+                      <div
+                        key={hackathon.id}
                         className="leaderboard-entry"
                         style={{ '--delay': `${index * 0.1}s`, '--rank-color': getRankColor(hackathon.rank) }}
                       >
@@ -235,7 +247,7 @@ const Hackathons = () => {
                     <span className="prompt">kean@portfolio:~$</span>
                     <span className="command">grep -c "winner\|champion\|finalist" hackathons.log</span>
                   </div>
-                  
+
                   <div className="summary-text">
                     <p className="summary-line">
                       <span className="summary-label">TOTAL COMPETITIONS:</span>
