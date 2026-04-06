@@ -148,7 +148,7 @@ const Hero = () => {
                     
                     <div className="resume-download">
                       <a 
-                        href="/Rosales, Kean Louis.pdf" 
+                        href="/assets/Rosales, Kean Louis.pdf" 
                         download="Rosales_Kean_Louis_Resume.pdf"
                         className="resume-button"
                         aria-label="Download Kean Rosales Resume PDF"

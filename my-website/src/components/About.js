@@ -29,27 +29,46 @@ const About = () => {
   }, []);
 
   const achievements = [
-    "🏆 GenQ Global Hackathon 2025 - Top 3 Overall & Winner Challenge 3",
-    "🏆 DLSU HackerCup 2025 Champion",
-    "🏆 DLSU CTF 2025 Champion",
-    "🥈 Inventi Hackathon 2025 - 2nd Place",
-    "🥇 Top 5 Finalist - Tenext.ai Codebreak 2.0",
-    "🥉 3rd Place - FlutterFlow Development Group Manila Hackathon",
-    "🏅 4th Place - DLSU CTF 2024",
-    "🏅 4th Place - SpringBoards hack-it",
-    "⭐ Special Awardee - KMC Solutions Hackathon",
-    "🔬 1st Place Winner - Regional Science and Technology Fair"
+    "Agora Voice AI Hackathon 2026 Champion",
+    "GenQ Global Hackathon 2025 - Top 3 Overall & Winner Challenge 3",
+    "DLSU HackerCup 2025 Champion",
+    "DLSU CTF 2025 Champion",
+    "Inventi Hackathon 2025 - 2nd Place",
+    "Top 5 Finalist - Tenext.ai Codebreak 2.0",
+    "3rd Place - FlutterFlow Development Group Manila Hackathon",
+    "4th Place - DLSU CTF 2024",
+    "4th Place - SpringBoards hack-it",
+    "Special Awardee - KMC Solutions Hackathon",
+    "1st Place Winner - Regional Science and Technology Fair"
   ];
 
   const certifications = [
-    { 
-      name: "Introduction to Digital Forensics", 
-      org: "CYBER 5W", 
+    {
+      name: "Certified Social Engineering Defense Practitioner (CSEDP)",
+      org: "McAfee Institute / CSEDP",
+      year: "2026",
+      id: "10958101",
+      course: "Social Engineering Defense Practitioner",
+      issued: "2026-02-02",
+      link: "https://candidate.speedexam.net/certificate.aspx?SSTATE=am4131EniU8ntjp4bO5mXX3dBdxHF1z9Jc5dIFH1rULjnPp9lnV27EkYrrr3vn0W0PWbeWZ61uxBLLrKFBMBwyXhohlnaQLq+JgRBmJh8jU="
+    },
+    {
+      name: "Introduction to Digital Forensics",
+      org: "CYBER 5W",
       year: "2025",
       id: "4uutnaybl0",
       course: "C5W-100",
       issued: "2025-02-04",
       link: "https://academy.cyber5w.com/certificates/4uutnaybl0"
+    },
+    {
+      name: "CISCO Introduction to Cybersecurity",
+      org: "CISCO",
+      year: "2026",
+      id: "8b646923-98b0-4684-b92b-d0b80071bc7f",
+      course: "Introduction to Cybersecurity",
+      issued: "2026-01-29",
+      link: "https://www.credly.com/badges/8b646923-98b0-4684-b92b-d0b80071bc7f/public_url"
     }
   ];
 
@@ -79,7 +98,7 @@ const About = () => {
                   <div className="json-line">
                     <span className="json-bracket">{'{'}</span>
                   </div>
-                  
+
                   <div className="json-property">
                     <span className="json-key">"name"</span>
                     <span className="json-colon">:</span>
@@ -161,11 +180,11 @@ const About = () => {
                     <span className="prompt">kean@portfolio:~$</span>
                     <span className="command">ls achievements/</span>
                   </div>
-                  
+
                   <div className="achievements-grid">
                     {achievements.map((achievement, index) => (
-                      <div 
-                        key={index} 
+                      <div
+                        key={index}
                         className="achievement-item"
                         style={{ '--delay': `${index * 0.1}s` }}
                       >
@@ -180,11 +199,11 @@ const About = () => {
                     <span className="prompt">kean@portfolio:~$</span>
                     <span className="command">cat certifications.log</span>
                   </div>
-                  
+
                   <div className="cert-list">
                     {certifications.map((cert, index) => (
-                      <a 
-                        key={index} 
+                      <a
+                        key={index}
                         href={cert.link}
                         target="_blank"
                         rel="noopener noreferrer"
