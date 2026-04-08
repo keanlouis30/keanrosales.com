@@ -31,6 +31,24 @@ const Projects = () => {
 
   const projects = [
     {
+      id: 'neo',
+      name: 'Neo',
+      status: 'Champion',
+      competition: 'Agora Voice AI Hackathon Manila 2026',
+      description: 'AI-powered voice call center replacing traditional IVR with a natural voice-to-voice agent.',
+      technologies: ['Voice AI', 'Agora', 'Web UI'],
+      features: [
+        'Real-time voice AI agent for zero-queue customer intake',
+        'Automated ticket creation with AI-driven classification',
+        'Intelligent routing based on issue category and priority',
+        'Integrated SMS notifications for real-time customer assurance',
+        'Live reactive dashboard for seamless support team monitoring',
+        'Natural conversation flow with advanced barge-in capability'
+      ],
+      impact: '🏆 Champion - Agora Voice AI Hackathon Manila 2026',
+      type: 'Voice AI Application'
+    },
+    {
       id: 'qantara',
       name: 'Qantara',
       status: 'Winner (Challenge 3) · Top 3 Overall',
@@ -193,8 +211,8 @@ const Projects = () => {
               <div className="terminal-output-block projects-content">
                 <div className="projects-grid">
                   {projects.map((project, index) => (
-                    <div 
-                      key={project.id} 
+                    <div
+                      key={project.id}
                       className="project-card"
                       style={{ '--delay': `${index * 0.15}s` }}
                       onClick={() => setSelectedProject(project)}
@@ -259,7 +277,7 @@ const Projects = () => {
                   <span className="dot dot-green">●</span>
                 </span>
                 <span className="terminal-title">~/projects/{selectedProject.id} --details</span>
-                <button 
+                <button
                   className="close-button"
                   onClick={() => setSelectedProject(null)}
                 >
@@ -275,7 +293,7 @@ const Projects = () => {
 
                 <div className="project-details">
                   <h2 className="detail-title">{selectedProject.name}</h2>
-                  
+
                   <div className="detail-status">
                     <span className="detail-label">STATUS:</span>
                     <span className="detail-value">{selectedProject.status}</span>
