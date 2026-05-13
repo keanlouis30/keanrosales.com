@@ -1,0 +1,142 @@
+.writeups-page {
+  padding: 100px 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.writeups-section {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.writeups-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.writeups-terminal {
+  width: 100%;
+  background: var(--night);
+  border: 1px solid var(--onyx);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 20px var(--sea-green);
+  display: flex;
+  flex-direction: column;
+}
+
+.writeups-content {
+  animation: terminalFadeIn 0.5s ease forwards;
+}
+
+.terminal-markdown {
+  color: #e0e1dd;
+}
+
+.directory-listing {
+  margin-top: 20px;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+}
+
+.directory-header {
+  display: grid;
+  grid-template-columns: 120px 80px 250px 1fr;
+  gap: 15px;
+  padding: 10px 15px;
+  border-bottom: 1px dashed var(--onyx);
+  color: var(--celadon);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.directory-entries {
+  display: flex;
+  flex-direction: column;
+}
+
+.directory-entry {
+  display: grid;
+  grid-template-columns: 120px 80px 250px 1fr;
+  gap: 15px;
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+  color: var(--white);
+  transition: all 0.2s ease;
+  animation: slideInUp 0.3s ease forwards;
+  animation-delay: var(--delay);
+  opacity: 0;
+}
+
+.directory-entry:hover {
+  background: var(--sea-green);
+  border-left: 2px solid var(--mint);
+  padding-left: 13px; /* Compensate for border */
+}
+
+.entry-perms {
+  color: #888;
+}
+
+.entry-size {
+  color: #aaa;
+}
+
+.entry-category {
+  color: var(--celadon-2);
+}
+
+.entry-name {
+  color: var(--mint);
+  font-weight: bold;
+}
+
+.clickable-entry {
+  cursor: pointer;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes terminalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .directory-header {
+    display: none;
+  }
+  
+  .directory-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 15px;
+  }
+  
+  .entry-perms, .entry-size {
+    display: none;
+  }
+  
+  .entry-category {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+}

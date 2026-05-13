@@ -1,20 +1,45 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './Navigation.css';
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const [isVisible, setIsVisible] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const navItems = [
+  const mainNavItems = [
     { id: 'hero', label: 'init', symbol: '>' },
     { id: 'about', label: 'whoami', symbol: '$' },
     { id: 'proficiencies', label: 'skills', symbol: '&' },
     { id: 'projects', label: 'projects', symbol: '#' },
     { id: 'hackathons', label: 'competitions', symbol: '@' },
     { id: 'contact', label: 'connect', symbol: '*' },
-    { id: 'extra', label: 'misc', symbol: '~' }
+    { id: 'extra', label: 'misc', symbol: '~' },
+    { id: 'writeups', label: 'writeups', symbol: '!' }
   ];
+
+  const writeupNavItems = [
+    { id: 'home', label: 'cd ~/', symbol: '<' },
+    { id: 'writeups', label: 'ls writeups/', symbol: '$' },
+    { id: 'Arbitrary File Write', label: 'Arbitrary File Write', symbol: '-' },
+    { id: 'Forged Coupon', label: 'Forged Coupon', symbol: '-' },
+    { id: 'Forged Signed JWT', label: 'Forged Signed JWT', symbol: '-' },
+    { id: 'Imaginary Challenge', label: 'Imaginary Challenge', symbol: '-' },
+    { id: 'Login Support Team', label: 'Login Support Team', symbol: '-' },
+    { id: 'Multiple Likes', label: 'Multiple Likes', symbol: '-' },
+    { id: 'Premium Paywall', label: 'Premium Paywall', symbol: '-' },
+    { id: 'SSRF', label: 'SSRF', symbol: '-' },
+    { id: 'SSTI', label: 'SSTI', symbol: '-' },
+    { id: 'Successful RCE DoS', label: 'Successful RCE DoS', symbol: '-' },
+    { id: 'Video XSS', label: 'Video XSS', symbol: '-' },
+    { id: 'Wallet Depletion', label: 'Wallet Depletion', symbol: '-' }
+  ];
+
+  const isWriteupsRoute = location.pathname.startsWith('/writeups');
+  const navItems = isWriteupsRoute ? writeupNavItems : mainNavItems;
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 1000);
@@ -22,6 +47,18 @@ const Navigation = () => {
   }, []);
 
   useEffect(() => {
+    if (isWriteupsRoute) {
+      if (location.pathname === '/writeups') {
+        setActiveSection('writeups');
+      } else {
+        const pathParts = location.pathname.split('/');
+        if (pathParts.length > 2) {
+          setActiveSection(decodeURIComponent(pathParts[2]));
+        }
+      }
+      return;
+    }
+
     const handleScroll = () => {
       const sections = navItems.map(item => document.getElementById(item.id));
       const scrollPos = window.scrollY + 200;
@@ -37,12 +74,31 @@ const Navigation = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname, isWriteupsRoute, navItems]);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleNavClick = (sectionId) => {
+    if (sectionId === 'home') {
+      navigate('/');
+      return;
+    }
+
+    if (sectionId === 'writeups') {
+      navigate('/writeups');
+      return;
+    }
+
+    if (isWriteupsRoute) {
+      navigate(`/writeups/${encodeURIComponent(sectionId)}`);
+      return;
+    }
+
+    if (location.pathname !== '/') {
+      navigate(`/#${sectionId}`);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -71,7 +127,7 @@ const Navigation = () => {
               {navItems.map((item, index) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavClick(item.id)}
                   className={`nav-item ${activeSection === item.id ? 'active' : ''}`}
                   style={{ '--delay': `${index * 0.1}s` }}
                 >

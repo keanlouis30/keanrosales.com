@@ -1,29 +1,43 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import './App.css';
 import './styles/globals.css';
 import Navigation from './components/Navigation';
-import Hero from './components/Hero';
-import About from './components/About';
-import Proficiencies from "./Proficiencies";
-import Projects from './components/Projects';
-import Hackathons from './components/Hackathons';
-import Contact from './components/Contact';
-import Extra from './components/Extra';
 import BackgroundMusic from './components/BackgroundMusic';
+import Home from './components/Home';
+import Writeups from './components/Writeups';
+import WriteupDetail from './components/WriteupDetail';
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  const isWriteups = location.pathname.startsWith('/writeups');
+
+  React.useEffect(() => {
+    if (isWriteups) {
+      document.body.classList.add('writeups-theme');
+    } else {
+      document.body.classList.remove('writeups-theme');
+    }
+  }, [isWriteups]);
+
   return (
     <div className="app">
       <BackgroundMusic />
       <Navigation />
-      <Hero />
-      <About />
-      <Proficiencies />
-      <Projects />
-      <Hackathons />
-      <Contact />
-      <Extra />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/writeups" element={<Writeups />} />
+        <Route path="/writeups/:id" element={<WriteupDetail />} />
+      </Routes>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 

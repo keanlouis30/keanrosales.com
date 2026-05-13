@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Extra.css';
 import GlitchText from './GlitchText';
 import TextType from './TextType';
@@ -566,6 +567,8 @@ COMBINE_METHOD: CONCATENATE`,
   return (
     <section id="extra" className="extra-section" ref={sectionRef}>
       <div className="extra-container">
+        
+
         <div className="extra-terminal proficiency-card">
           <div className="terminal-header">
             <span className="terminal-dots">
@@ -653,6 +656,7 @@ COMBINE_METHOD: CONCATENATE`,
                     ))}
                   </div>
                 </div>
+
 
                 <div className="footer-message">
                   <div className="ascii-art">

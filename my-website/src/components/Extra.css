@@ -2121,3 +2121,54 @@ overflow: hidden;
     letter-spacing: 1px;
   }
 }
+
+.writeups-link-section {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 20px 0;
+}
+
+.writeups-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(45, 106, 79, 0.15);
+  border: 1px solid var(--mint);
+  border-radius: 8px;
+  padding: 15px 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.writeups-btn:hover {
+  background: rgba(45, 106, 79, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(116, 198, 157, 0.2);
+}
+
+.writeups-btn .btn-icon {
+  color: #ffb86c;
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.writeups-btn .btn-text {
+  color: var(--mint);
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
+  font-weight: bold;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.writeups-btn .btn-arrow {
+  color: var(--celadon);
+  font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
+  transition: transform 0.3s ease;
+}
+
+.writeups-btn:hover .btn-arrow {
+  transform: translateX(5px);
+  color: var(--white);
+}

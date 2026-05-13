@@ -1,0 +1,179 @@
+.writeup-detail-page {
+  padding: 100px 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.writeup-container {
+  width: 100%;
+  max-width: 900px;
+  background: var(--night);
+  border: 1px solid var(--onyx);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 20px var(--sea-green);
+  display: flex;
+  flex-direction: column;
+}
+
+.writeup-header {
+  background: var(--dartmouth-green);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--brunswick-green);
+}
+
+.back-link {
+  color: var(--celadon);
+  text-decoration: none;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--mint);
+}
+
+.back-arrow {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.terminal-controls .dot {
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.writeup-content {
+  padding: 40px;
+  background: transparent;
+  color: #e0e1dd;
+  font-family: var(--mono-font);
+  font-feature-settings: 'liga' 1, 'calt' 1;
+  line-height: 1.6;
+  overflow-y: auto;
+}
+
+.loading-text {
+  font-family: 'Fira Code', monospace;
+  color: var(--mint);
+}
+
+/* Markdown Styling adapted for terminal vibe */
+.terminal-markdown {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.terminal-markdown h1 {
+  color: var(--mint);
+  border-bottom: 1px dashed var(--onyx);
+  padding-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-family: var(--mono-font);
+  font-feature-settings: 'liga' 1, 'calt' 1;
+}
+
+.terminal-markdown h2 {
+  color: var(--celadon);
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 8px;
+}
+
+.terminal-markdown h3 {
+  color: var(--white);
+  margin-top: 25px;
+}
+
+.terminal-markdown p {
+  margin-bottom: 16px;
+}
+
+.terminal-markdown a {
+  color: var(--mint);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.terminal-markdown a:hover {
+  border-color: var(--mint);
+}
+
+.terminal-markdown code {
+  font-family: 'Fira Code', monospace;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #ffb86c;
+}
+
+.terminal-markdown pre {
+  background: var(--brunswick-green);
+  border: 1px solid var(--onyx);
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.terminal-markdown pre code {
+  background: transparent;
+  padding: 0;
+  color: #f8f8f2;
+}
+
+.terminal-markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  background: var(--brunswick-green);
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.terminal-markdown th, .terminal-markdown td {
+  border: 1px solid var(--onyx);
+  padding: 10px 15px;
+  text-align: left;
+}
+
+.terminal-markdown th {
+  background: var(--sea-green);
+  color: var(--mint);
+  font-weight: 600;
+}
+
+.terminal-markdown blockquote {
+  border-left: 4px solid var(--celadon);
+  margin: 20px 0;
+  padding-left: 15px;
+  color: #999;
+  font-style: italic;
+}
+
+.terminal-markdown img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--onyx);
+  border-radius: 4px;
+  margin: 20px auto;
+  display: block;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .writeup-content {
+    padding: 20px;
+  }
+}

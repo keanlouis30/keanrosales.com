@@ -24,9 +24,9 @@
   border: 1px solid var(--sea-green);
   border-radius: 8px;
   box-shadow: 
-    0 0 20px rgba(116, 198, 157, 0.1),
-    0 0 40px rgba(116, 198, 157, 0.05),
-    inset 0 0 20px rgba(8, 28, 21, 0.8);
+    0 0 20px rgba(var(--mint-rgb), 0.1),
+    0 0 40px rgba(var(--mint-rgb), 0.05),
+    inset 0 0 20px rgba(var(--dark-green-rgb), 0.8);
   font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
   min-width: 200px;
   position: relative;
@@ -35,9 +35,9 @@
 
 .nav-terminal:hover {
   box-shadow:
-    0 0 30px rgba(116, 198, 157, 0.2),
-    0 0 60px rgba(116, 198, 157, 0.1),
-    inset 0 0 20px rgba(8, 28, 21, 0.8);
+    0 0 30px rgba(var(--mint-rgb), 0.2),
+    0 0 60px rgba(var(--mint-rgb), 0.1),
+    inset 0 0 20px rgba(var(--dark-green-rgb), 0.8);
   border-color: var(--mint);
 }
 

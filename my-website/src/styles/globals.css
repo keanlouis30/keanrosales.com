@@ -13,14 +13,36 @@
   --celadon: #b7e4c7ff;
   --celadon-2: #95d5b2ff;
   --mint: #74c69dff;
+  --mint-rgb: 116, 198, 157;
   --mint-2: #52b788ff;
   --sea-green: #40916cff;
   --dartmouth-green: #2d6a4fff;
   --brunswick-green: #1b4332ff;
   --dark-green: #081c15ff;
+  --dark-green-rgb: 8, 28, 21;
   
   /* Consistent monospace font stack */
   --mono-font: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+}
+
+/* Dark Blue Writeups Theme */
+body.writeups-theme {
+  --nyanza: #c7d2fe;        /* indigo-200 */
+  --celadon: #818cf8;       /* indigo-400 */
+  --celadon-2: #6366f1;     /* indigo-500 */
+  --mint: #3b82f6;          /* blue-500 */
+  --mint-rgb: 59, 130, 246;
+  --mint-2: #2563eb;        /* blue-600 */
+  --sea-green: #1e3a8a;     /* blue-900 */
+  --dartmouth-green: #172554; /* blue-950 */
+  --brunswick-green: #081229; /* even darker */
+  --dark-green: #020617;    /* slate-950 (almost black) */
+  --dark-green-rgb: 2, 6, 23;
+  
+  --onyx: #0f172a;          /* slate-900 */
+  --night: #081229;
+
+  background-color: var(--dark-green);
 }
 
 /* Base styles */
