@@ -8,7 +8,7 @@
   border: 2px solid var(--sea-green, #2e8b57);
   border-radius: 8px;
   padding: 1rem 1.5rem;
-  box-shadow: 0 10px 30px rgba(46, 139, 87, 0.3);
+  box-shadow: 0 10px 30px rgba(var(--mint-rgb), 0.3);
   animation: slideInFromLeft 0.5s ease-out;
   min-width: 450px;
   max-width: 600px;
@@ -16,7 +16,7 @@
 
 .bg-music-notification:hover {
   border-color: var(--mint, #40e0d0);
-  box-shadow: 0 15px 40px rgba(46, 139, 87, 0.4);
+  box-shadow: 0 15px 40px rgba(var(--mint-rgb), 0.4);
 }
 
 .notification-content {
@@ -44,7 +44,7 @@
 }
 
 .notification-play-btn {
-  background: rgba(46, 139, 87, 0.2);
+  background: rgba(var(--mint-rgb), 0.2);
   border: 1px solid var(--sea-green, #2e8b57);
   color: var(--mint, #40e0d0);
   font-family: var(--mono-font); font-feature-settings: 'liga' 1, 'calt' 1;
@@ -59,7 +59,7 @@
 }
 
 .notification-play-btn:hover {
-  background: rgba(46, 139, 87, 0.3);
+  background: rgba(var(--mint-rgb), 0.3);
   border-color: var(--mint, #40e0d0);
   color: #ffffff;
   transform: translateY(-1px);
@@ -91,11 +91,11 @@
 @keyframes flashNotification {
   0%, 100% {
     border-color: var(--sea-green, #2e8b57);
-    box-shadow: 0 10px 30px rgba(46, 139, 87, 0.3);
+    box-shadow: 0 10px 30px rgba(var(--mint-rgb), 0.3);
   }
   25% {
     border-color: var(--mint, #40e0d0);
-    box-shadow: 0 15px 40px rgba(64, 224, 208, 0.6);
+    box-shadow: 0 15px 40px rgba(var(--mint-rgb), 0.6);
   }
   50% {
     border-color: #ffff00;
@@ -103,7 +103,7 @@
   }
   75% {
     border-color: var(--mint, #40e0d0);
-    box-shadow: 0 15px 40px rgba(64, 224, 208, 0.6);
+    box-shadow: 0 15px 40px rgba(var(--mint-rgb), 0.6);
   }
 }
 
