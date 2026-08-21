@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The World Trade Desk — Case File</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,460;0,9..144,600;0,9..144,680;1,9..144,500;1,9..144,600&family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14263F;
+    --bg-soft: #1E3554;
+    --cream: #F6F1E4;
+    --cream-soft: #D6CEB8;
+    --paper: #FBF7EC;
+    --paper-2: #F1E9D6;
+    --ink: #1B2333;
+    --ink-soft: #5B5343;
+    --line: #E4DAC0;
+    --stamp: #D9503A;
+    --good: #3F8361;
+    --gold: #D6A24A;
+    --pin1: #D9503A;
+    --pin2: #3E72A6;
+    --pin3: #3F8361;
+    --pin4: #D6A24A;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+  }
+
+  body{
+    margin:0; background: var(--bg); color: var(--cream-soft);
+    font-family:'Inter', sans-serif; font-size: 19px; line-height: 1.65;
+    position: relative;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background: radial-gradient(ellipse at 20% 0%, rgba(255,255,255,0.05), transparent 55%),
+                radial-gradient(ellipse at 90% 90%, rgba(255,255,255,0.04), transparent 55%);
+  }
+  body::after{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: 0.05; mix-blend-mode: overlay;
+  }
+
+  .wrap{ max-width: 800px; margin:0 auto; padding: 0 24px; position:relative; z-index:1; }
+
+  h1,h2,h3,h4{ font-family:'Fraunces', serif; color:var(--cream); margin:0 0 0.4em; }
+  h1{ font-weight:680; } h2{ font-weight:600; } h3{ font-weight:600; }
+  p{ margin:0 0 1em; color: var(--cream-soft); }
+  em{ color: var(--cream); }
+  .accent-italic{ font-family:'Fraunces', serif; font-style:italic; font-weight:600; }
+  .eyebrow{
+    font-family:'Bebas Neue', sans-serif; font-size:1rem; letter-spacing:0.1em;
+    text-transform:uppercase; color: var(--gold); display:block; margin-bottom:0.7em;
+  }
+
+  /* Text inside cream pinned cards needs dark ink, overriding the navy defaults above */
+  .pin-card, .aside-note, .reason-note{ color: var(--ink-soft); }
+  .pin-card h1, .pin-card h2, .pin-card h3, .pin-card h4,
+  .aside-note h1, .aside-note h2, .aside-note h3,
+  .reason-note h1, .reason-note h2, .reason-note h3{ color: var(--ink); }
+  .pin-card p, .aside-note p, .reason-note p{ color: var(--ink-soft); }
+
+  .passport-nav{
+    position: sticky; top:0; z-index:80;
+    background: linear-gradient(var(--bg-soft), var(--bg));
+    border-bottom: 2px solid var(--gold);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  }
+  .passport-inner{
+    max-width: 800px; margin:0 auto; padding: 10px 20px;
+    display:flex; align-items:center; gap:10px; overflow-x:auto;
+  }
+  .passport-inner .pn-title{
+    font-family:'Inter', sans-serif; font-weight:600; font-size:0.7rem; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--cream-soft);
+    white-space:nowrap; margin-right:6px;
+  }
+  .stamp-stop{
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    background:none; border:none; cursor:pointer; flex-shrink:0;
+    font-family:'Inter', sans-serif; font-weight:500; font-size:0.62rem;
+    color: var(--cream-soft); text-transform:uppercase; letter-spacing:0.05em; padding: 4px 2px;
+  }
+  .stamp-stop .circ{
+    width:26px; height:26px; border-radius:50%; border: 2px solid var(--cream-soft);
+    display:flex; align-items:center; justify-content:center; transition: all 0.25s ease;
+  }
+  .stamp-stop.inked .circ{ border-color: var(--stamp); background: var(--stamp); color:var(--paper); transform: rotate(-8deg) scale(1.05); }
+  .stamp-stop.inked .circ::after{ content:"✓"; font-size:0.85rem; color:var(--paper); }
+  .stamp-stop.inked{ color: var(--gold); }
+
+  .pin-card{
+    background: var(--paper); border: 1px solid var(--line); border-radius: 3px;
+    box-shadow: 0 10px 18px -6px rgba(30,18,8,0.35), 0 2px 0 rgba(0,0,0,0.05);
+    padding: 26px; position: relative;
+  }
+  .pin-card::before{
+    content:""; position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+    width:17px; height:17px; border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, #fff9, transparent 45%), radial-gradient(circle at 50% 50%, var(--pin-c, var(--pin1)) 60%, #00000090 100%);
+    box-shadow: 0 3px 5px rgba(0,0,0,0.4); z-index:2;
+  }
+
+  section{ padding: 64px 0; position:relative; z-index:1; }
+
+  .cover{ padding: 70px 0 60px; }
+  .cover-card{ padding: 42px 34px; transform: rotate(-0.6deg); max-width: 680px; }
+  .cover-card h1{ font-size: clamp(2.1rem, 5.4vw, 3.1rem); line-height:1.08; margin-bottom:0.25em; }
+  .cover-card .sub{ font-size: 1.08rem; }
+  .cover-meta{
+    margin-top: 30px; padding-top:18px; border-top: 1px dashed var(--line);
+    font-family:'Inter', sans-serif; font-size:0.9rem; color: var(--ink-soft); display:grid; gap:6px;
+  }
+  .cover-meta b{ color: var(--ink); font-weight:600; }
+  .tape{ position:absolute; width:70px; height:24px; background: rgba(230,214,170,0.6); border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+  .tape.tl{ top:-12px; left:24px; transform: rotate(-8deg); }
+  .tape.br{ bottom:-12px; right:24px; transform: rotate(6deg); }
+
+  .btn{
+    display:inline-block; font-family:'Inter', sans-serif; font-weight:600; font-size:0.9rem;
+    letter-spacing:0.02em; text-decoration:none; color: var(--paper); background: var(--ink);
+    padding: 12px 22px; border-radius:2px; margin-top:26px; border:1px solid var(--ink); cursor:pointer;
+  }
+  .btn:hover{ background: var(--stamp); border-color:var(--stamp); }
+
+  .reasons-board{ display:grid; gap:14px; margin: 1.8em 0; }
+  .reason-note{ background: var(--paper-2); border: 1px solid var(--line); border-radius: 3px; padding: 14px 18px; box-shadow: 0 4px 10px -4px rgba(0,0,0,0.3); }
+  .reason-note span.tag{ display:block; font-family:'Inter', sans-serif; font-weight:700; font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color: var(--stamp); margin-bottom:4px; }
+  .reason-note p{ margin:0; font-size:0.96rem; }
+
+  .aside-note{
+    background: var(--paper-2); border: 1px solid var(--line); border-left: 4px solid var(--gold);
+    padding: 18px 22px; margin: 1.8em 0; font-size:0.95rem; position:relative;
+  }
+  .aside-note .lbl{ font-family:'Inter', sans-serif; font-weight:700; font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:8px; }
+  .aside-note p{ margin:0; color:var(--ink); }
+
+  .match-game{ margin-top: 30px; }
+  .clue-cards{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom: 24px; }
+  @media (max-width:560px){ .clue-cards{ grid-template-columns:1fr; } }
+  .clue-card{ --pin-c: var(--pin2); padding: 18px 16px; transform: rotate(var(--rot,-1deg)); text-align:center; }
+  .clue-card:nth-of-type(2){ --pin-c: var(--pin1); --rot:1.2deg; }
+  .clue-card:nth-of-type(3){ --pin-c: var(--pin3); --rot:-1.4deg; }
+  .clue-card:nth-of-type(4){ --pin-c: var(--pin4); --rot:1deg; }
+  .clue-card .clues{ font-size:1.9rem; letter-spacing:0.1em; margin-bottom:14px; }
+  .clue-card .slot{
+    border: 2px dashed var(--line); border-radius:3px; padding:10px; min-height:20px;
+    font-family:'Fraunces', serif; font-style:italic; font-weight:600; font-size:1.15rem; color: var(--ink-soft);
+    transition: all 0.2s ease;
+  }
+  .clue-card.matched{ transform: rotate(0deg); }
+  .clue-card.matched .slot{ border-style:solid; border-color: var(--good); color: var(--good); background: #3F836114; }
+  .clue-card.wrong-shake{ animation: shake 0.4s ease; }
+  @keyframes shake{ 0%,100%{transform:translateX(0) rotate(var(--rot,0deg));} 25%{transform:translateX(-6px) rotate(var(--rot,0deg));} 75%{transform:translateX(6px) rotate(var(--rot,0deg));} }
+
+  .chip-pool{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; padding: 16px; background: var(--paper-2); border:1px dashed var(--line); border-radius:6px; }
+  .chip{
+    font-family:'Inter', sans-serif; font-weight:500; font-size:0.9rem; background: var(--paper);
+    border: 1px solid var(--ink); color:var(--ink); padding: 9px 16px; border-radius: 20px; cursor:pointer;
+  }
+  .chip:hover{ border-color: var(--stamp); }
+  .chip.selected{ background: var(--stamp); border-color: var(--stamp); color: var(--paper); }
+  .chip.matched{ display:none; }
+  .match-status{ text-align:center; font-family:'Fraunces', serif; font-style:italic; font-weight:600; font-size:1.02rem; color:var(--gold); margin-top:14px; min-height:1.4em; }
+
+  .poll-btns{ display:flex; gap:12px; flex-wrap:wrap; margin:18px 0; }
+  .poll-btns button{ font-family:'Inter', sans-serif; font-weight:500; font-size:0.95rem; background: var(--paper-2); border:1px solid var(--ink); color:var(--ink); padding:12px 18px; border-radius:2px; cursor:pointer; flex:1 1 220px; }
+  .poll-btns button:hover{ background:var(--ink); color:var(--paper); }
+  .poll-result{ display:none; } .poll-result.shown{ display:block; }
+
+  .board-zone{ position:relative; }
+  .meters-panel{
+    position: sticky; top: 58px; z-index: 30;
+    background: var(--paper); border:1px solid var(--line); border-radius:4px;
+    box-shadow: 0 8px 16px -6px rgba(30,18,8,0.3);
+    padding: 16px 20px; margin-top: 10px;
+    display:grid; grid-template-columns: repeat(4,1fr); gap: 14px;
+  }
+  @media (max-width:640px){ .meters-panel{ grid-template-columns: repeat(2,1fr); } }
+  .meter .meter-label{ display:flex; justify-content:space-between; font-family:'Inter', sans-serif; font-weight:600; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-soft); margin-bottom:5px; }
+  .meter .meter-val{ color: var(--ink); font-weight:600; }
+  .meter-track{ height:8px; background: var(--paper-2); border:1px solid var(--line); border-radius:4px; overflow:hidden; }
+  .meter-fill{ height:100%; background: var(--meter-c, var(--stamp)); width:50%; transition: width 0.5s ease; }
+  .meter[data-key="agri"] .meter-fill{ --meter-c: var(--pin1); }
+  .meter[data-key="tech"] .meter-fill{ --meter-c: var(--pin2); }
+  .meter[data-key="energonia"] .meter-fill{ --meter-c: var(--pin3); }
+  .meter[data-key="medicara"] .meter-fill{ --meter-c: var(--pin4); }
+  .meter.pulse{ animation: meterpulse 0.5s ease; }
+  @keyframes meterpulse{ 0%{ transform:scale(1); } 40%{ transform:scale(1.04); } 100%{ transform:scale(1); } }
+
+  .connect-instructions{ font-family:'Fraunces', serif; font-style:italic; font-weight:600; font-size:1.05rem; color:var(--cream); margin: 20px 0 10px; }
+  .connect-wrap{ position:relative; margin: 10px 0 10px; }
+  .connect-grid{ position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap: 60px 40px; }
+  @media (max-width:600px){ .connect-grid{ grid-template-columns:1fr; gap:26px; } }
+  .yarn-line{ position:absolute; height:3px; background: var(--stamp); transform-origin:0 50%; z-index:1; box-shadow:0 1px 2px rgba(0,0,0,0.3); pointer-events:none; }
+  .nation-card{ padding:16px 18px; font-size:0.92rem; cursor:pointer; transition: box-shadow 0.15s ease, transform 0.15s ease; }
+  .nation-card h4{ font-family:'Fraunces', serif; font-weight:660; font-size:1.15rem; margin:0 0 6px; }
+  .nation-card .exp{ font-family:'Inter', sans-serif; font-weight:600; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); margin-bottom:2px; }
+  .nation-card .needs{ margin-top:10px; font-family:'Fraunces', serif; font-style:italic; font-weight:600; font-size:0.92rem; color:var(--ink-soft); min-height:1.3em; }
+  .nation-card.selected{ box-shadow: 0 0 0 3px var(--stamp), 0 10px 18px -6px rgba(0,0,0,0.35); }
+  .nation-card.linked .needs{ color: var(--good); font-weight:700; }
+  .nation-card.wrong-shake{ animation: shake 0.4s ease; }
+  .connect-status{ text-align:center; font-family:'Fraunces', serif; font-style:italic; font-weight:600; font-size:1.02rem; color:var(--gold); margin-top:14px; min-height:1.4em; }
+
+  .case-nav{ display:flex; justify-content:space-between; align-items:center; margin-top:36px; margin-bottom:12px; }
+  .case-nav .counter{ font-family:'Inter', sans-serif; font-weight:600; font-size:0.82rem; color:var(--cream-soft); }
+  .case-nav-btns button{ font-family:'Inter', sans-serif; font-weight:500; font-size:0.8rem; background:none; border:1px solid var(--cream-soft); color:var(--cream); padding:7px 14px; border-radius:2px; cursor:pointer; margin-left:8px; }
+  .case-nav-btns button:disabled{ opacity:0.3; cursor:default; }
+  .case-nav-btns button:not(:disabled):hover{ background:var(--stamp); border-color:var(--stamp); color:var(--paper); }
+
+  .case-card{ padding: 28px 26px 30px; overflow:hidden; --pin-c: var(--pin3); }
+  .case-card h3{ font-family:'Fraunces', serif; font-weight:600; font-size:1.2rem; line-height:1.45; margin-bottom:20px; color:var(--ink); }
+  .case-options{ display:grid; gap:10px; }
+  .case-options button{ text-align:left; font-family:'Inter', sans-serif; font-size:0.95rem; background: var(--paper-2); border:1px solid var(--line); color:var(--ink); padding:12px 16px; border-radius:2px; cursor:pointer; }
+  .case-options button:hover{ border-color:var(--ink); }
+  .case-options button.correct{ border-color:var(--good); background:#3F83611a; }
+  .case-options button.incorrect{ border-color:var(--stamp); background:#D9503A1a; }
+  .case-options button:disabled{ cursor:default; }
+  .case-feedback{ margin-top:18px; padding-top:16px; border-top:1px dashed var(--line); display:none; font-size:0.94rem; position:relative; }
+  .case-feedback.shown{ display:block; }
+  .case-feedback p{ margin:0; }
+
+  .ink-stamp{
+    position:absolute; top:14px; right:18px; font-family:'Bebas Neue', sans-serif; font-size: 1.4rem;
+    padding: 5px 16px; border: 3px solid var(--stamp); border-radius: 4px; color: var(--stamp);
+    transform: rotate(-9deg) scale(0); opacity:0; text-transform:uppercase; letter-spacing: 0.08em;
+    animation: thud 0.35s ease-out forwards;
+  }
+  .ink-stamp.good{ border-color:var(--good); color:var(--good); }
+  @keyframes thud{ 0%{ transform: rotate(-9deg) scale(1.9); opacity:0; } 60%{ transform: rotate(-9deg) scale(0.92); opacity:1; } 100%{ transform: rotate(-9deg) scale(1); opacity:1; } }
+
+  .dispatch{ padding: 24px 26px; margin-bottom: 30px; --pin-c: var(--pin1); position:relative; }
+  .dispatch:nth-of-type(2n){ --pin-c: var(--pin2); }
+  .dispatch:nth-of-type(3n){ --pin-c: var(--pin4); }
+  .dispatch .ribbon{ position:absolute; top:14px; right:-8px; background: var(--stamp); color:var(--paper); font-family:'Inter', sans-serif; font-weight:700; font-size:0.65rem; letter-spacing:0.08em; padding: 4px 12px 4px 10px; text-transform:uppercase; box-shadow: -2px 2px 0 rgba(0,0,0,0.15); }
+  .dispatch h3{ font-family:'Fraunces', serif; font-size:1.15rem; margin-bottom:6px; padding-right:70px; }
+  .dispatch .setup{ margin-bottom:16px; font-family:'Fraunces', serif; font-style:italic; font-weight:600; font-size:1.05rem; color:var(--ink); }
+  .dispatch .aftermath{ margin-top:16px; padding-top:16px; border-top:1px dashed var(--line); display:none; font-size:0.94rem; }
+  .dispatch .aftermath.shown{ display:block; }
+  .dispatch .aftermath .label{ font-family:'Inter', sans-serif; font-weight:700; font-size:0.74rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--gold); display:block; margin-bottom:6px; }
+
+  .debrief-card{ padding: 36px 32px; position:relative; --pin-c: var(--pin3); }
+  .closed-stamp{ display:inline-block; margin-top: 24px; font-family:'Bebas Neue', sans-serif; font-size:1.6rem; letter-spacing:0.06em; color: var(--good); border: 3px solid var(--good); border-radius:4px; padding: 6px 20px; transform: rotate(-6deg); text-transform:uppercase; }
+  .final-meters{ margin-top: 26px; display:grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  @media (max-width:640px){ .final-meters{ grid-template-columns: repeat(2,1fr); } }
+
+  .refs-card{ padding: 30px 30px 26px; --pin-c: var(--pin4); }
+  .refs{ list-style:none; padding:0; margin:0; }
+  .refs li{ padding:14px 0; border-top:1px solid var(--line); font-size:0.9rem; color:var(--ink-soft); }
+  .refs li:last-child{ border-bottom:1px solid var(--line); }
+  .refs a{ color:var(--ink); word-break: break-word; }
+
+  footer{ padding: 40px 0 60px; position:relative; z-index:1; font-family:'Inter', sans-serif; font-weight:500; font-size:0.82rem; color: var(--cream-soft); text-align:center; letter-spacing:0.02em; }
+
+  :focus-visible{ outline: 3px solid var(--stamp); outline-offset:2px; }
+</style>
+</head>
+<body>
+
+<nav class="passport-nav">
+  <div class="passport-inner">
+    <span class="pn-title">CASE PROGRESS →</span>
+    <button class="stamp-stop" data-target="start"><span class="circ"></span>Start</button>
+    <button class="stamp-stop" data-target="basics"><span class="circ"></span>Basics</button>
+    <button class="stamp-stop" data-target="why"><span class="circ"></span>Why</button>
+    <button class="stamp-stop" data-target="dossier"><span class="circ"></span>Dossier</button>
+    <button class="stamp-stop" data-target="dispatches"><span class="circ"></span>Dispatch</button>
+    <button class="stamp-stop" data-target="debrief"><span class="circ"></span>Debrief</button>
+    <button class="stamp-stop" data-target="sources"><span class="circ"></span>Sources</button>
+  </div>
+</nav>
+
+<header class="cover" id="start">
+  <div class="wrap">
+    <div class="pin-card cover-card" style="--pin-c: var(--pin1);">
+      <div class="tape tl"></div>
+      <span class="eyebrow">Case File No. 07 — International Relations</span>
+      <h1>The World Trade Desk</h1>
+      <p class="sub">Four fictional nations. Four dependencies. You'll match, connect, and decide your way through the case — and watch the consequences move in real time on the Trade Board.</p>
+      <a class="btn" href="#basics">Open the file →</a>
+      <div class="cover-meta">
+        <div>Prepared for: <b>Mr. Anastacio Marasigan</b></div>
+        <div>Submitted by: <b>Ballarta, Esguerra, Retiro, Rosales</b></div>
+      </div>
+      <div class="tape br"></div>
+    </div>
+  </div>
+</header>
+
+<section id="basics">
+  <div class="wrap">
+    <span class="eyebrow">Exhibit 01 — Trade Basics</span>
+    <h2>What is international trade?</h2>
+    <p>International trade is the exchange of goods and services across borders — what a country sends out is an export, what it brings in is an import. It's one of the main ways economies connect to one another.</p>
+    <p>It's closer to home than it seems, too. The phone in your pocket, the clothes you're wearing, probably something on your desk right now — chances are it crossed at least one border to get here.</p>
+
+    <div class="aside-note">
+      <span class="lbl">Before you continue —</span>
+      <p>Think of three things you used today. Where might they have come from? Keep that question in mind as you play the match below.</p>
+    </div>
+
+    <h3 style="margin-top:2em;">Match the country to its clues</h3>
+    <p style="font-size:0.95rem;">Tap a name below, then tap the clue card you think it belongs to.</p>
+
+    <div class="match-game">
+      <div class="clue-cards" id="clue-cards"></div>
+      <div class="chip-pool" id="chip-pool"></div>
+      <div class="match-status" id="match-status"></div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <span class="eyebrow">Exhibit 02 — Motive</span>
+    <h2>Why do countries trade at all?</h2>
+    <p>No country has everything it needs sitting within its own borders — and even when it does, it's often cheaper or better to get it elsewhere. A few reasons keep coming up:</p>
+
+    <div class="reasons-board">
+      <div class="reason-note"><span class="tag">Resources</span><p>Differences in natural resources — one country has oil, another has fertile farmland, another has forests.</p></div>
+      <div class="reason-note"><span class="tag">Capability</span><p>Differences in skills and technology — some countries manufacture with more precision or at greater scale.</p></div>
+      <div class="reason-note"><span class="tag">Access</span><p>Access to products that simply aren't available locally, whether due to climate, geography, or geology.</p></div>
+      <div class="reason-note"><span class="tag">Cost</span><p>Lower production costs elsewhere, which make importing cheaper than producing at home.</p></div>
+      <div class="reason-note"><span class="tag">Scale</span><p>Larger markets for businesses to sell into, beyond their home country's population.</p></div>
+    </div>
+
+    <div class="aside-note">
+      <span class="lbl">Field notes</span>
+      <p>Climate and geography explain a lot on their own — tropical countries tend to export coffee and sugar, while temperate-zone countries export wheat or corn. Resource-rich countries follow the same logic: nations with abundant oil, like Saudi Arabia, can produce and export it more cheaply than almost anywhere else, while resource-poor countries such as Japan tend to specialize in manufactured goods instead.</p>
+    </div>
+
+    <h3 style="margin-top:2em;">Quick check</h3>
+    <p style="font-size:0.95rem;">Is it better for a country to try to produce everything it needs on its own, or to trade with others?</p>
+    <div class="poll-btns">
+      <button onclick="showPoll()">Produce everything itself</button>
+      <button onclick="showPoll()">Trade with other countries</button>
+    </div>
+    <div class="aside-note poll-result" id="poll-result">
+      <span class="lbl">Why trade tends to win out</span>
+      <p>A country that insists on producing everything itself — economists call this <em>autarky</em> — usually ends up worse off. When each country specializes in what it produces most efficiently and trades for the rest, both sides typically come out ahead, even if one of them is better at producing almost everything.</p>
+    </div>
+  </div>
+</section>
+
+<div class="board-zone">
+  <div class="wrap">
+    <div class="meters-panel" id="meters-panel">
+      <div class="meter" data-key="agri"><div class="meter-label"><span>Agriland · Food</span><span class="meter-val">50%</span></div><div class="meter-track"><div class="meter-fill" style="width:50%"></div></div></div>
+      <div class="meter" data-key="tech"><div class="meter-label"><span>Techland · Electronics</span><span class="meter-val">50%</span></div><div class="meter-track"><div class="meter-fill" style="width:50%"></div></div></div>
+      <div class="meter" data-key="energonia"><div class="meter-label"><span>Energonia · Fuel</span><span class="meter-val">50%</span></div><div class="meter-track"><div class="meter-fill" style="width:50%"></div></div></div>
+      <div class="meter" data-key="medicara"><div class="meter-label"><span>Medicara · Medicine</span><span class="meter-val">50%</span></div><div class="meter-track"><div class="meter-fill" style="width:50%"></div></div></div>
+    </div>
+  </div>
+
+  <section id="dossier">
+    <div class="wrap">
+      <span class="eyebrow">Exhibit 03 — The Dossier</span>
+      <h2>Four nations, four dependencies</h2>
+      <p>Four fictional countries sit at the negotiating table. Each has something to offer, and something it desperately needs — but the connections aren't drawn yet. Every decision you make below nudges the stockpiles on the Trade Board above, so watch it as you go.</p>
+
+      <p class="connect-instructions">Tap a country, then tap the one you think it trades with. Correct pairs get strung together.</p>
+      <div class="connect-wrap" id="connect-wrap">
+        <div class="connect-grid" id="connect-grid"></div>
+      </div>
+      <div class="connect-status" id="connect-status"></div>
+
+      <p style="margin-top:26px;">Once you've mapped the network, work through the case files below — each one tests how well these dependencies actually hold up.</p>
+
+      <div class="case-nav">
+        <span class="counter" id="case-counter">Case 1 of 8</span>
+        <div class="case-nav-btns">
+          <button id="case-prev" onclick="changeCase(-1)">← Prev</button>
+          <button id="case-next" onclick="changeCase(1)">Next →</button>
+        </div>
+      </div>
+      <div class="pin-card case-card" id="case-card"></div>
+    </div>
+  </section>
+
+  <section id="dispatches">
+    <div class="wrap">
+      <span class="eyebrow">Exhibit 04 — Crisis Dispatches</span>
+      <h2>When something goes wrong</h2>
+      <p>Trade relationships are rarely static. Storms hit harvests, fuel prices spike, taxes get cut, technology leaps forward, and suppliers occasionally go quiet. Choose how each affected country should respond, and watch the Trade Board react.</p>
+      <div id="dispatch-list"></div>
+    </div>
+  </section>
+</div>
+
+<section id="debrief">
+  <div class="wrap">
+    <span class="eyebrow">Exhibit 05 — Debrief</span>
+    <h2>What this all shows</h2>
+    <div class="pin-card debrief-card">
+      <p>Countries trade because no single one of them can produce everything it needs — or wants — on its own. But trade isn't a fixed arrangement. Storms, price shocks, new technology, tax changes, and supply interruptions constantly reshape who needs what from whom.</p>
+      <p>What kept Agriland, Techland, Energonia, and Medicara afloat through each disruption wasn't any single country's strength — it was their willingness to adjust: rationing when supply was tight, renegotiating when a partner faltered, and looking for alternatives rather than depending on one relationship indefinitely.</p>
+      <p>That's the real takeaway: successful trade isn't about self-sufficiency, and it isn't about permanent arrangements either. It's about flexibility, cooperation, and agreements fair enough that both sides have a reason to keep honoring them.</p>
+      <p style="margin-top:20px; font-family:'Fraunces', serif; font-style:italic; font-weight:600; color:var(--ink); font-size:1.05rem;">Here's where all four economies ended up by the end of the case:</p>
+      <div class="final-meters" id="final-meters"></div>
+      <span class="closed-stamp">Case closed</span>
+    </div>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="wrap">
+    <span class="eyebrow">Exhibit 06 — Sources</span>
+    <h2>References</h2>
+    <div class="pin-card refs-card">
+      <ul class="refs">
+        <li>Bhargav, M. (2025, January 25). International trade and its role in global economic development. https://www.interesjournals.org/articles/international-trade-and-its-role-in-global-economic-development-117097.html</li>
+        <li>ICC Academy. (n.d.). A guide to international trade. https://academy.iccwbo.org/international-trade/article/what-is-international-trade/</li>
+        <li>Wilson Sons. (2024, April 5). Everything you need to know about International Trade. Wilson Sons. https://wilsonsons.com.br/en/blog/everything-you-need-to-know-about-international-trade/</li>
+        <li>Organisation for Economic Co-operation and Development. (2011). Globalisation, comparative advantage and the changing dynamics of trade. https://www.oecd.org/en/publications/globalisation-comparative-advantage-and-the-changing-dynamics-of-trade_9789264113084-en.html</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>The World Trade Desk — case file closed. Thank you for reviewing.</footer>
+
+<script>
+  const meters = { agri:50, tech:50, energonia:50, medicara:50 };
+  function bumpMeter(key, delta){
+    meters[key] = Math.max(0, Math.min(100, meters[key] + delta));
+    document.querySelectorAll(`.meter[data-key="${key}"]`).forEach(el => {
+      el.querySelector('.meter-fill').style.width = meters[key] + '%';
+      el.querySelector('.meter-val').textContent = meters[key] + '%';
+      el.classList.remove('pulse'); void el.offsetWidth; el.classList.add('pulse');
+    });
+  }
+  function applyEffect(effect, isCorrect){
+    if(!effect) return;
+    const delta = isCorrect ? effect.good : effect.bad;
+    effect.keys.forEach(k => bumpMeter(k, delta));
+  }
+  function renderFinalMeters(){
+    const labels = { agri:'Agriland · Food', tech:'Techland · Electronics', energonia:'Energonia · Fuel', medicara:'Medicara · Medicine' };
+    const el = document.getElementById('final-meters');
+    el.innerHTML = Object.keys(meters).map(k => `
+      <div class="meter" data-key="${k}">
+        <div class="meter-label"><span>${labels[k]}</span><span class="meter-val">${meters[k]}%</span></div>
+        <div class="meter-track"><div class="meter-fill" style="width:${meters[k]}%"></div></div>
+      </div>
+    `).join('');
+  }
+
+  const countries = [
+    { key:'japan', clues: "🍣 🎮 🚗 🗻", answer: "Japan" },
+    { key:'korea', clues: "📱 🎵 🍜 🎬", answer: "South Korea" },
+    { key:'us', clues: "📱 🍔 🗽 🎬", answer: "United States" },
+    { key:'china', clues: "🛒 🧸 🏮 🥢", answer: "China" }
+  ];
+  const clueGrid = document.getElementById('clue-cards');
+  countries.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'pin-card clue-card';
+    card.dataset.key = c.key;
+    card.innerHTML = `<div class="clues">${c.clues}</div><div class="slot">Tap a name to match</div>`;
+    clueGrid.appendChild(card);
+  });
+  const pool = document.getElementById('chip-pool');
+  const shuffled = [...countries].sort(() => Math.random() - 0.5);
+  shuffled.forEach(c => {
+    const chip = document.createElement('button');
+    chip.className = 'chip';
+    chip.dataset.key = c.key;
+    chip.textContent = c.answer;
+    chip.onclick = () => selectChip(chip);
+    pool.appendChild(chip);
+  });
+
+  let selectedChip = null;
+  let matchedCount = 0;
+  function selectChip(chip){
+    if(chip.classList.contains('matched')) return;
+    document.querySelectorAll('.chip.selected').forEach(c => c.classList.remove('selected'));
+    if(selectedChip === chip){ selectedChip = null; return; }
+    chip.classList.add('selected');
+    selectedChip = chip;
+  }
+  clueGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.clue-card');
+    if(!card || !selectedChip || card.classList.contains('matched')) return;
+    if(card.dataset.key === selectedChip.dataset.key){
+      card.classList.add('matched');
+      card.querySelector('.slot').textContent = selectedChip.textContent;
+      selectedChip.classList.add('matched');
+      selectedChip = null;
+      matchedCount++;
+      document.getElementById('match-status').textContent = matchedCount === countries.length
+        ? 'All matched — nice work.' : `${matchedCount} of ${countries.length} matched.`;
+    } else {
+      card.classList.add('wrong-shake');
+      setTimeout(() => card.classList.remove('wrong-shake'), 400);
+    }
+  });
+
+  function showPoll(){ document.getElementById('poll-result').classList.add('shown'); }
+
+  const nations = [
+    { key:'agri', name:'Agriland', exp:'Food', partner:'tech', needsLabel:'Technology' },
+    { key:'tech', name:'Techland', exp:'Electronics', partner:'agri', needsLabel:'Food' },
+    { key:'energonia', name:'Energonia', exp:'Fuel', partner:'medicara', needsLabel:'Medicine' },
+    { key:'medicara', name:'Medicara', exp:'Medicine', partner:'energonia', needsLabel:'Fuel' }
+  ];
+  const pinColors = { agri:'var(--pin1)', tech:'var(--pin2)', energonia:'var(--pin3)', medicara:'var(--pin4)' };
+  const connectGrid = document.getElementById('connect-grid');
+  nations.forEach(n => {
+    const card = document.createElement('div');
+    card.className = 'pin-card nation-card';
+    card.dataset.key = n.key;
+    card.style.setProperty('--pin-c', pinColors[n.key]);
+    card.innerHTML = `<span class="exp">Exports</span><h4>${n.name}</h4><span class="exp">${n.exp}</span><div class="needs">Needs: ?</div>`;
+    connectGrid.appendChild(card);
+  });
+
+  let selectedNation = null;
+  let linksFound = 0;
+  const connectWrap = document.getElementById('connect-wrap');
+  const foundPairs = [];
+
+  function getNationCard(key){ return connectGrid.querySelector(`.nation-card[data-key="${key}"]`); }
+
+  function drawLine(keyA, keyB){
+    const a = getNationCard(keyA).getBoundingClientRect();
+    const b = getNationCard(keyB).getBoundingClientRect();
+    const wrapRect = connectWrap.getBoundingClientRect();
+    const x1 = a.left + a.width/2 - wrapRect.left, y1 = a.top + a.height/2 - wrapRect.top;
+    const x2 = b.left + b.width/2 - wrapRect.left, y2 = b.top + b.height/2 - wrapRect.top;
+    const dx = x2-x1, dy = y2-y1;
+    const length = Math.sqrt(dx*dx + dy*dy);
+    const angle = Math.atan2(dy,dx) * 180/Math.PI;
+    const line = document.createElement('div');
+    line.className = 'yarn-line';
+    line.style.width = length + 'px';
+    line.style.left = x1 + 'px';
+    line.style.top = y1 + 'px';
+    line.style.transform = `rotate(${angle}deg)`;
+    connectWrap.appendChild(line);
+  }
+  function redrawLines(){
+    connectWrap.querySelectorAll('.yarn-line').forEach(l => l.remove());
+    foundPairs.forEach(p => drawLine(p[0], p[1]));
+  }
+  window.addEventListener('resize', redrawLines);
+
+  connectGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.nation-card');
+    if(!card || card.classList.contains('linked')) return;
+    const key = card.dataset.key;
+    if(!selectedNation){
+      selectedNation = key;
+      card.classList.add('selected');
+      return;
+    }
+    if(selectedNation === key){
+      card.classList.remove('selected');
+      selectedNation = null;
+      return;
+    }
+    const nA = nations.find(n => n.key === selectedNation);
+    const prevCard = getNationCard(selectedNation);
+    const isCorrect = nA.partner === key;
+    if(isCorrect){
+      const nB = nations.find(n => n.key === key);
+      prevCard.classList.remove('selected');
+      prevCard.classList.add('linked');
+      card.classList.add('linked');
+      prevCard.querySelector('.needs').textContent = 'Needs: ' + nB.exp + ' (confirmed)';
+      card.querySelector('.needs').textContent = 'Needs: ' + nA.exp + ' (confirmed)';
+      foundPairs.push([selectedNation, key]);
+      drawLine(selectedNation, key);
+      linksFound++;
+      document.getElementById('connect-status').textContent = linksFound === 2
+        ? 'Network fully mapped ✓' : `${linksFound} of 2 connections found.`;
+      selectedNation = null;
+    } else {
+      prevCard.classList.remove('selected');
+      card.classList.add('wrong-shake');
+      prevCard.classList.add('wrong-shake');
+      setTimeout(() => { card.classList.remove('wrong-shake'); prevCard.classList.remove('wrong-shake'); }, 400);
+      selectedNation = null;
+    }
+  });
+
+  const cases = [
+    { q: "If Agriland and Techland establish a bilateral trade agreement, what is the primary economic synergy achieved?",
+      options: ["Agriland receives electronics while Techland receives medical supplies.","Agriland receives fuel while Techland receives electronic technology.","Agriland receives technology for agriculture while Techland receives food.","Agriland receives medicine while Techland receives industrial fuel."],
+      correct: 2, explain: "Agriland's need is technology and Techland's need is food — their exports line up perfectly with each other's shortages.",
+      effect: { keys:['agri','tech'], good:5, bad:-3 } },
+    { q: "How does securing a trade deal with Energonia specifically support Medicara's export-oriented economy?",
+      options: ["It provides food to maintain the health of the workforce.","It provides the technology needed to automate factories.","It provides the energy required for pharmaceutical manufacturing.","It provides the raw medicine for national distribution."],
+      correct: 2, explain: "Medicara's main need is fuel — energy that keeps its pharmaceutical production running so it can keep exporting medicine.",
+      effect: { keys:['medicara'], good:6, bad:-4 } },
+    { q: "Suppose Energonia suffers a total collapse in fuel production. Which country's main export is most immediately threatened?",
+      options: ["Techland","Agriland","Medicara","Energonia"],
+      correct: 2, explain: "Medicara depends on fuel to manufacture medicine. No fuel means its main export — medicine — grinds to a halt.",
+      effect: { keys:['medicara'], good:6, bad:-4 } },
+    { q: "Why is it strategically more advantageous for Techland to prioritize trade with Agriland rather than Medicara?",
+      options: ["Medicara's exports are only compatible with Energonia's needs.","Agriland provides the basic necessity required for workforce survival.","Medicara requires technology that Techland cannot provide.","Agriland provides the fuel needed for electronics assembly."],
+      correct: 1, explain: "Techland's main need is food — a basic survival necessity for its own workforce, which only Agriland supplies here.",
+      effect: { keys:['tech'], good:6, bad:-4 } },
+    { q: "Which trade pairing configuration ensures that all four nations have their primary needs met with zero resource waste?",
+      options: ["Agriland–Techland and Energonia–Medicara","Agriland–Medicara and Techland–Energonia","Energonia–Agriland and Medicara–Techland","Agriland–Energonia and Techland–Medicara"],
+      correct: 0, explain: "Agriland↔Techland trades food for technology, while Energonia↔Medicara trades fuel for medicine. Every need is met, nothing left over.",
+      effect: { keys:['agri','tech','energonia','medicara'], good:4, bad:-3 } },
+    { q: "If Agriland successfully imports the technology it needs from Techland, what is the most likely long-term effect on Agriland's economy?",
+      options: ["Increased efficiency and surplus in food production","A total shift from food production to electronics manufacturing","An immediate surplus in fuel and medicine production","A decreased reliance on foreign trade partners"],
+      correct: 0, explain: "New technology applied to farming tends to raise output — Agriland produces food more efficiently, likely creating a surplus to trade further.",
+      effect: { keys:['agri'], good:6, bad:-4 } },
+    { q: "Which country acts as the critical 'energy provider' for the health and medical sector in this network?",
+      options: ["Techland","Agriland","Medicara","Energonia"],
+      correct: 3, explain: "Energonia's fuel exports are what keep Medicara's medicine production running — it's the energy backbone of the health sector here.",
+      effect: { keys:['energonia'], good:6, bad:-4 } },
+    { q: "What is the primary risk for Techland if it fails to secure a trade agreement with Agriland?",
+      options: ["A humanitarian crisis resulting from a food shortage","A lack of medicine will lead to an unhealthy workforce","The electronics sector will fail due to a lack of fuel","Industrial machines will cease to function due to lack of technology"],
+      correct: 0, explain: "Food is Techland's core need. Without it, the risk isn't abstract — it's a workforce that can't be fed.",
+      effect: { keys:['tech'], good:6, bad:-4 } }
+  ];
+
+  let caseIndex = 0;
+  const caseCard = document.getElementById('case-card');
+  const caseCounter = document.getElementById('case-counter');
+  const casePrev = document.getElementById('case-prev');
+  const caseNext = document.getElementById('case-next');
+
+  function renderCase(){
+    const c = cases[caseIndex];
+    caseCounter.textContent = `Case ${caseIndex + 1} of ${cases.length}`;
+    casePrev.disabled = caseIndex === 0;
+    caseNext.disabled = caseIndex === cases.length - 1;
+    caseCard.innerHTML = `
+      <h3>${c.q}</h3>
+      <div class="case-options">${c.options.map((opt,i)=>`<button onclick="answerCase(${i})">${opt}</button>`).join('')}</div>
+      <div class="case-feedback" id="case-feedback"><p id="case-explain"></p></div>
+    `;
+  }
+  function answerCase(choiceIndex){
+    const c = cases[caseIndex];
+    const buttons = caseCard.querySelectorAll('.case-options button');
+    buttons.forEach((b,i)=>{
+      b.disabled = true;
+      if(i===c.correct) b.classList.add('correct');
+      else if(i===choiceIndex) b.classList.add('incorrect');
+    });
+    const isRight = choiceIndex === c.correct;
+    const stamp = document.createElement('div');
+    stamp.className = 'ink-stamp' + (isRight ? ' good' : '');
+    stamp.textContent = isRight ? 'Confirmed' : 'Denied';
+    caseCard.appendChild(stamp);
+    document.getElementById('case-explain').textContent = c.explain;
+    document.getElementById('case-feedback').classList.add('shown');
+    applyEffect(c.effect, isRight);
+  }
+  function changeCase(dir){
+    caseIndex = Math.min(Math.max(caseIndex+dir,0), cases.length-1);
+    renderCase();
+  }
+  renderCase();
+
+  const dispatches = [
+    { title:"A storm reduces Agriland's food supply.", setup:"What should Agriland do?",
+      options:["Export more food to every country.","Reduce its food exports and prioritize its own supply.","Stop importing technology from Techland.","Give away its remaining food for free."],
+      correct:1, aftermath:"Agriland rations its exports to protect its own population first. Techland, still needing food, has to decide whether to pay more for a smaller shipment or look elsewhere — and Agriland's technology imports from Techland continue regardless, since that need hasn't changed.",
+      effect: { keys:['agri'], good:5, bad:-8 } },
+    { title:"Fuel prices increase in Energonia.", setup:"How will this affect the other countries?",
+      options:["Medicara will receive cheaper fuel.","Agriland will no longer need transportation.","Countries may pay more to import fuel and transport goods.","Techland will automatically produce more electronics."],
+      correct:2, aftermath:"Higher fuel prices don't just hit Medicara's medicine production — they raise the cost of moving every good between every country. Even trade unrelated to fuel gets more expensive, because shipping itself runs on it.",
+      effect: { keys:['agri','tech','energonia','medicara'], good:3, bad:-5 } },
+    { title:"Techland develops technology that makes production faster.", setup:"What is the best trade decision?",
+      options:["Stop producing electronics.","Produce more electronics and offer them to other countries.","Refuse to trade with Agriland.","Import more technology from Medicara."],
+      correct:1, aftermath:"With faster production, Techland can generate a surplus of electronics — giving it more to trade for the food it still needs, and strengthening its position at the table.",
+      effect: { keys:['tech'], good:8, bad:-3 } },
+    { title:"Agriland and Techland remove trade taxes between them.", setup:"What will likely happen?",
+      options:["Food and electronics will become more expensive to trade.","Both countries will stop trading.","Agriland and Techland can trade food and electronics more easily and cheaply.","Energonia will control their trade agreement."],
+      correct:2, aftermath:"Without tariffs, both sides save money on every exchange — food flows to Techland and technology flows to Agriland at a lower cost than before, benefiting both economies.",
+      effect: { keys:['agri','tech'], good:6, bad:-3 } },
+    { title:"Medicara temporarily stops exporting medicine.", setup:"What should the other countries do?",
+      options:["Continue depending only on Medicara.","Stop all international trade.","Look for another medicine supplier or negotiate with Medicara.","Export their food, fuel, and electronics without receiving anything in return."],
+      correct:2, aftermath:"Energonia, which normally trades fuel for Medicara's medicine, now has to either wait out the pause, negotiate better terms for when supply resumes, or find an alternative — a reminder that relying on one supplier for something essential carries real risk.",
+      effect: { keys:['medicara','energonia'], good:4, bad:-7 } }
+  ];
+
+  const dispatchList = document.getElementById('dispatch-list');
+  dispatches.forEach((d, idx) => {
+    const el = document.createElement('div');
+    el.className = 'pin-card dispatch';
+    el.innerHTML = `
+      <span class="ribbon">Urgent</span>
+      <h3>${d.title}</h3>
+      <p class="setup">${d.setup}</p>
+      <div class="case-options">${d.options.map((opt,i)=>`<button onclick="answerDispatch(${idx},${i})">${opt}</button>`).join('')}</div>
+      <div class="aftermath" id="dispatch-aftermath-${idx}"><span class="label">Aftermath</span><p style="margin:0;">${d.aftermath}</p></div>
+    `;
+    dispatchList.appendChild(el);
+  });
+  function answerDispatch(dIdx, choiceIndex){
+    const d = dispatches[dIdx];
+    const container = dispatchList.children[dIdx];
+    const buttons = container.querySelectorAll('.case-options button');
+    buttons.forEach((b,i)=>{
+      b.disabled = true;
+      if(i===d.correct) b.classList.add('correct');
+      else if(i===choiceIndex) b.classList.add('incorrect');
+    });
+    document.getElementById(`dispatch-aftermath-${dIdx}`).classList.add('shown');
+    applyEffect(d.effect, choiceIndex === d.correct);
+    renderFinalMeters();
+  }
+
+  const stops = document.querySelectorAll('.stamp-stop');
+  stops.forEach(s => s.addEventListener('click', () => {
+    document.getElementById(s.dataset.target).scrollIntoView({ behavior:'smooth' });
+  }));
+  const sectionEls = [...stops].map(s => document.getElementById(s.dataset.target));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const idx = sectionEls.indexOf(entry.target);
+      if (idx === -1) return;
+      if (entry.isIntersecting) stops[idx].classList.add('inked');
+    });
+  }, { threshold: 0.35 });
+  sectionEls.forEach(el => { if (el) observer.observe(el); });
+
+  renderFinalMeters();
+</script>
+
+</body>
+</html>

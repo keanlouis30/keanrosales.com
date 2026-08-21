@@ -7,10 +7,12 @@ import BackgroundMusic from './components/BackgroundMusic';
 import Home from './components/Home';
 import Writeups from './components/Writeups';
 import WriteupDetail from './components/WriteupDetail';
+import GeworldFinal from './components/GeworldFinal';
 
 function AppContent() {
   const location = useLocation();
   const isWriteups = location.pathname.startsWith('/writeups');
+  const isGeworld = location.pathname.startsWith('/geworld-final');
 
   React.useEffect(() => {
     if (isWriteups) {
@@ -19,6 +21,14 @@ function AppContent() {
       document.body.classList.remove('writeups-theme');
     }
   }, [isWriteups]);
+
+  if (isGeworld) {
+    return (
+      <Routes>
+        <Route path="/geworld-final" element={<GeworldFinal />} />
+      </Routes>
+    );
+  }
 
   return (
     <div className="app">

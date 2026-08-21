@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "keanrosales-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "my-website", "start"],
+      "port": 3000
+    }
+  ]
+}
